@@ -13,21 +13,21 @@ let user07 = {
     }
 };
 
-askPassword(() => user07.login(true), () => user07.login(false));
+// askPassword(() => user07.login(true), () => user07.login(false));
 
 
 
 
-// call apply
-function sayHi04(a) {
-    console.log(this.name + a);
+// call 
+function sayHi04(arg) {
+    console.log(this.name + arg);
 }
 
 let user06 = { name: "John" };
 let admin = { name: "Admin" };
 
-sayHi04.call(user06, 'd'); // John
-sayHi04.call(admin); // Admin
+// sayHi04.call(user06, 'd'); // John
+// sayHi04.call(admin); // Admin
 
 
 
@@ -38,13 +38,13 @@ function hash() {
     console.log([].join.call(arguments)); // 1,2
 }
 
-// hash(1, 2);
+hash(1, 2);
 
 
 
 
 
-// binding, partial 
+// partial 
 function mul(a, b) {
     return a * b;
 }
@@ -55,13 +55,30 @@ let double = mul.bind(null, 2);
 // console.log(double(4));
 // console.log(double(5));
 
+
+
+
+
+
+
+
+
+
+
+// binding, 
 function f() {
-    console.log(this.name);
+    console.log(this.name + this.surname);
 }
 
-f = f.bind({ name: "John" }).bind({ name: "Pete" });
+const f2 = f.bind({ name: "John" }).bind({ surname: "Pete" });
 
-// f(); 
+// f2();
+
+
+
+
+
+
 
 
 
@@ -72,7 +89,7 @@ function sum(a) {
 
     let currentSum = a;
 
-    function f(b) {
+    function f(state, b) {
         currentSum += b;
         return f;
     }
@@ -84,8 +101,80 @@ function sum(a) {
     return f;
 }
 
-// console.log(sum(1)(2).toString()); // 3
-// console.log(sum(5)(-1)(2).toString()); // 6
-// console.log(sum(6)(-1)(-2)(-3).toString()); // 0
-// console.log(sum(0)(1)(2)(3)(4)(5).toString()); // 15
+console.log(sum(1)(2).toString()); // 3
+console.log(sum(5)(-1)(2).toString()); // 6
+console.log(sum(6)(-1)(-2)(-3).toString()); // 0
+console.log(sum(0)(1)(2)(3)(4)(5).toString()); // 15
 
+
+
+
+
+
+
+function exCreateArray() {
+    console.log('heelo')
+    const position = {
+        id: '',
+        name: '',
+
+        createRandom: function () {
+            this.id = Math.random();
+            this.name = Math.random();
+
+            return this;
+        }
+    }
+
+
+    const obj = {
+        id: '',
+        date: new Date(),
+        positions: [],
+        createRandom() {
+            this.id = Math.random();
+            this.date = Math.random();
+
+            for (let index = 0; index < Math.random() * 20; index++) {
+                this.positions.push(position.createRandom())
+            }
+
+            console.log(this);
+
+        }
+    };
+
+    obj.createRandom()
+}
+// exCreateArray();
+
+const arr = function exName() {
+    // console.log(arguments);
+
+    // console.log('sdfsd' + exName);
+    {
+        const i = 0;
+
+        // local
+        if (true) {
+            const s = '';
+        }
+
+
+    }
+
+}
+
+
+
+// console.log(arr);
+// arr();
+
+// console.log(arguments);
+
+
+const f3 = () => {
+    console.log('sdfsd' + this);
+}
+
+// f3();
