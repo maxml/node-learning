@@ -1,0 +1,16 @@
+{
+    "key": "value",
+    "number": 10,
+    "database": {
+        "host": "testHost"
+    },
+    "redis": {
+        "password": "qwerty"
+    },
+    "development": {
+        "key2": "value2"
+    },
+    "production": {
+        "key2": "fcgjvkl;gjuvybnloimj,;.p,jlkhbkngl"
+    }
+}
