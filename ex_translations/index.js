@@ -1,19 +1,19 @@
 'use strict;'
 
-const t = require("i18n");
+const transalations = require("i18n");
 
-t.configure({
+transalations.configure({
     locales: ['en', 'de'],
     directory: __dirname + '/locales',
     defaultLocale: "en"
 });
 
-console.log(t.__('Hello'))
-t.setLocale("de")
-console.log(t.__('Hello'))
+console.log(transalations.__('greetings_v2'))
+transalations.setLocale("de");
+console.log(transalations.__('greetings_v2'))
 
+transalations.setLocale("en");
+require("./app")()
+transalations.setLocale("de")
 require("./app")()
 
-t.setLocale("en")
-
-require("./app")()

@@ -1,5 +1,6 @@
 {
-    "Hello World": "Hello World",
-    "Hello": "Hello",
-    "test": "test %s"
+	"Hello World": "Hello World",
+	"Hello": "Hello",
+	"test": "test %s",
+	"greetings_v2": "greetings_v2"
 }
