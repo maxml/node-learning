@@ -4,12 +4,12 @@ const _ = require('lodash');
 // filter();
 // map();
 // is();
-// mixin();
+mixin();
 // implicitChaining();
 // toTruthyArray();
 // bind();
 // partial();
-workWithObjects();
+// workWithObjects();
 // assign();
 
 function intersection() {
@@ -94,10 +94,9 @@ function mixin() {
     // use _.mixin to extend the lodash api
 
     _.mixin({
-        average: function (collection, callback) {
-
+        average: function (collection) {
             return _(collection)
-                .map(callback)
+                .map()
                 .reduce(function (result, item) {
                     return result + item;
                 }) / _.size(collection);
@@ -308,5 +307,5 @@ function Ex() {
     ad = 2;
 }
 
-console.log(new Ex().ad);
-console.log(ad);
+// console.log(new Ex().ad);
+// console.log(ad);
