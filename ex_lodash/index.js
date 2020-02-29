@@ -4,7 +4,7 @@ const _ = require('lodash');
 // filter();
 // map();
 // is();
-mixin();
+// mixin();
 // implicitChaining();
 // toTruthyArray();
 // bind();
@@ -94,9 +94,10 @@ function mixin() {
     // use _.mixin to extend the lodash api
 
     _.mixin({
-        average: function (collection) {
+        average: function (collection, callback) {
+
             return _(collection)
-                .map()
+                .map(callback)
                 .reduce(function (result, item) {
                     return result + item;
                 }) / _.size(collection);
