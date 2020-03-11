@@ -1,3 +1,5 @@
+const LinkedList = require('./exLinkedList');
+
 function GraphEdge(startVertex, endVertex, weight = 0) {
     this.startVertex = startVertex;
     this.endVertex = endVertex;
@@ -41,7 +43,7 @@ function GraphVertex(value) {
     this.edges = new LinkedList(edgeComparator);
 
     this.addEdge = function (edge) {
-        this.edges.append(edge);
+        this.edges.push(edge);
 
         return this;
     }
@@ -240,3 +242,30 @@ function Graph(isDirected) {
         return Object.keys(this.vertices).toString();
     }
 }
+
+function test() {
+    const graph = new Graph(true);
+
+    const vertexA = new GraphVertex('A');
+    const vertexB = new GraphVertex('B');
+    const vertexC = new GraphVertex('C');
+    const vertexD = new GraphVertex('D');
+
+    const edgeAB = new GraphEdge(vertexA, vertexB);
+    const edgeBC = new GraphEdge(vertexB, vertexC);
+    const edgeCD = new GraphEdge(vertexC, vertexD);
+    const edgeAD = new GraphEdge(vertexA, vertexD);
+
+    graph
+        .addEdge(edgeAB)
+        .addEdge(edgeBC)
+        .addEdge(edgeCD)
+        .addEdge(edgeAD);
+
+    const neighbors = graph.getNeighbors(vertexA);
+
+    console.log(graph.toString());
+    console.log(neighbors.toString());
+
+}
+test();
