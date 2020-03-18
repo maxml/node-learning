@@ -177,7 +177,7 @@ function exCancelation() {
         (e) => console.log(e)
     );
 }
-exCancelation();
+// exCancelation();
 
 
 
@@ -185,18 +185,18 @@ function exCustomError() {
     function MyError(message) {
         this.name = 'MyError';
         this.message = message;
-        this.stack = (new Error()).stack;
+        // this.stack = (new Error()).stack;
         // MyError.prototype = new Error;
-        // this.stack = Error.captureStackTrace(this, this.constructor);
+        this.stack = Error.captureStackTrace(this, this.constructor);
     }
 
-    throw new MyError('Fuck this shit');
+    throw new MyError('Alert');
 }
 // exCustomError();
 
 function exSimpleTry() {
     try {
-        throw new Error('Ой-ой!');
+        throw new ReferenceError('Ой-ой!');
     } catch (e) {
         console.error(e.name + ': ' + e.message);
         console.log(e.stack);
@@ -220,7 +220,7 @@ function exSimpleTry() {
 // exSimpleTry();
 
 function exJSON() {
-    let json = "{ bad json }";
+    let json = "{ \"name\": \"json\" }";
     try {
 
         let user = JSON.parse(json);
@@ -230,6 +230,7 @@ function exJSON() {
         console.log("Our apologies, the data has errors, we'll try to request it one more time.");
         console.log(e.name);
         console.log(e.message);
+        console.log(e.stack);
     }
 }
 // exJSON();
@@ -257,13 +258,17 @@ function exException() {
     function asyncOperation() {
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(new Error('Test error'));
+                reject(new Error('Test error'));
             }, 100);
         });
     }
 
-    asyncOperation().then((result) => {
-        console.log(result);
-    }).catch(err => console.log(err));
+    asyncOperation()
+        .then((result) => {
+            console.log(result);
+        })
+        .catch(err => console.log(err));
 }
 // exException()
+
+process.abort();

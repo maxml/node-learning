@@ -217,7 +217,7 @@ function exConstructor() {
             return sum(a + b)
         };
 
-        this.read2 = function () {
+        read2 = function () {
             this.a = 10;
             return this.a + this.b
         };
