@@ -1,0 +1,21 @@
+./node_modules/express-generator/bin/express-cli.js relationship-app-demo --no-view
+
+cd relationship-app-demo/
+
+npm install 
+
+DEBUG=relationship-app-demo:* npm start
+
+./node_modules/sequelize-cli/lib/sequelize init
+
+./node_modules/sequelize-cli/lib/sequelize model:generate --name Company --attributes name:STRING
+
+./node_modules/sequelize-cli/lib/sequelize model:generate --name User --attributes email:STRING,firstName:STRING,lastName:STRING,companyId:INTEGER
+
+./node_modules/sequelize-cli/lib/sequelize model:generate --name WorkingDay --attributes weekDay:STRING,workingDate:DATE,isWorking:BOOLEAN
+
+./node_modules/sequelize-cli/lib/sequelize model:generate --name UsersWorkingDay --attributes userId:INTEGER,workingDayId:INTEGER
+
+node_modules/.bin/sequelize db:migrate
+
+node_modules/.bin/sequelize db:migrate:undo
