@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>WebSockets vs HTTP</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            font-family: 'Lato', Calibri, Arial, sans-serif;
+            color: #333;
+            background: #f9f9f9;
+            font-size: 0.9em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 50px 40px;
+            width: 550px;
+            min-width: 550px;
+            margin: auto;
+        }
+
+        .params {
+            display: block;
+            float: left;
+        }
+
+        .param+.param {
+            margin-top: 10px;
+        }
+
+        .param label {
+            width: 10em;
+            display: block;
+            float: left;
+        }
+
+        #test {
+            display: block;
+            float: right;
+        }
+
+        .header {
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        .tech {
+            display: block;
+            float: left;
+            margin: 0;
+        }
+
+        #wsTime,
+        #httpTime {
+            display: block;
+            float: right;
+        }
+
+        progress {
+            background-color: #e3e3e3;
+            border: 0;
+            width: 100%;
+            height: 18px;
+            border-radius: 2px;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #e3e3e3;
+            border-radius: 2px;
+        }
+
+        progress.received::-webkit-progress-value {
+            background: #cdeb8e;
+            border-radius: 2px;
+        }
+
+        progress.sent::-webkit-progress-value {
+            background: #9dd3eb;
+            border-radius: 2px;
+        }
+
+        progress.received::-moz-progress-bar {
+            background: #cdeb8e;
+            border-radius: 2px;
+        }
+
+        progress.sent::-webkit-progress-value {
+            background: #9dd3eb;
+            border-radius: 2px;
+        }
+
+        input[type="text"] {
+            padding: 4px;
+            border: solid 1px #e3e3e3;
+            border-radius: 2px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 1px 1px #999999;
+        }
+
+        button {
+            border: 0 none;
+            border-radius: 2px;
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 7px 10px;
+            text-transform: none;
+            transition: background 0.3s ease 0s;
+            -moz-transition: background 0.3s ease 0s;
+            -webkit-transition: background 0.3s ease 0s;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button.light {
+            background: none repeat scroll 0 0 #999999;
+        }
+
+        button.light:hover {
+            background: none repeat scroll 0 0 #444444;
+        }
+
+        button.light:active {
+            box-shadow: 0 0 5px 1px #9dd3eb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div>
+            <div class="params">
+                <div class="param">
+                    <label for="size">Size:</label>
+                    <input id="size" type="text" value="1">
+                </div>
+                <div class="param">
+                    <label for="number">Number:</label>
+                    <input id="number" type="text" value="10">
+                </div>
+                <div class="param">
+                    <label for="concurrency">Concurrency:</label>
+                    <input id="concurrency" type="text" value="10">
+                </div>
+            </div>
+            <button id="test" class="light">Test</button>
+            <div style="clear:both"></div>
+        </div>
+        <div>
+            <div class="header">
+                <h3 class="tech">WebSockets</h3>
+                <div id="wsTime"></div>
+                <div style="clear:both"></div>
+            </div>
+            <div>Sent</div>
+            <progress id="webSocketRequestsSent" class="sent" value="0" max="100"></progress>
+            <div>Received</div>
+            <progress id="webSocketRequestsReceived" class="received" value="0" max="100"></progress>
+        </div>
+        <div>
+            <div class="header">
+                <h3 class="tech">HTTP</h3>
+                <div id="httpTime"></div>
+                <div style="clear:both"></div>
+            </div>
+            <div>Sent</div>
+            <progress id="httpRequestsSent" class="sent" value="0" max="100"></progress>
+            <div>Received</div>
+            <progress id="httpRequestsReceived" class="received" value="0" max="100"></progress>
+        </div>
+    </div>
+
+    <script>
+        !function () {
+            window.onload = function () {
+
+                var webSocket = setupWebSocket();
+
+                var model = {
+                    button: document.getElementById('test'),
+                    inputs: {
+                        size: document.getElementById('size'),
+                        number: document.getElementById('number'),
+                        concurrency: document.getElementById('concurrency')
+                    },
+                    ws: {
+                        progress: {
+                            rs: document.getElementById('webSocketRequestsSent'),
+                            rr: document.getElementById('webSocketRequestsReceived')
+                        },
+                        time: document.getElementById('wsTime')
+                    },
+                    http: {
+                        progress: {
+                            rs: document.getElementById('httpRequestsSent'),
+                            rr: document.getElementById('httpRequestsReceived')
+                        },
+                        time: document.getElementById('httpTime')
+                    }
+                };
+
+                var testing = false;
+                model.button.onclick = function () {
+                    if (testing) return;
+                    testing = true;
+
+                    var params = getParams();
+                    if (!params) {
+                        testing = false;
+                        return;
+                    }
+
+                    reset();
+
+                    var wsTasks = [];
+                    var httpTasks = [];
+                    var wsSent = 0;
+                    var wsReceived = 0;
+                    var httpSent = 0;
+                    var httpReceived = 0;
+                    var payload = buildPayload(params.size);
+
+                    var webSocketCallbacks = [];
+                    var httpRequestCallbacks = [];
+
+                    webSocket.onmessage = function () {
+                        wsReceived += 1;
+                        model.ws.progress.rr.value = 100 * wsReceived / params.number;
+                        var callback = webSocketCallbacks.pop();
+                        if (callback) callback();
+                    };
+
+                    webSocket.onerror = function (event) {
+                        wsReceived += 1;
+                        console.error('WebSocket Error:', event.data);
+                        var callback = webSocketCallbacks.pop();
+                        if (callback) callback(event);
+                    };
+
+                    function httpOnLoad() {
+                        httpReceived += 1;
+                        model.http.progress.rr.value = 100 * httpReceived / params.number;
+                        var callback = httpRequestCallbacks.pop();
+                        if (callback) callback();
+                    }
+
+                    function httpOnError() {
+                        httpReceived += 1;
+                        console.error('Http Error:', this.responseText);
+                        var callback = httpRequestCallbacks.pop();
+                        if (callback) callback(this);
+                    }
+
+                    for (var i = 0, l = params.number; i < l; i++) {
+                        wsTasks.push(buildWsTask());
+                        httpTasks.push(buildHttpTask());
+                    }
+
+                    [
+                        run('ws', wsTasks),
+                        run('http', httpTasks)
+                    ].series(function (errors) {
+                        testing = false;
+                        if (errors) alert('Sorry there were errors running this test');
+                    });
+
+                    function run(name, tasks) {
+                        return function (cb) {
+                            var start = Date.now();
+                            tasks.parallel(params.concurrency, function (errors) {
+                                if (errors) return cb(errors);
+                                model[name].time.innerHTML = (Date.now() - start) + 'ms';
+                                cb();
+                            })
+                        }
+                    }
+
+                    function buildWsTask() {
+                        return function (cb) {
+                            wsSent += 1;
+                            model.ws.progress.rs.value = 100 * wsSent / params.number;
+                            webSocketCallbacks.push(cb);
+                            webSocket.send(payload);
+                        };
+                    }
+
+                    function buildHttpTask() {
+                        return function (cb) {
+                            httpSent += 1;
+                            model.http.progress.rs.value = 100 * httpSent / params.number;
+                            httpRequestCallbacks.push(cb);
+                            var req = setupXmlHttpRequest();
+                            req.onload = httpOnLoad;
+                            req.onerror = httpOnError;
+                            req.send(payload);
+                        }
+                    }
+                };
+
+                function reset() {
+                    model.ws.time.innerHTML = '';
+                    model.http.time.innerHTML = '';
+                    model.ws.progress.rr.value = 0;
+                    model.ws.progress.rs.value = 0;
+                    model.http.progress.rr.value = 0;
+                    model.http.progress.rs.value = 0;
+                }
+
+                function setupWebSocket() {
+                    var uri = (document.location.protocol === 'https:' ? 'wss://' : 'ws://') + document.location.host + '/';
+                    return new WebSocket(uri);
+                }
+
+                function setupXmlHttpRequest() {
+                    var url = document.location.protocol + '//' + document.location.host + '/';
+                    var req = new XMLHttpRequest();
+                    req.open("POST", url, true);
+                    return req;
+                }
+
+                function getParams() {
+                    var size = parseInt(model.inputs.size.value);
+                    if (!(size >= 1 && size <= 1000)) {
+                        size = null;
+                        alert('Size must be between 1 and 1000 inclusive');
+                    }
+                    var number = parseInt(model.inputs.number.value);
+                    if (!(number >= 1 && number <= 10000)) {
+                        number = null;
+                        alert('Number must be between 1 and 10000 inclusive');
+                    }
+                    var concurrency = parseInt(model.inputs.concurrency.value);
+                    if (!(concurrency >= 1 && concurrency <= number)) {
+                        concurrency = null;
+                        alert('Concurrency must be between 1 and Number inclusive');
+                    }
+                    if (size && number && concurrency) {
+                        return {
+                            size: size,
+                            number: number,
+                            concurrency: concurrency
+                        }
+                    }
+                }
+
+                function buildPayload(size) {
+                    var payload = '';
+                    for (var i = 0; i < size; i++) {
+                        payload += 'a';
+                    }
+                    return payload;
+                }
+
+            };
+
+            // yeah yeah, modifying base type's protoype blah blah blah
+            Array.prototype.parallel = function (limit, callback) {
+                _do(this, limit, callback);
+            };
+            Array.prototype.series = function (callback) {
+                _do(this, 1, callback);
+            };
+
+            var _do = function (arr, limit, callback) {
+                callback = callback || function () { };
+                if (!arr.length) return callback();
+
+                var errors;
+                var completed = 0;
+                var started = 0;
+                var running = 0;
+
+                (function replenish() {
+                    if (completed >= arr.length) {
+                        return callback(errors);
+                    }
+
+                    while ((!limit || running < limit) && started < arr.length) {
+                        started += 1;
+                        running += 1;
+                        (function (i) {
+                            arr[i](function (err) {
+                                if (err) {
+                                    if (!errors) errors = [];
+                                    errors[i] = err;
+                                }
+                                completed += 1;
+                                running -= 1;
+                                if (completed >= arr.length) {
+                                    callback(errors);
+                                }
+                                else {
+                                    replenish();
+                                }
+                            });
+                        })(started - 1);
+                    }
+                })();
+            };
+        }();
+    </script>
+</body>
+
+</html>
