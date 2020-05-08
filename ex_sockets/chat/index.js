@@ -19,6 +19,7 @@ io.sockets.on('connection', function (socket) {
             io.sockets.emit('system', nickname, users.length, 'login');
         };
     });
+
     socket.on('disconnect', function () {
         if (socket.nickname != null) {
             //users.splice(socket.userIndex, 1);
@@ -26,9 +27,11 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.emit('system', socket.nickname, users.length, 'logout');
         }
     });
+
     socket.on('postMsg', function (msg, color) {
         socket.broadcast.emit('newMsg', socket.nickname, msg, color);
     });
+
     socket.on('img', function (imgData, color) {
         socket.broadcast.emit('newImg', socket.nickname, imgData, color);
     });
