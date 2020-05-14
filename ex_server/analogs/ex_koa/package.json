@@ -1,15 +1,15 @@
 {
-  "name": "ex_axios",
+  "name": "ex_koa",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0"
+    "koa": "^2.11.0"
   }
 }

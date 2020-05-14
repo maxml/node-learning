@@ -1,0 +1,7 @@
+npm i --save-dev eslint eslint-config-standard eslint-plugin-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise
+
+./node_modules/.bin/eslint --init
+
+package.json
+
+npm run lint
