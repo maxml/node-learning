@@ -1,0 +1,21 @@
+{
+  "name": "ex_npm",
+  "version": "2.0.3",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test | npm run lint",
+      "pre-push": "npm version patch"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "husky": "^4.2.5"
+  }
+}
