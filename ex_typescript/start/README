@@ -1,0 +1,9 @@
+npm install typescript
+
+./node_modules/typescript/bin/tsc --help
+
+./node_modules/typescript/bin/tsc --init 
+
+npm install @types/node
+
+npm install express @types/express

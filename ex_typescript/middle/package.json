@@ -1,0 +1,50 @@
+{
+  "name": "apollo-middleware",
+  "author": "Theodor Costache",
+  "scripts": {
+    "start": "node dist/express.js",
+    "build": "npm run && npm run build-ts && npm run tslint",
+    "serve": "node dist/index.js",
+    "watch-node": "nodemon dist/index.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "test": "jest --forceExit --coverage --verbose",
+    "watch-test": "npm run test -- --watchAll",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "debug": "npm run build && npm run watch-debug",
+    "serve-debug": "nodemon --inspect dist/index.js",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "backend:mock": "json-server mock/db.json --port 5000 --delay 300"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "bcrypt-nodejs": "0.0.3",
+    "graphql-tools": "^3.0.0",
+    "graphql-yoga": "^1.13.1",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.1.5",
+    "node-fetch": "^2.1.2",
+    "nodemon": "^1.17.4"
+  },
+  "devDependencies": {
+    "@types/async": "^2.0.45",
+    "@types/bcrypt-nodejs": "0.0.30",
+    "@types/jest": "^22.2.3",
+    "@types/jsonwebtoken": "^7.2.7",
+    "@types/lodash": "^4.14.110",
+    "@types/mocha": "^5.2.0",
+    "@types/mongoose": "^5.0.16",
+    "@types/node": "^10.0.4",
+    "@types/node-fetch": "^1.6.9",
+    "@types/react": "16.3.17",
+    "@types/shelljs": "^0.7.9",
+    "@types/ws": "^5.1.1",
+    "concurrently": "^3.5.1",
+    "json-server": "^0.16.1",
+    "ts-node": "^5.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.3"
+  }
+}
