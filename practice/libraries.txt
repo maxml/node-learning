@@ -1,0 +1,25 @@
+express/koa 
+NodeJS common modules: fs, path, streams, readline, url, crypto, events,..., 
+csv/image/json/xml libs 
+momentsJS 
+lodash 
+config/dotenv 
+winston + morgan 
+i18n 
+joi/livr 
+tests: mocha/chai, jest, artillery, cron
+NestJS 
+Passport 
+Concurrency: child process/cluster/worker threads
+DB: typeorm/sequelize, mongo, redis
+openAPI/swagger
+login: cognito/firebase, Okta/Auth0
+Queue: kue/bull 
+mqtt 
+connections: gRPC, ws/socket.io, GraphQL, Docker
+request/axios
+pm2
+nodemailer
+pug/handlebars
+eslint + husky
+
