@@ -1,4 +1,4 @@
-// tsconfig experimentalDecorators
+// tsconfig: experimentalDecorators
 function exDecorators() {
   class IceCreamComponent {
     toppings: string[] = [];
@@ -6,6 +6,7 @@ function exDecorators() {
     @Confirmable("Are you sure?")
     @Confirmable("Are you super, super sure? There is no going back!")
     addTopping(topping: string) {
+      console.log("addTopping");
       this.toppings.push(topping);
     }
   }
@@ -23,8 +24,7 @@ function exDecorators() {
         const allow = confirm(message);
 
         if (allow) {
-          const result = original.apply(this, args);
-          return result;
+          return original.apply(this, args);
         } else {
           return null;
         }
@@ -44,7 +44,7 @@ function exDecorators() {
 // exDecorators();
 
 function exMethodDecorator() {
-  function logMethod(
+  function LogMethod(
     target: Object,
     propertyName: string,
     propertyDesciptor: PropertyDescriptor
@@ -55,19 +55,12 @@ function exMethodDecorator() {
     const method = propertyDesciptor.value;
 
     propertyDesciptor.value = function (...args: any[]) {
-      // convert list of greet arguments to string
       const params = args.map((a) => JSON.stringify(a)).join();
-
-      // invoke greet() and get its return value
       const result = method.apply(this, args);
+      const jsonResult = JSON.stringify(result);
 
-      // convert result to string
-      const r = JSON.stringify(result);
+      console.log(`Call: ${propertyName}(${params}) => ${jsonResult}`);
 
-      // display in console the function call details
-      console.log(`Call: ${propertyName}(${params}) => ${r}`);
-
-      // return the result of invoking the method
       return result;
     };
     return propertyDesciptor;
@@ -76,7 +69,7 @@ function exMethodDecorator() {
   class Employee {
     constructor(private firstName: string, private lastName: string) {}
 
-    @logMethod
+    @LogMethod
     greet(message: string): string {
       return `${this.firstName} ${this.lastName} says: ${message}`;
     }
@@ -87,10 +80,10 @@ function exMethodDecorator() {
 }
 // exMethodDecorator();
 
-function exClass() {
+function exClassDecorator() {
   function SelfDriving(constructorFunction: Function) {
     console.log("-- decorator function invoked --");
-    constructorFunction.prototype.selfDrivable = true;
+    constructorFunction.prototype.selfDrivable = "true";
   }
 
   @SelfDriving
@@ -101,10 +94,14 @@ function exClass() {
       this._make = make;
     }
   }
-}
-// exClass();
 
-function exParameters() {
+  const car = new Car("makeTest");
+  // @ts-ignore
+  console.log(car.selfDrivable);
+}
+// exClassDecorator();
+
+function exParameterDecorator() {
   function DecoratedParameter(
     target: any,
     propertyKey: string | symbol,
@@ -124,15 +121,14 @@ function exParameters() {
   const test = new TargetDemo();
   test.foo1("class baz", "class bar");
 }
-// exParameters();
+// exParameterDecorator();
 
-function exAccessor() {
+function exAccessorDecorator() {
   function Enumerable(
     target: any,
     propertyKey: string,
     descriptor: PropertyDescriptor
   ) {
-    //make the method enumerable
     descriptor.enumerable = true;
   }
 
@@ -158,17 +154,15 @@ function exAccessor() {
     console.log(key + " = " + person[key]);
   }
 }
-// exAccessor();
+// exAccessorDecorator();
 
-function exProperty() {
-  function notNull(target: any, propertyKey: string) {
+function exPropertyDecorator() {
+  function NotNull(target: any, propertyKey: string) {
     Validator.registerNotNull(target, propertyKey);
   }
 
   class Validator {
     private static notNullValidatorMap: Map<any, string[]> = new Map();
-
-    //todo add more validator maps
 
     static registerNotNull(target: any, property: any): void {
       let keys: string[] | undefined = this.notNullValidatorMap.get(target);
@@ -199,7 +193,7 @@ function exProperty() {
   }
 
   class Person {
-    @notNull
+    @NotNull
     name: string;
 
     constructor(name: any) {
@@ -210,12 +204,15 @@ function exProperty() {
   console.log("-- creating instance --");
   let person: Person = new Person(null);
   console.log(person);
+
   let b = Validator.validate(person);
   console.log("validation passed: " + !b);
+
   console.log("-- creating another instance --");
   let person2: Person = new Person("Tina");
   console.log(person2);
+
   b = Validator.validate(person2);
   console.log("validation passed: " + !b);
 }
-// exProperty();
+// exPropertyDecorator();

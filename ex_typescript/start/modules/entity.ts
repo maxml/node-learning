@@ -1,10 +1,8 @@
 export class Car {
-  // TODO: json-typescript-mapper
   public colour: string = "";
   public model: string = "";
   public diesel?: boolean = false;
   private _keys: Array<string>;
-  // Note that this is not initialized
 
   constructor() {
     this._keys = Object.keys(this);
@@ -24,3 +22,8 @@ export class StringValidator {
 }
 
 export { StringValidator as mainValidator };
+
+export var Bar: { a: Bar } = { a: { count: 5 } };
+export interface Bar {
+  count: number;
+}

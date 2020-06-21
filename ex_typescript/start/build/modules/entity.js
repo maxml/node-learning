@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mainValidator = exports.StringValidator = exports.Car = void 0;
+exports.Bar = exports.mainValidator = exports.StringValidator = exports.Car = void 0;
 var Car = /** @class */ (function () {
-    // Note that this is not initialized
     function Car() {
-        // TODO: json-typescript-mapper
         this.colour = "";
         this.model = "";
         this.diesel = false;
@@ -27,3 +25,4 @@ var StringValidator = /** @class */ (function () {
 }());
 exports.StringValidator = StringValidator;
 exports.mainValidator = StringValidator;
+exports.Bar = { a: { count: 5 } };

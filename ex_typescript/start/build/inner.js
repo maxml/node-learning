@@ -1,9 +1,5 @@
 "use strict";
-var Foo = /** @class */ (function () {
-    function Foo() {
-    }
-    return Foo;
-}());
+var Foo;
 (function (Foo) {
     var InnerFoo = /** @class */ (function () {
         function InnerFoo() {

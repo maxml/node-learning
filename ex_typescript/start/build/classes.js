@@ -98,35 +98,6 @@ function exImplementation() {
 }
 // exImplementation();
 function exStatic() {
-    // class DigitalClock implements ClockInterface {
-    //   constructor(h: number, m: number) {}
-    //   tick() {
-    //     console.log("beep beep");
-    //   }
-    // }
-    // class AnalogClock implements ClockInterface {
-    //   constructor(h: number, m: number) {}
-    //   tick() {
-    //     console.log("tick tock");
-    //   }
-    // }
-    // let digital = createClock(DigitalClock, 12, 17);
-    // let analog = createClock(AnalogClock, 7, 32);
-    // console.log(digital);
-    // console.log(analog);
-    // interface ClockConstructor2 {
-    //   new (hour: number, minute: number): any;
-    // }
-    // interface ClockInterface2 {
-    //   tick(): any;
-    // }
-    // const Clock: ClockConstructor2 = class Clock implements ClockInterface2 {
-    //   constructor(h: number, m: number) {}
-    //   tick() {
-    //     console.log("beep beep");
-    //   }
-    // };
-    // console.log(new Clock(1, 1));
     var Grid = /** @class */ (function () {
         function Grid(scale) {
             this.scale = scale;
@@ -197,11 +168,6 @@ function exExtendingClassViaInterfaces() {
         TextBox.prototype.select = function () { };
         return TextBox;
     }(Control));
-    // Error: Property 'state' is missing in type 'Image'.
-    // class Image implements SelectableControl {
-    //   state: any;
-    //   select() {}
-    // }
     var Image2 = /** @class */ (function () {
         function Image2() {
         }
@@ -219,14 +185,16 @@ function exExtendingClassViaInterfaces() {
         };
         return A;
     }());
-    var B = /** @class */ (function () {
+    var B = /** @class */ (function (_super) {
+        __extends(B, _super);
         function B() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         B.prototype.g = function () {
             console.log("g");
         };
         return B;
-    }());
+    }(A));
     console.log(new B().g());
     // console.log(new B().f());
 }
@@ -245,16 +213,16 @@ function exPrivateFieldDetail() {
         }
         return Rhino;
     }(Animal));
+    var animal = new Animal("Goat");
+    var rhino = new Rhino();
+    animal = rhino;
     var Employee = /** @class */ (function () {
         function Employee(theName) {
             this.name = theName;
         }
         return Employee;
     }());
-    var animal = new Animal("Goat");
-    var rhino = new Rhino();
     var employee = new Employee("Bob");
-    animal = rhino;
     // animal = employee;
     console.log(animal);
     console.log(rhino);
@@ -314,39 +282,6 @@ function exGettersSetters() {
     }
 }
 // exGettersSetters();
-function exAbstractClass() {
-    var Department = /** @class */ (function () {
-        function Department(name) {
-            this.name = name;
-        }
-        Department.prototype.printName = function () {
-            console.log("Department name: " + this.name);
-        };
-        return Department;
-    }());
-    var AccountingDepartment = /** @class */ (function (_super) {
-        __extends(AccountingDepartment, _super);
-        function AccountingDepartment() {
-            return _super.call(this, "Accounting and Auditing") || this;
-        }
-        AccountingDepartment.prototype.printMeeting = function () {
-            console.log("The Accounting Department meets each Monday at 10am.");
-        };
-        AccountingDepartment.prototype.generateReports = function () {
-            console.log("Generating accounting reports...");
-        };
-        return AccountingDepartment;
-    }(Department));
-    var department;
-    // department = new Department();
-    department = new AccountingDepartment();
-    department.printName();
-    department.printMeeting();
-    // department.generateReports();
-    console.log(department);
-    new AccountingDepartment().generateReports();
-}
-// exAbstractClass();
 function exStaticFieldChanging() {
     var Greeter = /** @class */ (function () {
         function Greeter() {
@@ -363,13 +298,13 @@ function exStaticFieldChanging() {
         Greeter.standardGreeting = "Hello, there";
         return Greeter;
     }());
-    var greeter1;
-    greeter1 = new Greeter();
+    var greeter1 = new Greeter();
     console.log(greeter1.greet());
-    var greeterMaker = Greeter;
-    greeterMaker.standardGreeting = "Hey there!";
-    var greeter2 = new greeterMaker();
+    var GreeterMaker = Greeter;
+    GreeterMaker.standardGreeting = "Hey there!";
+    var greeter2 = new GreeterMaker();
     console.log(greeter2.greet());
+    console.log(greeter1.greet());
 }
 // exStaticFieldChanging();
 function exUnion() {
@@ -426,40 +361,6 @@ function exIntersection() {
     handleArtistsResponse({ artists: [{ name: "Test" }], success: true });
 }
 // exIntersection();
-function exMixin() {
-    var Person = /** @class */ (function () {
-        function Person(name) {
-            this.name = name;
-        }
-        return Person;
-    }());
-    var ConsoleLogger = /** @class */ (function () {
-        function ConsoleLogger() {
-        }
-        ConsoleLogger.prototype.log = function (name) {
-            console.log("Hello, I'm " + name + ".");
-        };
-        return ConsoleLogger;
-    }());
-    // Takes two objects and merges them together
-    function extend(first, second) {
-        var result = {};
-        for (var prop in first) {
-            if (first.hasOwnProperty(prop)) {
-                result[prop] = first[prop];
-            }
-        }
-        for (var prop in second) {
-            if (second.hasOwnProperty(prop)) {
-                result[prop] = second[prop];
-            }
-        }
-        return result;
-    }
-    var jim = extend(new Person("Jim"), ConsoleLogger.prototype);
-    jim.log(jim.name);
-}
-// exMixin();
 function exToString() {
     var Foo = /** @class */ (function () {
         function Foo() {

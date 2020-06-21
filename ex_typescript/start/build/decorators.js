@@ -19,13 +19,14 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-// tsconfig experimentalDecorators
+// tsconfig: experimentalDecorators
 function exDecorators() {
     var IceCreamComponent = /** @class */ (function () {
         function IceCreamComponent() {
             this.toppings = [];
         }
         IceCreamComponent.prototype.addTopping = function (topping) {
+            console.log("addTopping");
             this.toppings.push(topping);
         };
         __decorate([
@@ -45,8 +46,7 @@ function exDecorators() {
                 }
                 var allow = confirm(message);
                 if (allow) {
-                    var result = original.apply(this, args);
-                    return result;
+                    return original.apply(this, args);
                 }
                 else {
                     return null;
@@ -63,7 +63,7 @@ function exDecorators() {
 }
 // exDecorators();
 function exMethodDecorator() {
-    function logMethod(target, propertyName, propertyDesciptor) {
+    function LogMethod(target, propertyName, propertyDesciptor) {
         // target === Employee.prototype
         // propertyName === "greet"
         // propertyDesciptor === Object.getOwnPropertyDescriptor(Employee.prototype, "greet")
@@ -73,15 +73,10 @@ function exMethodDecorator() {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            // convert list of greet arguments to string
             var params = args.map(function (a) { return JSON.stringify(a); }).join();
-            // invoke greet() and get its return value
             var result = method.apply(this, args);
-            // convert result to string
-            var r = JSON.stringify(result);
-            // display in console the function call details
-            console.log("Call: " + propertyName + "(" + params + ") => " + r);
-            // return the result of invoking the method
+            var jsonResult = JSON.stringify(result);
+            console.log("Call: " + propertyName + "(" + params + ") => " + jsonResult);
             return result;
         };
         return propertyDesciptor;
@@ -95,7 +90,7 @@ function exMethodDecorator() {
             return this.firstName + " " + this.lastName + " says: " + message;
         };
         __decorate([
-            logMethod
+            LogMethod
         ], Employee.prototype, "greet", null);
         return Employee;
     }());
@@ -103,10 +98,10 @@ function exMethodDecorator() {
     emp.greet("hello");
 }
 // exMethodDecorator();
-function exClass() {
+function exClassDecorator() {
     function SelfDriving(constructorFunction) {
         console.log("-- decorator function invoked --");
-        constructorFunction.prototype.selfDrivable = true;
+        constructorFunction.prototype.selfDrivable = "true";
     }
     var Car = /** @class */ (function () {
         function Car(make) {
@@ -118,9 +113,12 @@ function exClass() {
         ], Car);
         return Car;
     }());
+    var car = new Car("makeTest");
+    // @ts-ignore
+    console.log(car.selfDrivable);
 }
-// exClass();
-function exParameters() {
+// exClassDecorator();
+function exParameterDecorator() {
     function DecoratedParameter(target, propertyKey, parameterIndex) {
         console.log(target);
         console.log(propertyKey);
@@ -140,10 +138,9 @@ function exParameters() {
     var test = new TargetDemo();
     test.foo1("class baz", "class bar");
 }
-// exParameters();
-function exAccessor() {
+// exParameterDecorator();
+function exAccessorDecorator() {
     function Enumerable(target, propertyKey, descriptor) {
-        //make the method enumerable
         descriptor.enumerable = true;
     }
     var Person = /** @class */ (function () {
@@ -170,15 +167,14 @@ function exAccessor() {
         console.log(key + " = " + person[key]);
     }
 }
-// exAccessor();
-function exProperty() {
-    function notNull(target, propertyKey) {
+// exAccessorDecorator();
+function exPropertyDecorator() {
+    function NotNull(target, propertyKey) {
         Validator.registerNotNull(target, propertyKey);
     }
     var Validator = /** @class */ (function () {
         function Validator() {
         }
-        //todo add more validator maps
         Validator.registerNotNull = function (target, property) {
             var keys = this.notNullValidatorMap.get(target);
             if (!keys) {
@@ -221,7 +217,7 @@ function exProperty() {
             this.name = name;
         }
         __decorate([
-            notNull
+            NotNull
         ], Person.prototype, "name", void 0);
         return Person;
     }());
@@ -236,4 +232,4 @@ function exProperty() {
     b = Validator.validate(person2);
     console.log("validation passed: " + !b);
 }
-// exProperty();
+// exPropertyDecorator();

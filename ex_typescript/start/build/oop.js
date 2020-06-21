@@ -12,6 +12,40 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+function exAbstractClass() {
+    var Department = /** @class */ (function () {
+        function Department(name) {
+            this.name = name;
+            console.log("from abstract class");
+        }
+        Department.prototype.printName = function () {
+            console.log("Department name: " + this.name);
+        };
+        return Department;
+    }());
+    var AccountingDepartment = /** @class */ (function (_super) {
+        __extends(AccountingDepartment, _super);
+        function AccountingDepartment() {
+            return _super.call(this, "Accounting and Auditing") || this;
+        }
+        AccountingDepartment.prototype.printMeeting = function () {
+            console.log("The Accounting Department meets each Monday at 10am.");
+        };
+        AccountingDepartment.prototype.generateReports = function () {
+            console.log("Generating accounting reports...");
+        };
+        return AccountingDepartment;
+    }(Department));
+    var department;
+    // department = new Department();
+    department = new AccountingDepartment();
+    department.printName();
+    department.printMeeting();
+    // department.generateReports();
+    console.log(department);
+    new AccountingDepartment().generateReports();
+}
+// exAbstractClass();
 function exInheritance() {
     var Animal = /** @class */ (function () {
         function Animal(theName) {
@@ -53,6 +87,7 @@ function exInheritance() {
     tom.move(34);
 }
 // exInheritance();
+// TODO
 function exProtectedConstructor() {
     var Person = /** @class */ (function () {
         function Person(theName) {
@@ -74,6 +109,225 @@ function exProtectedConstructor() {
         return Employee;
     }(Person));
     var howard = new Employee("Howard", "Sales");
-    //   let john = new Person("John");
+    // let john = new Person("John");
+    console.log(howard.getElevatorPitch());
 }
 // exProtectedConstructor();
+function exSimilarNamesDifferentSense() {
+    var a = { x: 5, y: 4 };
+    console.log(a.x + a.y);
+    var Foo2 = /** @class */ (function () {
+        function Foo2() {
+            this.x = 0;
+        }
+        return Foo2;
+    }());
+    var a2 = {
+        x: 5,
+        y: 5,
+    };
+    console.log(a2.x + a2.y);
+}
+// exSimilarNamesDifferentSense();
+function exAnonymousClass() {
+    var Runnable = /** @class */ (function () {
+        function Runnable() {
+        }
+        return Runnable;
+    }());
+    var runnable = new (/** @class */ (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_1.prototype.run = function () {
+            console.log("Hi");
+        };
+        return class_1;
+    }(Runnable)))();
+    runnable.run();
+}
+// exAnonymousClass();
+function exInterfaceCallback() {
+    var Fetcher = /** @class */ (function () {
+        function Fetcher() {
+        }
+        Fetcher.prototype.getObject = function (done) {
+            console.log("getObject");
+            done(1);
+        };
+        return Fetcher;
+    }());
+    new Fetcher().getObject(function (_a) {
+        var _b = _a.field, field = _b === void 0 ? "value" : _b;
+        console.log(field);
+    });
+    new Fetcher().getObject(function (_a) {
+        var _b = _a.field, field = _b === void 0 ? "value" : _b, _c = _a.time, time = _c === void 0 ? 10 : _c;
+        console.log(field);
+        console.log(time);
+    });
+    new Fetcher().getObject(function () {
+        console.log("no fields");
+    });
+    var Fetcher2 = /** @class */ (function () {
+        function Fetcher2() {
+        }
+        Fetcher2.prototype.getObject = function (done) {
+            console.log("getObject2");
+            done(1);
+        };
+        return Fetcher2;
+    }());
+    new Fetcher2().getObject(function (_a) {
+        var _b = _a.field, field = _b === void 0 ? "value" : _b;
+        console.log(field);
+    });
+    new Fetcher2().getObject(function (_a) {
+        var _b = _a.field, field = _b === void 0 ? "value" : _b, _c = _a.time, time = _c === void 0 ? 10 : _c;
+        console.log(field);
+        console.log(time);
+    });
+    new Fetcher2().getObject(function () {
+        console.log("no fields");
+    });
+}
+// exInterfaceCallback();
+function exOverloadingConstructors() {
+    // union
+    var Foo = /** @class */ (function () {
+        function Foo(name) {
+            this._name = name;
+        }
+        return Foo;
+    }());
+    var f1 = new Foo("bar");
+    var f2 = new Foo(1);
+    console.log(f1);
+    console.log(f2);
+    // optional param
+    var Box = /** @class */ (function () {
+        function Box(obj) {
+            this.x = (obj && obj.x) || 0;
+            this.y = (obj && obj.y) || 0;
+            this.height = (obj && obj.height) || 0;
+            this.width = (obj && obj.width) || 0;
+        }
+        return Box;
+    }());
+    // default param
+    var Box2 = /** @class */ (function () {
+        function Box2(obj) {
+            if (obj === void 0) { obj = { x: 0, y: 0, height: 0, width: 0 }; }
+            this.x = obj.x;
+            this.y = obj.y;
+            this.height = obj.height;
+            this.width = obj.width;
+        }
+        return Box2;
+    }());
+    // static factory
+    var Person = /** @class */ (function () {
+        function Person(fullName, age, gender) {
+            this.fullName = fullName;
+            this.age = age;
+            this.gender = gender;
+        }
+        Person.fromData = function (data) {
+            var first = data.first, last = data.last, birthday = data.birthday, _a = data.gender, gender = _a === void 0 ? "M" : _a;
+            return new this(last + ", " + first, birthday, gender);
+        };
+        return Person;
+    }());
+    // let personA = new Person("Doe, John", "31", "M");
+    var personB = Person.fromData({
+        first: "John",
+        last: "Doe",
+        birthday: "10-09-1986",
+    });
+    console.log(personB);
+}
+// exOverloadingConstructors();
+function exMixin() {
+    var Disposable = /** @class */ (function () {
+        function Disposable() {
+            this.isDisposed = true;
+        }
+        Disposable.prototype.dispose = function () {
+            this.isDisposed = true;
+        };
+        return Disposable;
+    }());
+    var Activatable = /** @class */ (function () {
+        function Activatable() {
+            this.isActive = true;
+        }
+        Activatable.prototype.activate = function () {
+            this.isActive = true;
+        };
+        Activatable.prototype.deactivate = function () {
+            this.isActive = false;
+        };
+        return Activatable;
+    }());
+    var SmartObject = /** @class */ (function () {
+        function SmartObject() {
+            var _this = this;
+            this.index = -1;
+            setInterval(function () {
+                console.log(_this.index + ": " + _this.isActive + " : " + _this.isDisposed);
+                _this.index++;
+            }, 500);
+        }
+        SmartObject.prototype.interact = function () {
+            this.activate();
+            this.dispose();
+        };
+        return SmartObject;
+    }());
+    applyMixins(SmartObject, [Disposable, Activatable]);
+    var smartObj = new SmartObject();
+    setTimeout(function () { return smartObj.interact(); }, 1000);
+    function applyMixins(derivedCtor, baseCtors) {
+        baseCtors.forEach(function (baseCtor) {
+            Object.getOwnPropertyNames(baseCtor.prototype).forEach(function (name) {
+                Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
+            });
+        });
+    }
+}
+// exMixin();
+function exMixin2() {
+    var Person = /** @class */ (function () {
+        function Person(name) {
+            this.name = name;
+        }
+        return Person;
+    }());
+    var ConsoleLogger = /** @class */ (function () {
+        function ConsoleLogger() {
+        }
+        ConsoleLogger.prototype.log = function (name) {
+            console.log("Hello, I'm " + name + ".");
+        };
+        return ConsoleLogger;
+    }());
+    // Takes two objects and merges them together
+    function extend(first, second) {
+        var result = {};
+        for (var prop in first) {
+            if (first.hasOwnProperty(prop)) {
+                result[prop] = first[prop];
+            }
+        }
+        for (var prop in second) {
+            if (second.hasOwnProperty(prop)) {
+                result[prop] = second[prop];
+            }
+        }
+        return result;
+    }
+    var jim = extend(new Person("Jim"), ConsoleLogger.prototype);
+    jim.log(jim.name);
+}
+exMixin2();

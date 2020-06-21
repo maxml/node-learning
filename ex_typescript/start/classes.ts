@@ -129,41 +129,6 @@ function exImplementation() {
 // exImplementation();
 
 function exStatic() {
-  // class DigitalClock implements ClockInterface {
-  //   constructor(h: number, m: number) {}
-  //   tick() {
-  //     console.log("beep beep");
-  //   }
-  // }
-  // class AnalogClock implements ClockInterface {
-  //   constructor(h: number, m: number) {}
-  //   tick() {
-  //     console.log("tick tock");
-  //   }
-  // }
-
-  // let digital = createClock(DigitalClock, 12, 17);
-  // let analog = createClock(AnalogClock, 7, 32);
-  // console.log(digital);
-  // console.log(analog);
-
-  // interface ClockConstructor2 {
-  //   new (hour: number, minute: number): any;
-  // }
-
-  // interface ClockInterface2 {
-  //   tick(): any;
-  // }
-
-  // const Clock: ClockConstructor2 = class Clock implements ClockInterface2 {
-  //   constructor(h: number, m: number) {}
-  //   tick() {
-  //     console.log("beep beep");
-  //   }
-  // };
-
-  // console.log(new Clock(1, 1));
-
   class Grid {
     static origin = { x: 1, y: 1 };
     constructor(public scale: number) {}
@@ -235,10 +200,6 @@ function exExtendingClassViaInterfaces() {
     private state: any;
   }
 
-  interface IControl {
-    state: any;
-  }
-
   interface SelectableControl extends Control {
     select(): void;
   }
@@ -257,6 +218,10 @@ function exExtendingClassViaInterfaces() {
   //   select() {}
   // }
 
+  interface IControl {
+    state: any;
+  }
+
   class Image2 implements IControl {
     state: any;
     select() {}
@@ -271,7 +236,7 @@ function exExtendingClassViaInterfaces() {
     }
   }
 
-  class B implements Pick<A, keyof A> {
+  class B extends A {
     public g() {
       console.log("g");
     }
@@ -296,6 +261,10 @@ function exPrivateFieldDetail() {
     }
   }
 
+  let animal = new Animal("Goat");
+  let rhino = new Rhino();
+  animal = rhino;
+
   class Employee {
     private name: string;
     constructor(theName: string) {
@@ -303,11 +272,7 @@ function exPrivateFieldDetail() {
     }
   }
 
-  let animal = new Animal("Goat");
-  let rhino = new Rhino();
   let employee = new Employee("Bob");
-
-  animal = rhino;
   // animal = employee;
 
   console.log(animal);
@@ -372,44 +337,6 @@ function exGettersSetters() {
 }
 // exGettersSetters();
 
-function exAbstractClass() {
-  abstract class Department {
-    constructor(public name: string) {}
-
-    printName(): void {
-      console.log("Department name: " + this.name);
-    }
-
-    abstract printMeeting(): void; // must be implemented in derived classes
-  }
-
-  class AccountingDepartment extends Department {
-    constructor() {
-      super("Accounting and Auditing"); // constructors in derived classes must call super()
-    }
-
-    printMeeting(): void {
-      console.log("The Accounting Department meets each Monday at 10am.");
-    }
-
-    generateReports(): void {
-      console.log("Generating accounting reports...");
-    }
-  }
-
-  let department: Department;
-  // department = new Department();
-  department = new AccountingDepartment();
-  department.printName();
-  department.printMeeting();
-  // department.generateReports();
-
-  console.log(department);
-
-  new AccountingDepartment().generateReports();
-}
-// exAbstractClass();
-
 function exStaticFieldChanging() {
   class Greeter {
     static standardGreeting = "Hello, there";
@@ -423,15 +350,16 @@ function exStaticFieldChanging() {
     }
   }
 
-  let greeter1: Greeter;
-  greeter1 = new Greeter();
+  let greeter1: Greeter = new Greeter();
   console.log(greeter1.greet());
 
-  let greeterMaker: typeof Greeter = Greeter;
-  greeterMaker.standardGreeting = "Hey there!";
+  let GreeterMaker: typeof Greeter = Greeter;
+  GreeterMaker.standardGreeting = "Hey there!";
 
-  let greeter2: Greeter = new greeterMaker();
+  let greeter2: Greeter = new GreeterMaker();
   console.log(greeter2.greet());
+
+  console.log(greeter1.greet());
 }
 // exStaticFieldChanging();
 
@@ -513,45 +441,6 @@ function exIntersection() {
   handleArtistsResponse({ artists: [{ name: "Test" }], success: true });
 }
 // exIntersection();
-
-function exMixin() {
-  class Person {
-    constructor(public name: string) {}
-  }
-
-  interface Loggable {
-    log(name: string): void;
-  }
-
-  class ConsoleLogger implements Loggable {
-    log(name: string) {
-      console.log(`Hello, I'm ${name}.`);
-    }
-  }
-
-  // Takes two objects and merges them together
-  function extend<First extends {}, Second extends {}>(
-    first: First,
-    second: Second
-  ): First & Second {
-    const result: Partial<First & Second> = {};
-    for (const prop in first) {
-      if (first.hasOwnProperty(prop)) {
-        (result as First)[prop] = first[prop];
-      }
-    }
-    for (const prop in second) {
-      if (second.hasOwnProperty(prop)) {
-        (result as Second)[prop] = second[prop];
-      }
-    }
-    return result as First & Second;
-  }
-
-  const jim = extend(new Person("Jim"), ConsoleLogger.prototype);
-  jim.log(jim.name);
-}
-// exMixin();
 
 function exToString() {
   class Foo {

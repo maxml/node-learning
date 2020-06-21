@@ -33,31 +33,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./app");
 var entity_1 = require("./entity");
-// import type {APIResponseType} from "./api";
+require("./app");
 var app_1 = __importDefault(require("./app"));
+// import type {APIResponseType} from "./api";
 var validator = __importStar(require("./entity"));
-var myValidator = new validator.Car();
-app_1.default.hey();
-new entity_1.StringValidator().isAcceptable("");
-var URL = __importStar(require("url"));
-var myUrl = URL.parse("http://www.typescriptlang.org");
-console.log(myUrl);
 var myLargeModule = __importStar(require("./app"));
-var dog = new myLargeModule.Dog();
-console.log(dog);
+var URL = __importStar(require("url"));
+function exImporting() {
+    var myValidator = new validator.Car();
+    console.log(myValidator);
+    app_1.default.hey();
+    new entity_1.StringValidator().isAcceptable("");
+    var myUrl = URL.parse("http://www.typescriptlang.org");
+    console.log(myUrl);
+    var dog = new myLargeModule.Dog();
+    console.log(dog);
+}
+// exImporting();
 var namespaces_1 = require("./namespaces");
 function exNamespaces() {
     var e_1, _a;
-    // Some samples to try
     var strings = ["Hello", "98052", "101"];
-    // Validators to use
     var validators = {};
     validators["ZIP code"] = new namespaces_1.Validation.ZipCodeValidator();
     validators["Letters only"] = new namespaces_1.Validation.LettersOnlyValidator();
     try {
-        // Show whether each string passed each validator
         for (var strings_1 = __values(strings), strings_1_1 = strings_1.next(); !strings_1_1.done; strings_1_1 = strings_1.next()) {
             var s = strings_1_1.value;
             for (var name_1 in validators) {
@@ -74,3 +75,9 @@ function exNamespaces() {
     }
 }
 // exNamespaces();
+var entity_2 = require("./entity");
+function exAdvancedDeclarations() {
+    var x = entity_2.Bar.a;
+    console.log(x.count);
+}
+// exAdvancedDeclarations();

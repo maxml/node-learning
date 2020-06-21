@@ -1,37 +1,42 @@
-import "./app";
-
 import { StringValidator } from "./entity";
 import { StringValidator as MainValdator } from "./entity";
 
-// import type {APIResponseType} from "./api";
+import "./app";
+
 import utils from "./app";
 
-import * as validator from "./entity";
-let myValidator = new validator.Car();
+// import type {APIResponseType} from "./api";
 
-utils.hey();
-new MainValdator().isAcceptable("");
+import * as validator from "./entity";
+import * as myLargeModule from "./app";
 
 import * as URL from "url";
-let myUrl = URL.parse("http://www.typescriptlang.org");
-console.log(myUrl);
 
-import * as myLargeModule from "./app";
-let dog = new myLargeModule.Dog();
-console.log(dog);
+function exImporting() {
+  let myValidator = new validator.Car();
+  console.log(myValidator);
+
+  utils.hey();
+
+  new MainValdator().isAcceptable("");
+
+  let myUrl = URL.parse("http://www.typescriptlang.org");
+  console.log(myUrl);
+
+  let dog = new myLargeModule.Dog();
+  console.log(dog);
+}
+// exImporting();
 
 import { Validation } from "./namespaces";
 
 function exNamespaces() {
-  // Some samples to try
   let strings = ["Hello", "98052", "101"];
 
-  // Validators to use
   let validators: { [s: string]: Validation.StringValidator } = {};
   validators["ZIP code"] = new Validation.ZipCodeValidator();
   validators["Letters only"] = new Validation.LettersOnlyValidator();
 
-  // Show whether each string passed each validator
   for (let s of strings) {
     for (let name in validators) {
       console.log(
@@ -43,3 +48,11 @@ function exNamespaces() {
   }
 }
 // exNamespaces();
+
+import { Bar } from "./entity";
+
+function exAdvancedDeclarations() {
+  let x: Bar = Bar.a;
+  console.log(x.count);
+}
+// exAdvancedDeclarations();

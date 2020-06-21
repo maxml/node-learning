@@ -1,0 +1,806 @@
+
+> ex_typescript@1.0.0 tracing /home/maxml/learning/playground/ex_typescript/start
+> tsc --traceResolution
+
+======== Resolving module './entity' from '/home/maxml/learning/playground/ex_typescript/start/modules/app.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/modules/entity', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/modules/entity.ts' exist - use it as a name resolution result.
+======== Module name './entity' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/modules/entity.ts'. ========
+======== Resolving module './entity' from '/home/maxml/learning/playground/ex_typescript/start/modules/index.ts'. ========
+Resolution for module './entity' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/modules'.
+======== Module name './entity' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/modules/entity.ts'. ========
+======== Resolving module './app' from '/home/maxml/learning/playground/ex_typescript/start/modules/index.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/modules/app', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/modules/app.ts' exist - use it as a name resolution result.
+======== Module name './app' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/modules/app.ts'. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/modules/index.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'url' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/modules/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/url.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/url.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/url.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/url.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'url' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/modules/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/url.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/url.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'url' was not resolved. ========
+======== Resolving module './namespaces' from '/home/maxml/learning/playground/ex_typescript/start/modules/index.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/modules/namespaces', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/modules/namespaces.ts' exist - use it as a name resolution result.
+======== Module name './namespaces' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/modules/namespaces.ts'. ========
+======== Resolving type reference directive 'body-parser', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts'.
+======== Type reference directive 'body-parser' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts' with Package ID '@types/body-parser/index.d.ts@1.19.0', primary: true. ========
+======== Resolving type reference directive 'connect', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts'.
+======== Type reference directive 'connect' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts' with Package ID '@types/connect/index.d.ts@3.4.33', primary: true. ========
+======== Resolving type reference directive 'express', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts'.
+======== Type reference directive 'express' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts' with Package ID '@types/express/index.d.ts@4.17.6', primary: true. ========
+======== Resolving type reference directive 'express-serve-static-core', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts'.
+======== Type reference directive 'express-serve-static-core' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts' with Package ID '@types/express-serve-static-core/index.d.ts@4.17.7', primary: true. ========
+======== Resolving type reference directive 'mime', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index' does not exist.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index.d.ts'.
+======== Type reference directive 'mime' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/mime/index.d.ts' with Package ID '@types/mime/index.d.ts@2.0.1', primary: true. ========
+======== Resolving type reference directive 'node', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/package.json'.
+'package.json' has a 'typesVersions' field with version-specific path mappings.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/index.d.ts'.
+'package.json' has a 'typesVersions' entry '>=3.7.0-0' that matches compiler version '3.9.2', looking for a pattern to match module name 'index.d.ts'.
+Module name 'index.d.ts', matched pattern '*'.
+Trying substitution 'ts3.7/*', candidate module location: 'ts3.7/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts'.
+======== Type reference directive 'node' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts' with Package ID '@types/node/ts3.7/index.d.ts@14.0.9', primary: true. ========
+======== Resolving type reference directive 'qs', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/qs/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/qs/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/qs/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/qs/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/qs/index.d.ts'.
+======== Type reference directive 'qs' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/qs/index.d.ts' with Package ID '@types/qs/index.d.ts@6.9.2', primary: true. ========
+======== Resolving type reference directive 'range-parser', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index' does not exist.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index.d.ts'.
+======== Type reference directive 'range-parser' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/range-parser/index.d.ts' with Package ID '@types/range-parser/index.d.ts@1.2.3', primary: true. ========
+======== Resolving type reference directive 'serve-static', containing file '/home/maxml/learning/playground/ex_typescript/start/__inferred type names__.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index' does not exist.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts'.
+======== Type reference directive 'serve-static' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts' with Package ID '@types/serve-static/index.d.ts@1.13.3', primary: true. ========
+======== Resolving type reference directive 'node', containing file '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/package.json'.
+'package.json' has a 'typesVersions' field with version-specific path mappings.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/index.d.ts'.
+'package.json' has a 'typesVersions' entry '>=3.7.0-0' that matches compiler version '3.9.2', looking for a pattern to match module name 'index.d.ts'.
+Module name 'index.d.ts', matched pattern '*'.
+Trying substitution 'ts3.7/*', candidate module location: 'ts3.7/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts'.
+======== Type reference directive 'node' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts' with Package ID '@types/node/ts3.7/index.d.ts@14.0.9', primary: true. ========
+======== Resolving module 'fs' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/child_process.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'fs' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/fs.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/fs.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/fs.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/fs.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'fs' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/fs.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/fs.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'fs' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/child_process.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'events' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/events.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/events.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/events.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/events.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'events' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/events.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/events.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/child_process.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'net' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/net.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/net.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/net.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/net.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'net' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/net.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/net.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/child_process.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'stream' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/stream.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/stream.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/stream.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/stream.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'stream' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/stream.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/stream.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'child_process' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/cluster.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'child_process' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/child_process.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/child_process.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/child_process.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/child_process.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'child_process' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/child_process.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/child_process.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'child_process' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/cluster.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/cluster.d.ts'. ========
+Resolution for module 'net' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'os' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/constants.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'os' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/os.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/os.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/os.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/os.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'os' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/os.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/os.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'os' was not resolved. ========
+======== Resolving module 'crypto' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/constants.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'crypto' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/crypto.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/crypto.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/crypto.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/crypto.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'crypto' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/crypto.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/crypto.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'crypto' was not resolved. ========
+======== Resolving module 'fs' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/constants.d.ts'. ========
+Resolution for module 'fs' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'fs' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/crypto.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/dgram.d.ts'. ========
+Resolution for module 'net' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'dns' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/dgram.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'dns' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/dns.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/dns.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/dns.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/dns.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'dns' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/dns.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/dns.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'dns' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/dgram.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/domain.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/fs.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/fs.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/fs.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'url' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+Resolution for module 'url' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start'.
+======== Module name 'url' was not resolved. ========
+======== Resolving module 'fs/promises' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/fs.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'fs/promises' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'fs/promises' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'fs/promises' was not resolved. ========
+======== Resolving module 'fs' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/fs/promises.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'fs' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/fs/node_modules' does not exist, skipping all lookups in it.
+Resolution for module 'fs' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'fs' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http.d.ts'. ========
+Resolution for module 'url' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'url' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http.d.ts'. ========
+Resolution for module 'net' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'fs' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Resolution for module 'fs' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'fs' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Resolution for module 'net' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'tls' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'tls' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tls.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tls.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tls.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/tls.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'tls' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tls.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tls.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'tls' was not resolved. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Resolution for module 'url' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'url' was not resolved. ========
+======== Resolving module 'http' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/http2.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'http' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/http.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/http.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/http.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/http.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'http' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/http.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/http.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'http' was not resolved. ========
+======== Resolving module 'tls' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/https.d.ts'. ========
+Resolution for module 'tls' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'tls' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/https.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'http' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/https.d.ts'. ========
+Resolution for module 'http' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'http' was not resolved. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/https.d.ts'. ========
+Resolution for module 'url' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'url' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/inspector.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/module.d.ts'. ========
+Resolution for module 'url' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'url' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/net.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/net.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'dns' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/net.d.ts'. ========
+Resolution for module 'dns' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'dns' was not resolved. ========
+======== Resolving module 'async_hooks' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/perf_hooks.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'async_hooks' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/async_hooks.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/async_hooks.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/async_hooks.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/async_hooks.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'async_hooks' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/async_hooks.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/async_hooks.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'async_hooks' was not resolved. ========
+======== Resolving module 'tty' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/process.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'tty' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tty.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tty.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tty.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/tty.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'tty' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tty.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/tty.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'tty' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/readline.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/readline.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'readline' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/repl.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'readline' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/readline.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/readline.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/readline.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/readline.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'readline' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/readline.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/readline.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'readline' was not resolved. ========
+======== Resolving module 'vm' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/repl.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'vm' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/vm.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/vm.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/vm.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/vm.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'vm' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/vm.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/vm.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'vm' was not resolved. ========
+======== Resolving module 'util' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/repl.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'util' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/util.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/util.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/util.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/util.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'util' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/util.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/util.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'util' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/stream.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'crypto' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/tls.d.ts'. ========
+Resolution for module 'crypto' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'crypto' was not resolved. ========
+======== Resolving module 'dns' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/tls.d.ts'. ========
+Resolution for module 'dns' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'dns' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/tls.d.ts'. ========
+Resolution for module 'net' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/tls.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'net' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/tty.d.ts'. ========
+Resolution for module 'net' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'net' was not resolved. ========
+======== Resolving module 'querystring' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/url.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'querystring' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/querystring.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/querystring.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/querystring.d.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/querystring.d.ts' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+Loading module 'querystring' from 'node_modules' folder, target file type 'JavaScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/querystring.js' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/querystring.jsx' does not exist.
+Directory '/home/maxml/learning/playground/ex_typescript/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/node_modules' does not exist, skipping all lookups in it.
+Directory '/node_modules' does not exist, skipping all lookups in it.
+======== Module name 'querystring' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/v8.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'vm' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/worker_threads.d.ts'. ========
+Resolution for module 'vm' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'vm' was not resolved. ========
+======== Resolving module 'events' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/worker_threads.d.ts'. ========
+Resolution for module 'events' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'events' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/worker_threads.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'url' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/worker_threads.d.ts'. ========
+Resolution for module 'url' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'url' was not resolved. ========
+======== Resolving module 'stream' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/zlib.d.ts'. ========
+Resolution for module 'stream' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node'.
+======== Module name 'stream' was not resolved. ========
+======== Resolving module 'connect' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'connect' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/node_modules' does not exist, skipping all lookups in it.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node_modules' does not exist, skipping all lookups in it.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/connect.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/connect.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/connect.d.ts' does not exist.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/package.json'.
+'package.json' does not have a 'typesVersions' field.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect.d.ts' does not exist.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts'.
+======== Module name 'connect' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts' with Package ID '@types/connect/index.d.ts@3.4.33'. ========
+======== Resolving module 'http' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/index.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'http' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/body-parser/node_modules' does not exist, skipping all lookups in it.
+Resolution for module 'http' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+======== Module name 'http' was not resolved. ========
+======== Resolving type reference directive 'node', containing file '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/package.json'.
+'package.json' has a 'typesVersions' field with version-specific path mappings.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/index.d.ts'.
+'package.json' has a 'typesVersions' entry '>=3.7.0-0' that matches compiler version '3.9.2', looking for a pattern to match module name 'index.d.ts'.
+Module name 'index.d.ts', matched pattern '*'.
+Trying substitution 'ts3.7/*', candidate module location: 'ts3.7/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts'.
+======== Type reference directive 'node' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/node/ts3.7/index.d.ts' with Package ID '@types/node/ts3.7/index.d.ts@14.0.9', primary: true. ========
+======== Resolving module 'http' from '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/index.d.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'http' from 'node_modules' folder, target file type 'TypeScript'.
+Directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/connect/node_modules' does not exist, skipping all lookups in it.
+Resolution for module 'http' was found in cache from location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+======== Module name 'http' was not resolved. ========
+======== Resolving type reference directive 'express-serve-static-core', containing file '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index.d.ts' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts'.
+======== Type reference directive 'express-serve-static-core' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express-serve-static-core/index.d.ts' with Package ID '@types/express-serve-static-core/index.d.ts@4.17.7', primary: true. ========
+======== Resolving type reference directive 'serve-static', containing file '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/express/index.d.ts', root directory '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'. ========
+Resolving with primary search path '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types'.
+Found 'package.json' at '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/package.json'.
+'package.json' does not have a 'typesVersions' field.
+'package.json' does not have a 'typings' field.
+'package.json' has 'types' field 'index' that references '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index' does not exist.
+Loading module as file / folder, candidate module location '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index', target file type 'TypeScript'.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.ts' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.tsx' does not exist.
+File '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts' exist - use it as a name resolution result.
+Resolving real path for '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts', result '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts'.
+======== Type reference directive 'serve-static' was successfully resolved to '/home/maxml/learning/playground/ex_typescript/start/node_modules/@types/serve-static/index.d.ts' with Package ID '@types/serve-static/index.d.ts@1.13.3', primary: true. ========

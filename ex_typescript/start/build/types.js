@@ -432,6 +432,12 @@ function exPredicates() {
         }
         return pet.fly();
     }
+    var isOfType = function (varToBeChecked, propertyToCheckFor) {
+        return varToBeChecked[propertyToCheckFor] !== undefined;
+    };
+    console.log(isOfType(pet, "swim"));
+    console.log(isOfType(pet, "fly"));
+    console.log(isOfType(pet, "wadfdf"));
 }
 // exPredicates();
 function exNullable() {
@@ -509,7 +515,7 @@ function exFields() {
     obj.prop2 = 88;
     console.log(obj);
 }
-exFields();
+// exFields();
 function exMappedTypes() {
 }
 // exMappedTypes();
@@ -530,28 +536,14 @@ function exConditionalTypes() {
 }
 function exInference() {
 }
-function exPredefinedConditionalTypes() {
-    function f1(s) {
-        return { a: 1, b: s };
-    }
-    var C = /** @class */ (function () {
-        function C() {
-            this.x = 0;
-            this.y = 0;
-        }
-        return C;
-    }());
-    // type T23 = InstanceType<string>; // Error
-    // type T24 = InstanceType<Function>; // Error
-}
-// tsconfig
+// changed tsconfig
 function exIterators() {
-    var e_1, _a, e_2, _b, e_3, _c;
+    var e_1, _a, e_2, _b;
     var someArray = [1, "string", false];
     try {
         for (var someArray_1 = __values(someArray), someArray_1_1 = someArray_1.next(); !someArray_1_1.done; someArray_1_1 = someArray_1.next()) {
             var entry = someArray_1_1.value;
-            console.log(entry); // 1, "string", false
+            console.log(entry);
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -578,27 +570,8 @@ function exIterators() {
         }
         finally { if (e_2) throw e_2.error; }
     }
-    var pets = new Set(["Cat", "Dog", "Hamster"]);
-    // pets["species"] = "mammals";
-    for (var pet in pets) {
-        console.log(pet);
-    }
-    try {
-        for (var pets_1 = __values(pets), pets_1_1 = pets_1.next(); !pets_1_1.done; pets_1_1 = pets_1.next()) {
-            var pet = pets_1_1.value;
-            console.log(pet);
-        }
-    }
-    catch (e_3_1) { e_3 = { error: e_3_1 }; }
-    finally {
-        try {
-            if (pets_1_1 && !pets_1_1.done && (_c = pets_1.return)) _c.call(pets_1);
-        }
-        finally { if (e_3) throw e_3.error; }
-    }
 }
 // exIterators();
-// @ts-ignore
 function exSymbols() {
     var _a;
     var sym = Symbol();
@@ -618,4 +591,20 @@ function exSymbols() {
     var c = new C();
     var className = c[getClassNameSymbol]();
     // Symbol.
+}
+// exSymbols();
+function exUtility() {
+    // https://www.typescriptlang.org/docs/handbook/utility-types.html
+    function f1(s) {
+        return { a: 1, b: s };
+    }
+    var C = /** @class */ (function () {
+        function C() {
+            this.x = 0;
+            this.y = 0;
+        }
+        return C;
+    }());
+    // type T23 = InstanceType<string>; // Error
+    // type T24 = InstanceType<Function>; // Error
 }

@@ -10,17 +10,22 @@ function hey() {
   console.log("hey");
 }
 
+// console.log("sdfds");
+
 import { Car } from "./entity";
 
-const car: Car = new Car();
-car.colour = "sdf";
-car.diesel = false;
-car.model = "adasdsa";
+function exUsingCar() {
+  const car: Car = new Car();
+  car.colour = "sdf";
+  car.diesel = false;
+  car.model = "adasdsa";
 
-console.log("Hello new car: " + JSON.stringify(car));
+  console.log("Hello new car: " + JSON.stringify(car));
+}
+// exUsingCar();
 
-export * from "./entity";
-export * from "./index";
+// export * from "./entity";
+// export * from "./index";
 
 export class Dog {}
 export class Cat {}

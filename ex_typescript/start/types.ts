@@ -517,6 +517,16 @@ function exPredicates() {
     }
     return pet.fly();
   }
+
+  const isOfType = <T>(
+    varToBeChecked: any,
+    propertyToCheckFor: keyof T
+  ): varToBeChecked is T =>
+    (varToBeChecked as T)[propertyToCheckFor] !== undefined;
+
+  console.log(isOfType<Fish>(pet, "swim"));
+  console.log(isOfType<Bird>(pet, "fly"));
+  console.log(isOfType(pet, "wadfdf"));
 }
 // exPredicates();
 
@@ -588,12 +598,13 @@ function exFields() {
     return propertyNames.map((n) => o[n]);
   }
 
-  interface Car {
+  interface ICar {
     manufacturer: string;
     model: string;
     year: number;
   }
-  let taxi: Car = {
+
+  let taxi: ICar = {
     manufacturer: "Toyota",
     model: "Camry",
     year: 2014,
@@ -605,7 +616,7 @@ function exFields() {
   let modelYear = pluck(taxi, ["model", "year"]);
   console.log(modelYear);
 
-  let carProps: keyof Car;
+  let carProps: keyof ICar;
 
   function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
     return o[propertyName]; // o[propertyName] is of type T[K]
@@ -643,7 +654,7 @@ function exFields() {
 
   console.log(obj);
 }
-exFields();
+// exFields();
 
 function exMappedTypes() {
   type Readonly<T> = {
@@ -701,13 +712,15 @@ function exConditionalTypes() {
 
   type T30 = Diff<"a" | "b" | "c" | "d", "a" | "c" | "f">; // "b" | "d"
   type T31 = Filter<"a" | "b" | "c" | "d", "a" | "c" | "f">; // "a" | "c"
-  type T32 = Diff<string | number | (() => void), Function>; // string | number
-  type T33 = Filter<string | number | (() => void), Function>; // () => void
+  type T32 = Filter<"a", "f">; // never
+
+  type T33 = Diff<string | number | (() => void), Function>; // string | number
+  type T34 = Filter<string | number | (() => void), Function>; // () => void
 
   type NonNullable<T> = Diff<T, null | undefined>; // Remove null and undefined from T
 
-  type T34 = NonNullable<string | number | undefined>; // string | number
-  type T35 = NonNullable<string | string[] | null | undefined>; // string | string[]
+  type T35 = NonNullable<string | number | undefined>; // string | number
+  type T36 = NonNullable<string | string[] | null | undefined>; // string | string[]
 
   function f1<T>(x: T, y: NonNullable<T>) {
     x = y; // Ok
@@ -736,11 +749,12 @@ function exConditionalTypes() {
     name: string;
     subparts: Part[];
     updatePart(newName: string): void;
+    deletePart(newName: string): void;
   }
 
-  type T40 = FunctionPropertyNames<Part>; // "updatePart"
+  type T40 = FunctionPropertyNames<Part>; // ?
   type T41 = NonFunctionPropertyNames<Part>; // "id" | "name" | "subparts"
-  type T42 = FunctionProperties<Part>; // { updatePart(newName: string): void }
+  type T42 = FunctionProperties<Part>; // ?
   type T43 = NonFunctionProperties<Part>; // { id: number, name: string, subparts: Part[] }
 }
 
@@ -771,7 +785,51 @@ function exInference() {
   type T21 = Bar<{ a: (x: string) => void; b: (x: number) => void }>; // string & number
 }
 
-function exPredefinedConditionalTypes() {
+// changed tsconfig
+function exIterators() {
+  let someArray = [1, "string", false];
+
+  for (let entry of someArray) {
+    console.log(entry);
+  }
+
+  let list = [4, 5, 6];
+  for (let i in list) {
+    console.log(i);
+  }
+  for (let i of list) {
+    console.log(i);
+  }
+}
+// exIterators();
+
+function exSymbols() {
+  const sym = Symbol();
+
+  let obj = {
+    [sym]: "value",
+  };
+
+  console.log(obj[sym]);
+
+  const getClassNameSymbol = Symbol();
+
+  class C {
+    [getClassNameSymbol]() {
+      return "C";
+    }
+  }
+
+  let c = new C();
+  let className = c[getClassNameSymbol]();
+
+  // Symbol.
+}
+// exSymbols();
+
+function exUtility() {
+  // https://www.typescriptlang.org/docs/handbook/utility-types.html
+
   type T00 = Exclude<"a" | "b" | "c" | "d", "a" | "c" | "f">; // "b" | "d"
   type T01 = Extract<"a" | "b" | "c" | "d", "a" | "c" | "f">; // "a" | "c"
 
@@ -805,57 +863,4 @@ function exPredefinedConditionalTypes() {
   type T22 = InstanceType<never>; // never
   // type T23 = InstanceType<string>; // Error
   // type T24 = InstanceType<Function>; // Error
-}
-
-// tsconfig
-function exIterators() {
-  let someArray = [1, "string", false];
-
-  for (let entry of someArray) {
-    console.log(entry); // 1, "string", false
-  }
-
-  let list = [4, 5, 6];
-  for (let i in list) {
-    console.log(i);
-  }
-  for (let i of list) {
-    console.log(i);
-  }
-
-  let pets = new Set(["Cat", "Dog", "Hamster"]);
-  // pets["species"] = "mammals";
-
-  for (let pet in pets) {
-    console.log(pet);
-  }
-
-  for (let pet of pets) {
-    console.log(pet);
-  }
-}
-// exIterators();
-
-// @ts-ignore
-function exSymbols() {
-  const sym = Symbol();
-
-  let obj = {
-    [sym]: "value",
-  };
-
-  console.log(obj[sym]);
-
-  const getClassNameSymbol = Symbol();
-
-  class C {
-    [getClassNameSymbol]() {
-      return "C";
-    }
-  }
-
-  let c = new C();
-  let className = c[getClassNameSymbol]();
-
-  // Symbol.
 }

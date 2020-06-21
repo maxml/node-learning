@@ -38,10 +38,10 @@ function exExtends() {
 
   loggingIdentity2({ length: 10, value: 3 });
   loggingIdentity2([]);
-  loggingIdentity2("");
-  loggingIdentity2(new NewLength(10));
+  loggingIdentity2("a");
+  loggingIdentity2(new NewLength(11));
 }
-// exExtends();
+exExtends();
 
 function exConstraint() {
   function getProperty<T, K extends keyof T>(obj: T, key: K) {
@@ -51,7 +51,7 @@ function exConstraint() {
   let x = { a: 1, b: 2, c: 3, d: 4 };
 
   console.log(getProperty(x, "a"));
-  //   getProperty(x, "m");
+  // getProperty(x, "m");
 }
 // exConstraint();
 
@@ -73,14 +73,48 @@ function exClassTypes() {
   }
 
   class Lion extends Animal {
-    keeper: ZooKeeper = { nametag: "" };
+    keeper: ZooKeeper = { nametag: "tag" };
   }
 
-  function createInstance<A extends Animal>(c: new () => A): A {
-    return new c();
+  function createInstance<A extends Animal>(Clazz: new () => A): A {
+    return new Clazz();
   }
 
   console.log(createInstance(Lion).keeper.nametag);
   console.log(createInstance(Bee).keeper.hasMask);
 }
 // exClassTypes();
+
+function exMemoize() {
+  function memoize<TS extends any[], R>(
+    fn: (...args: TS) => R,
+    keyFn?: (...args: TS) => string
+  ): (...args: TS) => R {
+    const cache: Record<string, { value: R }> = {};
+    return (...args: TS) => {
+      const key = (
+        keyFn ||
+        ((args) =>
+          args.reduce((acc: any, arg: any) => (acc += String(arg)), ""))
+      )(args);
+      return (cache[key] || (cache[key] = { value: fn(...args) })).value;
+    };
+  }
+
+  const fn1 = (a: string) => 1;
+  const fn2 = (a: string, b: boolean) => true;
+  const fn3 = (a: string, b: boolean, f: (x: number) => void) => 1;
+  const fn4 = (a: string, b: boolean, o: object) => 1;
+
+  // (a: string) => number
+  const mfn1 = memoize(fn1);
+
+  // (a: string, b: boolean) => boolean
+  const mfn2 = memoize(fn2);
+
+  // (a: string, b: boolean, f: (x: number) => void) => number
+  const mfn3 = memoize(fn3, (a, b, fn) => `${a}, ${b}, ${fn(1)}`);
+
+  // (a: string, b: boolean, o: object) => number
+  const mfn4 = memoize(fn4);
+}

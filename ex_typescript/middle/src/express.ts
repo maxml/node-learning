@@ -1,14 +1,14 @@
-import * as express from "express";
+import * as express from 'express';
 
 // Create a new express application instance
 const app: express.Application = express.default();
 
-app.get("/", function (req, res) {
-  res.send("Hello World!");
+app.get('*', function (req, res) {
+  res.send('Hello World!');
 });
 
 app.listen(3000, function () {
-  console.log("Example app listening on port 3000!");
+  console.log('Example app listening on port 3000!');
 });
 
 // ============ package.json

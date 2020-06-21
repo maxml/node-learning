@@ -1,5 +1,3 @@
-class Foo {}
-
 module Foo {
   export class InnerFoo {
     doIt() {
