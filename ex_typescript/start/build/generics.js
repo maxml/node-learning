@@ -12,26 +12,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 function exGeneric() {
     function identity(arg) {
         return arg;
@@ -118,31 +98,3 @@ function exClassTypes() {
     console.log(createInstance(Bee).keeper.hasMask);
 }
 // exClassTypes();
-function exMemoize() {
-    function memoize(fn, keyFn) {
-        var cache = {};
-        return function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            var key = (keyFn ||
-                (function (args) {
-                    return args.reduce(function (acc, arg) { return (acc += String(arg)); }, "");
-                }))(args);
-            return (cache[key] || (cache[key] = { value: fn.apply(void 0, __spread(args)) })).value;
-        };
-    }
-    var fn1 = function (a) { return 1; };
-    var fn2 = function (a, b) { return true; };
-    var fn3 = function (a, b, f) { return 1; };
-    var fn4 = function (a, b, o) { return 1; };
-    // (a: string) => number
-    var mfn1 = memoize(fn1);
-    // (a: string, b: boolean) => boolean
-    var mfn2 = memoize(fn2);
-    // (a: string, b: boolean, f: (x: number) => void) => number
-    var mfn3 = memoize(fn3, function (a, b, fn) { return a + ", " + b + ", " + fn(1); });
-    // (a: string, b: boolean, o: object) => number
-    var mfn4 = memoize(fn4);
-}

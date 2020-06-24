@@ -233,3 +233,98 @@ function exPropertyDecorator() {
     console.log("validation passed: " + !b);
 }
 // exPropertyDecorator();
+// https://github.com/darrylhodgins/typescript-memoize
+function exMemoize(that) {
+    function Memoize() {
+        return function (target, propertyKey, descriptor) {
+            if (descriptor.value != null) {
+                descriptor.value = getNewFunction(that, descriptor.value);
+            }
+            else if (descriptor.get != null) {
+                descriptor.get = getNewFunction(that, descriptor.get);
+            }
+            else {
+                throw "Only put a Memoize() decorator on a method or get accessor.";
+            }
+        };
+    }
+    var counter = 0;
+    function getNewFunction(that, originalMethod) {
+        var identifier = ++counter;
+        return function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var propValName = "__memoized_value_" + identifier;
+            var propMapName = "__memoized_map_" + identifier;
+            var returnedValue;
+            if (args.length > 0) {
+                if (!that.hasOwnProperty(propMapName)) {
+                    Object.defineProperty(that, propMapName, {
+                        configurable: false,
+                        enumerable: false,
+                        writable: false,
+                        value: new Map(),
+                    });
+                }
+                var myMap = that[propMapName];
+                var hashKey = void 0;
+                hashKey = args[0];
+                if (myMap.has(hashKey)) {
+                    returnedValue = myMap.get(hashKey);
+                }
+                else {
+                    returnedValue = originalMethod.apply(that, args);
+                    myMap.set(hashKey, returnedValue);
+                }
+            }
+            else {
+                if (that.hasOwnProperty(propValName)) {
+                    returnedValue = that[propValName];
+                }
+                else {
+                    returnedValue = originalMethod.apply(that, args);
+                    Object.defineProperty(that, propValName, {
+                        configurable: false,
+                        enumerable: false,
+                        writable: false,
+                        value: returnedValue,
+                    });
+                }
+            }
+            return returnedValue;
+        };
+    }
+    var SimpleFoo = /** @class */ (function () {
+        function SimpleFoo() {
+        }
+        SimpleFoo.prototype.getAllTheData = function () {
+            return 1;
+        };
+        Object.defineProperty(SimpleFoo.prototype, "someValue", {
+            get: function () {
+                return "value";
+            },
+            enumerable: false,
+            configurable: true
+        });
+        __decorate([
+            Memoize()
+        ], SimpleFoo.prototype, "getAllTheData", null);
+        __decorate([
+            Memoize()
+        ], SimpleFoo.prototype, "someValue", null);
+        return SimpleFoo;
+    }());
+    var simpleFoo = new SimpleFoo();
+    var methodVal1 = simpleFoo.getAllTheData();
+    var methodVal2 = simpleFoo.getAllTheData();
+    var getterVal1 = simpleFoo.someValue;
+    var getterVal2 = simpleFoo.someValue;
+    console.log(methodVal1);
+    console.log(methodVal2);
+    console.log(getterVal1);
+    console.log(getterVal2);
+}
+// exMemoize(this);

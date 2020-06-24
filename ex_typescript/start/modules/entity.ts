@@ -1,5 +1,5 @@
 export class Car {
-  public colour: string = "";
+  public color: string = "";
   public model: string = "";
   public diesel?: boolean = false;
   private _keys: Array<string>;
@@ -9,7 +9,7 @@ export class Car {
   }
 
   toJSON() {
-    // return this.setAttribute()
+    return `Color1: ${this.color}\nModel2: ${this.model}\nDiesel3: ${this.diesel}`;
   }
 }
 

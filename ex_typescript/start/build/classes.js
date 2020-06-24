@@ -54,6 +54,15 @@ function exReadonly() {
     console.log(new Octopus2("test").name);
 }
 // exReadonly();
+function readOnlyClass() {
+    var props = {
+        firstName: "Brian",
+        lastName: "Gonzalez",
+    };
+    // props.firstName = "Jose";
+    console.log(props);
+}
+// readOnlyClass();
 function exDeclarations() {
     var mySearch;
     mySearch = function (src, sub) {

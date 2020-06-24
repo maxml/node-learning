@@ -16,7 +16,7 @@ import { Car } from "./entity";
 
 function exUsingCar() {
   const car: Car = new Car();
-  car.colour = "sdf";
+  car.color = "sdf";
   car.diesel = false;
   car.model = "adasdsa";
 

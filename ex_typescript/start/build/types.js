@@ -572,6 +572,7 @@ function exIterators() {
     }
 }
 // exIterators();
+// https://www.typescriptlang.org/docs/handbook/symbols.html
 function exSymbols() {
     var _a;
     var sym = Symbol();

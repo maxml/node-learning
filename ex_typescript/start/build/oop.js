@@ -87,7 +87,102 @@ function exInheritance() {
     tom.move(34);
 }
 // exInheritance();
-// TODO
+function exPolymorphism() {
+    var CheckingAccount = /** @class */ (function () {
+        function CheckingAccount() {
+        }
+        CheckingAccount.prototype.open = function (initialAmount) {
+            console.log("Initial amount: " + initialAmount);
+        };
+        return CheckingAccount;
+    }());
+    var BusinessCheckingAccount = /** @class */ (function (_super) {
+        __extends(BusinessCheckingAccount, _super);
+        function BusinessCheckingAccount() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        BusinessCheckingAccount.prototype.open = function (initialAmount) {
+            if (initialAmount < 1000) {
+                throw new Error("Business accounts must have an initial deposit of 1.000 Euros");
+            }
+            _super.prototype.open.call(this, initialAmount);
+        };
+        return BusinessCheckingAccount;
+    }(CheckingAccount));
+    var PersonalCheckingAccount = /** @class */ (function (_super) {
+        __extends(PersonalCheckingAccount, _super);
+        function PersonalCheckingAccount() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        PersonalCheckingAccount.prototype.open = function (initialAmount) {
+            if (initialAmount <= 0) {
+                throw new Error("Personal accounts must have an initial deposit of more than zero Euros");
+            }
+            _super.prototype.open.call(this, initialAmount);
+        };
+        return PersonalCheckingAccount;
+    }(CheckingAccount));
+    var account1 = new BusinessCheckingAccount();
+    try {
+        account1.open(301);
+    }
+    catch (ex) {
+        console.log(ex.message);
+    }
+    account1.open(1001);
+    var account2 = new PersonalCheckingAccount();
+    try {
+        account2.open(-1);
+    }
+    catch (ex) {
+        console.log(ex.message);
+    }
+    account2.open(1);
+}
+// exPolymorphism();
+function exEncapsulation() {
+    var BankMember = /** @class */ (function () {
+        function BankMember(savingsBalance) {
+            this._savingsBalance = savingsBalance;
+        }
+        Object.defineProperty(BankMember.prototype, "savingsBalance", {
+            get: function () {
+                return this._savingsBalance;
+            },
+            set: function (newBalance) {
+                if (newBalance < 0) {
+                    console.log("Wrong value");
+                    return;
+                }
+                this._savingsBalance = newBalance;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        BankMember.prototype.deposit = function (amount) {
+            this._savingsBalance += amount;
+        };
+        BankMember.prototype.withdraw = function (amount) {
+            if (this.savingsBalance < amount) {
+                console.log("Insufficient Funds");
+                return;
+            }
+            this._savingsBalance -= amount;
+        };
+        return BankMember;
+    }());
+    var chuck = new BankMember(3000);
+    console.log("\nDepositing Funds");
+    chuck.deposit(150);
+    console.log("Chuck's Savings Balance: $" + chuck.savingsBalance + " \n");
+    console.log("Malicious Account Fraud Happening here.... \n");
+    chuck.savingsBalance = -1;
+    chuck.savingsBalance = 0;
+    console.log("Withdrawing Funds");
+    chuck.withdraw(1650);
+    console.log("Chuck's Savings Balance: $" + chuck.savingsBalance + " \n");
+}
+// exEncapsulation();
 function exProtectedConstructor() {
     var Person = /** @class */ (function () {
         function Person(theName) {
@@ -330,4 +425,4 @@ function exMixin2() {
     var jim = extend(new Person("Jim"), ConsoleLogger.prototype);
     jim.log(jim.name);
 }
-exMixin2();
+// exMixin2();

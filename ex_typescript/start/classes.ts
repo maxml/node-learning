@@ -54,6 +54,23 @@ function exReadonly() {
 }
 // exReadonly();
 
+function readOnlyClass() {
+  interface Props
+    extends Readonly<{
+      firstName: string;
+      lastName: string;
+    }> {}
+
+  const props: Props = {
+    firstName: "Brian",
+    lastName: "Gonzalez",
+  };
+
+  // props.firstName = "Jose";
+  console.log(props);
+}
+// readOnlyClass();
+
 function exDeclarations() {
   interface SearchFunc {
     (source: string, subString: string): boolean;

@@ -1,3 +1,6 @@
+// declare function require(name: string): any;
+const sampleModule = require("./entity");
+
 import { StringValidator } from "./entity";
 import { StringValidator as MainValdator } from "./entity";
 
@@ -13,8 +16,12 @@ import * as myLargeModule from "./app";
 import * as URL from "url";
 
 function exImporting() {
+  console.log(sampleModule);
+
   let myValidator = new validator.Car();
   console.log(myValidator);
+  console.log("JSON = " + myValidator.toJSON());
+  console.log(JSON.stringify(myValidator));
 
   utils.hey();
 
@@ -26,7 +33,7 @@ function exImporting() {
   let dog = new myLargeModule.Dog();
   console.log(dog);
 }
-// exImporting();
+exImporting();
 
 import { Validation } from "./namespaces";
 

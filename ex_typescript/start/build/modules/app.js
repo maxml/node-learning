@@ -15,7 +15,7 @@ function hey() {
 var entity_1 = require("./entity");
 function exUsingCar() {
     var car = new entity_1.Car();
-    car.colour = "sdf";
+    car.color = "sdf";
     car.diesel = false;
     car.model = "adasdsa";
     console.log("Hello new car: " + JSON.stringify(car));

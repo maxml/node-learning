@@ -803,6 +803,7 @@ function exIterators() {
 }
 // exIterators();
 
+// https://www.typescriptlang.org/docs/handbook/symbols.html
 function exSymbols() {
   const sym = Symbol();
 

@@ -33,6 +33,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// declare function require(name: string): any;
+var sampleModule = require("./entity");
 var entity_1 = require("./entity");
 require("./app");
 var app_1 = __importDefault(require("./app"));
@@ -41,8 +43,11 @@ var validator = __importStar(require("./entity"));
 var myLargeModule = __importStar(require("./app"));
 var URL = __importStar(require("url"));
 function exImporting() {
+    console.log(sampleModule);
     var myValidator = new validator.Car();
     console.log(myValidator);
+    console.log("JSON = " + myValidator.toJSON());
+    console.log(JSON.stringify(myValidator));
     app_1.default.hey();
     new entity_1.StringValidator().isAcceptable("");
     var myUrl = URL.parse("http://www.typescriptlang.org");
@@ -50,7 +55,7 @@ function exImporting() {
     var dog = new myLargeModule.Dog();
     console.log(dog);
 }
-// exImporting();
+exImporting();
 var namespaces_1 = require("./namespaces");
 function exNamespaces() {
     var e_1, _a;

@@ -77,7 +77,102 @@ function exInheritance() {
 }
 // exInheritance();
 
-// TODO
+function exPolymorphism() {
+  class CheckingAccount {
+    open(initialAmount: number) {
+      console.log(`Initial amount: ${initialAmount}`);
+    }
+  }
+
+  class BusinessCheckingAccount extends CheckingAccount {
+    open(initialAmount: number) {
+      if (initialAmount < 1000) {
+        throw new Error(
+          "Business accounts must have an initial deposit of 1.000 Euros"
+        );
+      }
+      super.open(initialAmount);
+    }
+  }
+
+  class PersonalCheckingAccount extends CheckingAccount {
+    open(initialAmount: number) {
+      if (initialAmount <= 0) {
+        throw new Error(
+          "Personal accounts must have an initial deposit of more than zero Euros"
+        );
+      }
+      super.open(initialAmount);
+    }
+  }
+
+  const account1: CheckingAccount = new BusinessCheckingAccount();
+  try {
+    account1.open(301);
+  } catch (ex) {
+    console.log((ex as Error).message);
+  }
+  account1.open(1001);
+
+  const account2: CheckingAccount = new PersonalCheckingAccount();
+  try {
+    account2.open(-1);
+  } catch (ex) {
+    console.log((ex as Error).message);
+  }
+  account2.open(1);
+}
+// exPolymorphism();
+
+function exEncapsulation() {
+  class BankMember {
+    private _savingsBalance: number;
+
+    constructor(savingsBalance: number) {
+      this._savingsBalance = savingsBalance;
+    }
+
+    public get savingsBalance(): number {
+      return this._savingsBalance;
+    }
+
+    public set savingsBalance(newBalance: number) {
+      if (newBalance < 0) {
+        console.log("Wrong value");
+        return;
+      }
+
+      this._savingsBalance = newBalance;
+    }
+
+    public deposit(amount: number): void {
+      this._savingsBalance += amount;
+    }
+
+    public withdraw(amount: number): void {
+      if (this.savingsBalance < amount) {
+        console.log("Insufficient Funds");
+        return;
+      }
+
+      this._savingsBalance -= amount;
+    }
+  }
+  const chuck: BankMember = new BankMember(3000);
+
+  console.log("\nDepositing Funds");
+  chuck.deposit(150);
+  console.log(`Chuck's Savings Balance: $${chuck.savingsBalance} \n`);
+
+  console.log("Malicious Account Fraud Happening here.... \n");
+  chuck.savingsBalance = -1;
+  chuck.savingsBalance = 0;
+
+  console.log("Withdrawing Funds");
+  chuck.withdraw(1650);
+  console.log(`Chuck's Savings Balance: $${chuck.savingsBalance} \n`);
+}
+// exEncapsulation();
 
 function exProtectedConstructor() {
   class Person {
