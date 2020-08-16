@@ -7,7 +7,7 @@ function exSwitch() {
 
     // TODO: get age as range
 
-    const RANGES = {
+    const Ranges = {
       CHILD: {
         type: "CHILD",
         max: 18,
@@ -32,12 +32,12 @@ function exSwitch() {
 
     const range = "BOYS";
     switch (range) {
-      case RANGES.CHILD:
-        console.log("You are " + new String(RANGES.CHILD).toLowerCase());
+      case Ranges.CHILD:
+        console.log("You are " + new String(Ranges.CHILD).toLowerCase());
         break;
-      case RANGES.TEENS:
-      case RANGES.BOYS:
-      case RANGES.MANS:
+      case Ranges.TEENS:
+      case Ranges.BOYS:
+      case Ranges.MANS:
         console.log("All is ok!");
         break;
       default:
@@ -48,41 +48,27 @@ function exSwitch() {
   // checkAge();
   checkAge(0);
 }
-exSwitch();
+// exSwitch();
 
 function exArraySample() {
-  let functionVariable = function (param1) {
-    console.log("sfd");
-  };
+  let array = new Array();
 
-  let var2 = functionVariable;
-
-  // var2();
-
-  // console.log();
-
-  // let a = 4;
-
-  // let i = 3;
-
-  // while (i) {
-  //     console.log(i--);
-  // }
-
-  // console.log(null || 0 && 0);
-
-  let array = new Array(100);
-
+  console.log("length:" + array.length);
+  console.log("0:" + array[0]);
   array[0] = 0;
 
   array.push("jdf", "sdfsdf");
-  array.pop();
+  console.log(array.pop());
+  console.log(array);
 
   array.unshift("sdfs", "sdfsd");
   array.unshift(["sdfs", "sdfsd"]);
-  // array.shift();
+  console.log(array);
 
-  delete array[3];
+  console.log(array.shift());
+  console.log(array);
+
+  // delete array[3];
 
   // console.log(array);
 
@@ -107,8 +93,9 @@ function exArraySample() {
 
   // checkArrayMethodExecutionTime();
 
-  doArraySplice();
+  // doArraySplice();
 }
+exArraySample();
 
 function checkArrayMethodExecutionTime() {
   let arr2 = [];
@@ -304,3 +291,32 @@ function exSort() {
   console.log(res);
 }
 // exSort();
+
+function exObjectArray() {
+  console.log("Hello world");
+  function analyzeArray(input, fields) {
+    if (!Array.isArray(input)) {
+      console.log("input is not arrray");
+      return [];
+    }
+    if (!Array.isArray(fields)) {
+      console.log("fields is not arrray");
+      return [];
+    }
+
+    // for(let i=0; i<)
+
+    let output = [];
+
+    return output;
+  }
+  //analyzeArray();
+  const input = [
+    { id: 1, name: "Maks", surname: "Bro" },
+    { id: 1, name: "Vova", surname: "Ne Bro", status: "bad-guy " },
+    { id: 1, name: "Vanya", age: 30 },
+  ];
+  const fields = ["id", "name", "surname"];
+  console.log(analyzeArray(input, fields));
+}
+// exObjectArray();
