@@ -1,40 +1,92 @@
-let functionVariable = function (param1) {
-    console.log('sfd')
+function exSwitch() {
+  function checkAge(age) {
+    if (!Number.isInteger(age)) {
+      console.log("not a number");
+      return false;
+    }
+
+    // TODO: get age as range
+
+    const RANGES = {
+      CHILD: {
+        type: "CHILD",
+        max: 18,
+        min: 0,
+      },
+      TEENS: {
+        type: "TEENS",
+        min: 19,
+        max: 30,
+      },
+      BOYS: {
+        type: "BOYS",
+        min: 31,
+        max: 45,
+      },
+      MANS: {
+        type: "MANS",
+        min: 46,
+        max: 100,
+      },
+    };
+
+    const range = "BOYS";
+    switch (range) {
+      case RANGES.CHILD:
+        console.log("You are " + new String(RANGES.CHILD).toLowerCase());
+        break;
+      case RANGES.TEENS:
+      case RANGES.BOYS:
+      case RANGES.MANS:
+        console.log("All is ok!");
+        break;
+      default:
+        console.log("I don't know such values");
+    }
+  }
+
+  // checkAge();
+  checkAge(0);
 }
+exSwitch();
 
-let var2 = functionVariable;
+function exArraySample() {
+  let functionVariable = function (param1) {
+    console.log("sfd");
+  };
 
-// var2();
+  let var2 = functionVariable;
 
-// console.log();
+  // var2();
 
-// let a = 4;
+  // console.log();
 
+  // let a = 4;
 
-// let i = 3;
+  // let i = 3;
 
-// while (i) {
-//     console.log(i--);
-// }
+  // while (i) {
+  //     console.log(i--);
+  // }
 
-// console.log(null || 0 && 0);
+  // console.log(null || 0 && 0);
 
-let array = new Array(100);
+  let array = new Array(100);
 
-array[0] = 0;
+  array[0] = 0;
 
-array.push('jdf', 'sdfsdf');
-array.pop();
+  array.push("jdf", "sdfsdf");
+  array.pop();
 
-array.unshift('sdfs', 'sdfsd');
-array.unshift(['sdfs', 'sdfsd']);
-// array.shift();
+  array.unshift("sdfs", "sdfsd");
+  array.unshift(["sdfs", "sdfsd"]);
+  // array.shift();
 
-delete array[3];
+  delete array[3];
 
-// console.log(array);
+  // console.log(array);
 
-function f(c) {
+  function f(c) {
     let d = c || 3;
     // if (c === undefined) {
     //     c = 3;
@@ -43,102 +95,212 @@ function f(c) {
     let a = 0;
     console.log(a);
 
-    console.log('array' + array);
+    console.log("array" + array);
 
     console.log(d);
 
-    return (+'2' + '4');
+    return +"2" + "4";
+  }
+
+  let a = undefined;
+  // console.log(f(a));
+
+  // checkArrayMethodExecutionTime();
+
+  doArraySplice();
 }
 
-let a = undefined;
-// console.log(f(a));
-
-
-// checkArrayMethodExecutionTime();
-
-doArraySplice();
-
 function checkArrayMethodExecutionTime() {
-    let arr2 = [];
-    // arr2[2] = 3;
-    console.log(arr2)
+  let arr2 = [];
+  // arr2[2] = 3;
+  console.log(arr2);
 
-    function someFunction() {
-        for (let i = 0; i < 100; i++) {
-            arr2[i] = 1;
-        }
+  function someFunction() {
+    for (let i = 0; i < 100; i++) {
+      arr2[i] = 1;
     }
+  }
 
-    function someFunction2() {
-        for (let i = 0; i < 100; i++) {
-            arr2.push(1);
-        }
+  function someFunction2() {
+    for (let i = 0; i < 100; i++) {
+      arr2.push(1);
     }
+  }
 
-    function someFunction3() {
-        for (let i = 0; i < 100; i++) {
-            arr2.unshift(1);
-        }
+  function someFunction3() {
+    for (let i = 0; i < 100; i++) {
+      arr2.unshift(1);
     }
+  }
 
-    arr2 = [];
-    console.time('someFunction');
+  arr2 = [];
+  console.time("someFunction");
 
-    someFunction(); // Whatever is timed goes between the two "console.time"
-    console.log(arr2.length)
+  someFunction(); // Whatever is timed goes between the two "console.time"
+  console.log(arr2.length);
 
-    console.timeEnd('someFunction');
+  console.timeEnd("someFunction");
 
-    arr2 = [];
-    console.time('someFunction2');
+  arr2 = [];
+  console.time("someFunction2");
 
-    someFunction2(); // Whatever is timed goes between the two "console.time"
-    console.log(arr2.length)
+  someFunction2(); // Whatever is timed goes between the two "console.time"
+  console.log(arr2.length);
 
-    console.timeEnd('someFunction2');
+  console.timeEnd("someFunction2");
 
-    arr2 = [];
-    console.time('someFunction3');
+  arr2 = [];
+  console.time("someFunction3");
 
-    someFunction3(); // Whatever is timed goes between the two "console.time"
-    console.log(arr2.length)
+  someFunction3(); // Whatever is timed goes between the two "console.time"
+  console.log(arr2.length);
 
-    console.timeEnd('someFunction3');
+  console.timeEnd("someFunction3");
 }
 
 function doArraySplice() {
-    [["Bilbo", 'dsfd'], "Gandalf", "Nazgul", 'test'].forEach((item, index, array) => {
-        // console.log(`${item} is at index `);
-        if (item === 'Gandalf') {
-            // console.log(array.slice());
-            // console.log(array)
-        }
-    });
+  [["Bilbo", "dsfd"], "Gandalf", "Nazgul", "test"].forEach(
+    (item, index, array) => {
+      // console.log(`${item} is at index `);
+      if (item === "Gandalf") {
+        // console.log(array.slice());
+        // console.log(array)
+      }
+    }
+  );
 }
 
-let array2 = [["Bilbo2", 'dsfd2'], "Gandalf", "Nazgul", 'test']
-for (let index = 0; index < array2.length; index++) {
+function exArray2() {
+  let array2 = [["Bilbo2", "dsfd2"], "Gandalf", "Nazgul", "test"];
+  for (let index = 0; index < array2.length; index++) {
     const element = array2[index];
     // console.log(element);
+  }
+
+  const myAwesomeArray = [
+    [1, 2],
+    [3, 4],
+  ];
+
+  console.log(myAwesomeArray.concat(11, 23, [11, 23]));
+  console.log();
+
+  let newArr = myAwesomeArray.flat().filter((item) => {
+    return item > 2;
+  });
+
+  newArr = myAwesomeArray.flat().map((item) => {
+    return item * 2;
+  });
+
+  newArr = myAwesomeArray.flat().reduce((item, aggregator) => {
+    return aggregator + item;
+  }, 1000);
+
+  // console.log(newArr);
 }
 
-const myAwesomeArray = [[1, 2], [3, 4]]
+function exArray3() {
+  const input = {
+    sjfdhbsdklfnsdl: "vaue",
+  };
+  const input2 = [
+    {
+      key: "valye",
+    },
+    {
+      key2: "valye",
+    },
+    {
+      key3: "valye",
+      key3s2342: "valye",
+      key234233: "valye",
+      key3dgdfgf: "valye",
+    },
+    {
+      key3: "valye",
+      key45: "sdfdsf",
+    },
+  ];
 
-console.log(myAwesomeArray.concat(11, 23, [11, 23]));
-console.log();
+  const garbage = [];
+  function create(input) {
+    if (!input) {
+      return;
+    }
 
-let newArr = myAwesomeArray.flat().filter((item) => {
-    return item > 2
-})
+    if (Array.isArray(input)) {
+      const validated = input.map((obj) => {
+        return validateObjectFields(obj);
+      });
+      garbage.push(...validated);
+    } else {
+      garbage.push(validateObjectFields(input));
+    }
+  }
 
+  function validateObjectFields(input) {
+    for (let index = 0; index < Object.keys(input).length; index++) {
+      const element = Object.keys(input)[index];
+      if (!input[element]) {
+        delete input[element];
+      }
+    }
+    return input;
+  }
 
-newArr = myAwesomeArray.flat().map((item) => {
-    return item * 2
-})
+  create(input);
+  create(input2);
 
+  create(undefined);
+  create(null);
+  create(NaN);
+  create("");
+  create(0);
+  create(false);
 
-newArr = myAwesomeArray.flat().reduce((item, aggregator) => {
-    return aggregator + item
-}, 1000)
+  create({
+    key: "sadfasdf",
+    key2: undefined,
+  });
+  create([
+    {
+      key: "sadfasdf",
+      key2: undefined,
+    },
+  ]);
+  create(() => {});
 
-console.log(newArr);
+  console.log(garbage);
+}
+// exArray3();
+
+function exSort() {
+  const arr = [
+    {
+      name: "Mike",
+      age: 2,
+    },
+    {
+      name: "Mzx",
+      age: 16,
+    },
+    {
+      name: "Farhad",
+      age: 100,
+    },
+    {
+      name: "Abdul",
+      age: 3,
+    },
+  ];
+
+  const res = arr.sort((a, b) => {
+    console.log("=======");
+    return a.age - b.age;
+  });
+
+  console.log(arr);
+  console.log(res);
+}
+// exSort();
