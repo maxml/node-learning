@@ -320,3 +320,18 @@ function exObjectArray() {
   console.log(analyzeArray(input, fields));
 }
 // exObjectArray();
+
+function exBubbleSort() {
+  function buublesSort() {
+    // all is ok
+  }
+
+  const arr1 = [6, 12, 16];
+  const arr2 = [4, 7, 18, 19];
+
+  function mergeArrays(arr1, arr2) {
+    return arr1 + arr2; // with sorting order, without using buuble sort
+  }
+
+  // TBD: findIndex
+}
