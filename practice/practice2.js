@@ -95,7 +95,7 @@ function exArraySample() {
 
   // doArraySplice();
 }
-exArraySample();
+// exArraySample();
 
 function checkArrayMethodExecutionTime() {
   let arr2 = [];
@@ -335,3 +335,105 @@ function exBubbleSort() {
 
   // TBD: findIndex
 }
+
+function exArrayMethodsOnExample() {
+  function exCutObjectFromFields1(object, fields) {
+    const result = {};
+
+    const keys = Object.keys(object);
+    for (let index = 0; index < keys.length; index++) {
+      const field = keys[index];
+      if (fields.includes(field)) {
+        result[field] = object[field];
+      }
+    }
+
+    return result;
+  }
+  console.log(
+    exCutObjectFromFields1(
+      {
+        id: "sdnfksdlfsd",
+        name: "sdfsdfsdfsdf",
+      },
+      ["id"]
+    )
+  );
+
+  function exCutObjectFromFields2(object, fields) {
+    function getNeededKeys(inputKeys, validKeys) {
+      return inputKeys.filter((key) => validKeys.includes(key));
+    }
+    function generateObject(object, fields) {
+      return Object.entries(object).map((item) => {
+        return fields.includes(item[0]) ? item : false;
+      });
+    }
+    function removeAllFalsyValues(array) {
+      const res = [];
+      array.forEach((item) => {
+        if (item) {
+          res.push(item);
+        }
+      });
+
+      return res;
+    }
+
+    return Object.fromEntries(
+      removeAllFalsyValues(
+        generateObject(object, getNeededKeys(Object.keys(object), fields))
+      )
+    );
+  }
+  console.log(
+    exCutObjectFromFields2(
+      {
+        id: "sdnfksdlfsd",
+        name: "sdfsdfsdfsdf",
+      },
+      ["id", "age"]
+    )
+  );
+
+  // console.log([1, 2, 3].filter((number) => number > 1));
+  // console.log([1, 2, 3].map((number) => number + 1));
+  // [1, 2, 3].forEach((number) => console.log(number + 1));
+
+  function exCutObjectFromFields3(object, fields) {
+    return Object.fromEntries(
+      Object.entries(object).filter((item) => fields.includes(item[0]))
+    );
+  }
+  console.log(
+    exCutObjectFromFields3(
+      {
+        id: "sdnfksdlfsd",
+        name: "sdfsdfsdfsdf",
+      },
+      ["id", "age"]
+    )
+  );
+
+  function exCutObjectFromFields4(object, fields) {
+    const result = {};
+
+    Object.keys(object).forEach((field) => {
+      if (fields.includes(field)) {
+        result[field] = object[field];
+      }
+    });
+
+    return result;
+  }
+  console.log(
+    exCutObjectFromFields4(
+      {
+        id: "sdnfksdlfsd",
+        name: "sdfsdfsdfsdf",
+      },
+      ["id", "age"]
+    )
+  );
+}
+// exArrayMethodsOnExample();
