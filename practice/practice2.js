@@ -437,3 +437,43 @@ function exArrayMethodsOnExample() {
   );
 }
 // exArrayMethodsOnExample();
+
+function exFunctions() {
+  const b = -2;
+
+  function test(b = 3) {
+    // let a = 2;
+    // console.log(a);
+    console.log(b);
+    return 23;
+  }
+  test(b);
+  test();
+  console.log(b);
+  console.log(test());
+}
+// exFunctions();
+
+function exUsingFunctions() {
+  // declaration
+  function test() {
+    console.log("H");
+  }
+  test();
+
+  // expresssion
+  let test2 = function () {
+    console.log("G");
+  };
+  test2();
+
+  test2 = 12;
+
+  test2 = function () {
+    console.log("F");
+  };
+  test2();
+
+  console.log(test2);
+}
+// exUsingFunctions();
