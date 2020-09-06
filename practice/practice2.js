@@ -477,3 +477,50 @@ function exUsingFunctions() {
   console.log(test2);
 }
 // exUsingFunctions();
+
+function exLuckyNumber() {
+  const getDigits = (number) => {
+    let buff = number;
+    const digits = [];
+    while (buff > 0) {
+      digits.push(buff % 10);
+      buff = Math.floor(buff / 10);
+    }
+    return digits.reverse();
+  };
+  const numbersToBeChecked = [1, 23, 33, 123, 121, 111, 1221, 78293];
+
+  const res = numbersToBeChecked.map((number) => {
+    const digits = getDigits(number);
+    let res = true;
+    for (let index = 0; index < digits.length / 2; index++) {
+      res = res && digits[index] === digits[digits.length - index - 1];
+    }
+    return res;
+  });
+
+  // console.log(getDigits(123));
+  console.log(res);
+  return res.reduce((count, item) => {
+    return item ? ++count : count;
+  }, 0);
+}
+// console.log(exLuckyNumber());
+
+function mergeArray(source, ...arrays) {
+  const index = findNextIndex();
+}
+// mergeArray([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
+
+function mergeArray2(...arrays) {
+  const res = [];
+  const index = findNext();
+  return res;
+}
+// mergeArray2([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
+
+// equals
+function mergeArrayUniq(...arrayObjects) {
+  const res = [];
+  return res;
+}
