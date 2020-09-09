@@ -500,7 +500,7 @@ function exLuckyNumber() {
   });
 
   // console.log(getDigits(123));
-  console.log(res);
+  // console.log(res);
   return res.reduce((count, item) => {
     return item ? ++count : count;
   }, 0);
@@ -511,6 +511,27 @@ function mergeArray(source, ...arrays) {
   const index = findNextIndex();
 }
 // mergeArray([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
+
+function findNextIndex(array, number) {
+  if (!Array.isArray(array)) {
+    throw new Exception("No-no-no, you're wrong");
+  }
+
+  if (number < array[0]) {
+    return 0;
+  }
+  if (number >= array[array.length - 1]) {
+    return array.length;
+  }
+
+  return array.findIndex((item) => number < item);
+}
+// console.log(findNextIndex([1, 7, 9], -5));
+// console.log(findNextIndex([1, 7, 9], 5));
+// console.log(findNextIndex([1, 5, 5, 5, 9], 5));
+// console.log(findNextIndex([1, 5, 5, 5, 9], 6));
+// console.log(findNextIndex([1, 5, 5, 5, 9], 9));
+// console.log(findNextIndex([1, 7, 9], 10));
 
 function mergeArray2(...arrays) {
   const res = [];
@@ -524,3 +545,69 @@ function mergeArrayUniq(...arrayObjects) {
   const res = [];
   return res;
 }
+
+// TODO
+function findIndex() {}
+
+function exRestOperatorIsShallow() {
+  const obj1 = {
+    key: "value",
+    inner: {
+      structure: "inner-value",
+    },
+  };
+  const obj2 = {
+    key: "value2",
+    inner: {
+      strucutre: "inner-value2",
+      check_field: "inner-value3",
+    },
+  };
+
+  const obj3 = {
+    ...obj1,
+    ...obj2,
+  };
+  console.log(obj3);
+
+  obj1.inner.structure = "check";
+  obj2.inner.check_field = "check2";
+
+  console.log("====================");
+  console.log(obj1);
+  console.log(obj2);
+  console.log(obj3);
+
+  obj2.inner.strucutre = "check-sndlf";
+  console.log("====================");
+  console.log(obj1);
+  console.log(obj2);
+  console.log(obj3);
+}
+// exRestOperatorIsShallow();
+
+function exFalsyInMap() {
+  const array = [1, 2, 3, 4, 5, null, undefined, false, 0, { key: "value" }];
+  array.map((item) => console.log(item));
+}
+// exFalsyInMap();
+
+function exChangeInForEach() {
+  const array = [
+    {
+      key: "value",
+    },
+    3,
+  ];
+
+  array.forEach((item) => {
+    if (typeof item === "object") {
+      item.key = "value2";
+    } else {
+      item = 4;
+    }
+  });
+
+  console.log(array);
+}
+// exChangeInForEach();
