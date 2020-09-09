@@ -507,47 +507,134 @@ function exLuckyNumber() {
 }
 // console.log(exLuckyNumber());
 
-function mergeArray(source, ...arrays) {
-  const index = findNextIndex();
-}
-// mergeArray([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
+function exMergeExample() {
+  function mergeArray(source, ...arrays) {
+    const index = findNextIndex();
+  }
+  // mergeArray([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
 
-function findNextIndex(array, number) {
-  if (!Array.isArray(array)) {
-    throw new Exception("No-no-no, you're wrong");
+  function findNextIndex(array, number) {
+    if (!Array.isArray(array)) {
+      throw new Exception("No-no-no, you're wrong");
+    }
+
+    if (number < array[0]) {
+      return 0;
+    }
+    if (number >= array[array.length - 1]) {
+      return array.length;
+    }
+
+    return array.findIndex((item) => number < item);
+  }
+  // console.log(findNextIndex([1, 7, 9], -5));
+  // console.log(findNextIndex([1, 7, 9], 5));
+  // console.log(findNextIndex([1, 5, 5, 5, 9], 5));
+  // console.log(findNextIndex([1, 5, 5, 5, 9], 6));
+  // console.log(findNextIndex([1, 5, 5, 5, 9], 9));
+  // console.log(findNextIndex([1, 7, 9], 10));
+
+  function getIterationLength() {}
+
+  function findNextByIndex(arrays, neededIndex) {
+    let index = neededIndex;
+
+    return arrays.find((array) => {
+      if (index >= array.length) {
+        index -= array.length;
+      } else {
+        return array[index];
+      }
+    })[index];
+  }
+  // console.log(
+  //   findNextByIndex(
+  //     [
+  //       [1, 2, 3],
+  //       [8, 12],
+  //       [4, 5],
+  //     ],
+  //     0
+  //   )
+  // );
+  // console.log(
+  //   findNextByIndex(
+  //     [
+  //       [1, 2, 3],
+  //       [8, 12],
+  //       [4, 5],
+  //     ],
+  //     6
+  //   )
+  // );
+  // console.log(
+  //   findNextByIndex(
+  //     [
+  //       [1, 2, 3],
+  //       [8, 12],
+  //       [4, 5],
+  //     ],
+  //     3
+  //   )
+  // );
+
+  function findNext(arrays, prevMinValue, index) {
+    const alreadyFoundIndex = index;
+    const minValue = prevMinValue;
+
+    arrays.forEach((array) => {
+      array.forEach((item) => {
+        if (item < minValue) {
+          minValue = item;
+          alreadyFoundIndex--;
+        }
+      });
+    });
   }
 
-  if (number < array[0]) {
-    return 0;
+  function mergeArray2(...arrays) {
+    const res = [];
+
+    const length = arrays.reduce((res, array) => res + array.length, 0);
+
+    let index = 0;
+    while (index < length) {
+      res.push(findNext(arrays, res[res.length - 1], res.length));
+      index++;
+    }
+
+    console.log(res);
+    return res;
   }
-  if (number >= array[array.length - 1]) {
-    return array.length;
+  // mergeArray2([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
+
+  const isFoundHere = (array, obj) => {
+    return array.find((item) => equals(item, obj));
+  };
+
+  const equals = function (item1, item2) {
+    // TODO
+  };
+
+  function mergeArrayUniq(...arrayObjects) {
+    const res = [];
+    arrayObjects.forEach((item) => {
+      if (!isFoundHere(res, item)) {
+        res.push(item);
+      }
+    });
+    return res;
   }
-
-  return array.findIndex((item) => number < item);
+  mergeArrayUniq(
+    { key: "value", key2: "value2" },
+    { key: "value2" },
+    { key: "value", key2: "value2" },
+    { key2: "value2", key: "value" },
+    { key: "value", key2: "value3" },
+    { key2: "value" }
+  );
 }
-// console.log(findNextIndex([1, 7, 9], -5));
-// console.log(findNextIndex([1, 7, 9], 5));
-// console.log(findNextIndex([1, 5, 5, 5, 9], 5));
-// console.log(findNextIndex([1, 5, 5, 5, 9], 6));
-// console.log(findNextIndex([1, 5, 5, 5, 9], 9));
-// console.log(findNextIndex([1, 7, 9], 10));
-
-function mergeArray2(...arrays) {
-  const res = [];
-  const index = findNext();
-  return res;
-}
-// mergeArray2([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
-
-// equals
-function mergeArrayUniq(...arrayObjects) {
-  const res = [];
-  return res;
-}
-
-// TODO
-function findIndex() {}
+exMergeExample();
 
 function exRestOperatorIsShallow() {
   const obj1 = {
