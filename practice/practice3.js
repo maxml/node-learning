@@ -135,7 +135,17 @@ function exNewObjectsReferential() {
 }
 // exNewObjectsReferential();
 
+// TODO:
 function exConstructor() {
+  function ExampleClass() {
+    console.log("Object is creating");
+  }
+
+  const ex = new ExampleClass();
+}
+// exConstructor();
+
+function exAdvancedConstructor() {
   function Calculator() {
     const ce = 3;
     const de = 4;
@@ -189,7 +199,7 @@ function exConstructor() {
   // console.log(calculator.ab)
   // console.log(Calculator.ab)
 }
-// exConstructor()
+// exAdvancedConstructor()
 
 // SYMBOLS
 function exSymbols() {
@@ -358,6 +368,7 @@ function exTimers() {
 }
 // exTimers();
 
+const EXECUTE_RANDOM_ITERATIONS = 15;
 function exHomework() {
   const ex = {
     createRandom: function () {
@@ -372,7 +383,7 @@ function exHomework() {
   console.log(ex.createRandom());
 
   const arr = [];
-  for (let index = 0; index < 100; index++) {
+  for (let index = 0; index < EXECUTE_RANDOM_ITERATIONS; index++) {
     const method = ex.createRandom;
     arr.push(method());
   }
@@ -431,3 +442,41 @@ function exThisLost2() {
   console.log(new.target);
   console.log(new obj01());
 }
+
+function exWeekendDay() {
+  function isWeekend(date) {
+    return date.getDay() === 0 || date.getDay() === 6;
+  }
+
+  function minusOneDay(date) {
+    const dateOffset = 24 * 60 * 60 * 1000;
+    const buff = new Date(date);
+    buff.setTime(buff.getTime() - dateOffset);
+    return buff;
+  }
+
+  // Date vs ms
+  // timezone <- country
+  // UTC +0
+  // ms -> UTC vs UNIX, 1000
+  const inputDate = new Date();
+  let workedDaysAgo = 10;
+
+  let res = inputDate;
+  // console.log(res.toISOString());
+  // console.log(res.toUTCString());
+  // console.log(res.toJSON());
+
+  while (workedDaysAgo >= 0) {
+    const copy = new Date(res);
+    res = minusOneDay(copy);
+
+    if (!isWeekend(res)) {
+      workedDaysAgo--;
+    }
+  }
+
+  console.log(res.toJSON());
+  return res;
+}
+exWeekendDay();

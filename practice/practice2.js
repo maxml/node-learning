@@ -578,35 +578,121 @@ function exMergeExample() {
   //   )
   // );
 
-  function findNext(arrays, prevMinValue, index) {
-    const alreadyFoundIndex = index;
-    const minValue = prevMinValue;
+  const findMin = (array) => Math.min(...array);
 
-    arrays.forEach((array) => {
-      array.forEach((item) => {
-        if (item < minValue) {
-          minValue = item;
-          alreadyFoundIndex--;
+  const findNextMinValue = (array, index) => {
+    const arrayWithFoundMark = array.map((i) => {
+      return { value: i, isFound: false };
+    });
+
+    let res = findMin(array);
+    index++;
+
+    while (index > 0) {
+      // findMin => delete array min => findMin
+      // {value, isFound: false} => filter => findMin => isFound: true
+      const buff = arrayWithFoundMark
+        .filter((i) => !i.isFound)
+        .map((i) => i.value);
+
+      res = findMin(buff);
+      const nextMinIndex = arrayWithFoundMark.findIndex(
+        (item) => item.value === res
+      );
+      arrayWithFoundMark[nextMinIndex].isFound = true;
+
+      index--;
+    }
+
+    console.log("findNextMinValue, res: " + res);
+    return res;
+  };
+  // findNextMinValue([7, 4, 120, 1], 0);
+  // findNextMinValue([7, 4, 120, 1], 1);
+  // findNextMinValue([7, 4, 120, 1], 2);
+  // findNextMinValue([7, 4, 120, 1], 3);
+
+  let arrayWithMetaInfo = [];
+
+  // index for every value, isUsed: true on array
+  function findNext(arrays, prevMinValue, index) {
+    // let alreadyFoundIndex = index;
+    // console.log(prevMinValue);
+
+    if (!arrayWithMetaInfo.length) {
+      arrayWithMetaInfo = arrays.map((array) => {
+        return {
+          array: array.map((item) => {
+            return {
+              item: item,
+              index: -1,
+            };
+          }),
+          isUsed: false,
+        };
+      });
+    }
+    // console.log(JSON.stringify(arrayWithMetaInfo));
+
+    const mins = arrayWithMetaInfo
+      .filter((a) => !a.isUsed)
+      .map((arrayObj) => {
+        const filteredItems = arrayObj.array.filter((i) => i.index === -1);
+        const onlyItems = filteredItems.map((i) => i.item);
+
+        return findMin(onlyItems);
+      });
+    let minValue = findMin(mins);
+    console.log(mins);
+
+    let changedItemPosition = -1;
+    const changedArrayPosition = arrayWithMetaInfo.findIndex((arrayObj) => {
+      const neededIndex = arrayObj.array.findIndex((itemObj, indexObj) => {
+        if (itemObj.item === minValue) {
+          changedItemPosition = indexObj;
+          return true;
         }
       });
+
+      if (neededIndex !== -1) {
+        return true;
+      }
     });
+
+    arrayWithMetaInfo[changedArrayPosition].array[
+      changedItemPosition
+    ].index = index;
+    arrayWithMetaInfo[changedArrayPosition].isUsed = arrayWithMetaInfo[
+      changedArrayPosition
+    ].array.every((item) => item.index !== -1);
+
+    console.log(JSON.stringify(arrayWithMetaInfo));
+    return minValue;
   }
 
   function mergeArray2(...arrays) {
     const res = [];
-
     const length = arrays.reduce((res, array) => res + array.length, 0);
 
+    if (length === 0) {
+      return res;
+    }
+
+    let lastValue = res.length <= 0 ? arrays[0][0] : res[res.length - 1];
     let index = 0;
     while (index < length) {
-      res.push(findNext(arrays, res[res.length - 1], res.length));
+      res.push(findNext(arrays, lastValue, index));
       index++;
     }
 
+    arrayWithMetaInfo = [];
     console.log(res);
     return res;
   }
   // mergeArray2([1, 2, 3], [4, 5, 6], [7, 45], [120, 240]);
+  // mergeArray2([4, 5, 6], [7, 45], [120, 240], [1, 2, 3]);
+  mergeArray2([7, 45], [4, 5, 6], [120, 240], [1, 2, 3], [10, 11]);
+  // TODO: mergeArray2([7, 45], [4, 5, 6, 10], [120, 240], [1, 2, 3], [10, 11]);
 
   const isFoundHere = (array, obj) => {
     return array.find((item) => equals(item, obj));
@@ -625,16 +711,16 @@ function exMergeExample() {
     });
     return res;
   }
-  mergeArrayUniq(
-    { key: "value", key2: "value2" },
-    { key: "value2" },
-    { key: "value", key2: "value2" },
-    { key2: "value2", key: "value" },
-    { key: "value", key2: "value3" },
-    { key2: "value" }
-  );
+  // mergeArrayUniq(
+  //   { key: "value", key2: "value2" },
+  //   { key: "value2" },
+  //   { key: "value", key2: "value2" },
+  //   { key2: "value2", key: "value" },
+  //   { key: "value", key2: "value3" },
+  //   { key2: "value" }
+  // );
 }
-exMergeExample();
+// exMergeExample();
 
 function exRestOperatorIsShallow() {
   const obj1 = {
@@ -698,3 +784,75 @@ function exChangeInForEach() {
   console.log(array);
 }
 // exChangeInForEach();
+
+function exMergeThirdExample() {
+  // TASK3 equals
+  const isFoundHere = (array, obj) => {
+    return array.find((item) => equals(item, obj));
+  };
+
+  function isObject(object) {
+    return object != null && typeof object === "object";
+  }
+  const equals = function (item1, item2) {
+    const keys1 = Object.keys(item1);
+    const keys2 = Object.keys(item2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    //проверка на несовпадение ключей!!!!!
+    //проверка на массивы и другие типы
+    for (let key of keys1) {
+      //every
+      const val1 = item1[key];
+      const val2 = item2[key];
+      const areObjects = isObject(val1) && isObject(val2);
+      if (
+        (areObjects && !equals(val1, val2)) ||
+        (!areObjects && val1 !== val2)
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  function mergeArrayUniq(...arrayObjects) {
+    const res = [];
+    arrayObjects.forEach((item) => {
+      if (typeof item === "object" && !Array.isArray(item)) {
+        if (!isFoundHere(res, item)) {
+          res.push(item);
+        }
+      }
+    });
+    return res;
+  }
+  console.log(
+    "TASK 3: " +
+      JSON.stringify(
+        mergeArrayUniq(
+          // { key: "value", key2: "value2" },
+          // { key: "value2" },
+          // { key: "value", key2: "value2" }, //delete
+          // { key2: "value2", key: "value" }, //delete
+          // { key: "value", key2: "value3" },
+          // { key: "value1", key2: "value3" },
+          // { key2: "value" },
+          // { key: "value" },
+          // { id: 1, code: 1234 },
+          // { code: 1234, id: 1 }, //delete
+          // { code: 1234, key: { id: 1, key: 8 } },
+          // { code: 1234, key: { id: 1, key: 8 } }, //delete
+          // { code: 1234, key: { id: 1, key: { key: 1 } } },
+          // { code: 1234, key: { id: 1, key: {} } },
+          // { code: 1234, key: { id: 1, key: [1, 2, 3] } },
+          // { code: 1234, key: { id: 1, key: [1, 2, 3] } }, //delete
+          { code: 12345, key: [1, 2, 3] },
+          { code: 12345, key: [1, 2, 3] }
+        )
+      )
+  );
+}
+// exMergeThirdExample();
