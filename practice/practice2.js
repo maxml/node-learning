@@ -454,6 +454,7 @@ function exFunctions() {
 }
 // exFunctions();
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#differences
 function exUsingFunctions() {
   // declaration
   function test() {
@@ -477,6 +478,19 @@ function exUsingFunctions() {
   console.log(test2);
 }
 // exUsingFunctions();
+
+function exNamedExpression() {
+  let math = {
+    factit: function factorial(n) {
+      console.log(n);
+      if (n <= 1) {
+        return 1;
+      }
+      return n * factorial(n - 1);
+    },
+  };
+  console.log(math.factit(3));
+}
 
 function exLuckyNumber() {
   const getDigits = (number) => {
@@ -659,9 +673,8 @@ function exMergeExample() {
       }
     });
 
-    arrayWithMetaInfo[changedArrayPosition].array[
-      changedItemPosition
-    ].index = index;
+    arrayWithMetaInfo[changedArrayPosition].array[changedItemPosition].index =
+      index;
     arrayWithMetaInfo[changedArrayPosition].isUsed = arrayWithMetaInfo[
       changedArrayPosition
     ].array.every((item) => item.index !== -1);
@@ -856,3 +869,13 @@ function exMergeThirdExample() {
   );
 }
 // exMergeThirdExample();
+
+function exSplice() {
+  const arr = [1, 2, 3, 4, 5];
+  const splicedArr = arr.splice(1, 2);
+  console.log(splicedArr);
+
+  arr.splice(1, 2, ...splicedArr);
+  console.log(arr);
+}
+// exSplice();
