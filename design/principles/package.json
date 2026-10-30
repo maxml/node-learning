@@ -1,0 +1,16 @@
+{
+  "name": "design-principles-examples",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc -p tsconfig.json",
+    "oop": "node oop.ts",
+    "solid": "node solid.ts",
+    "grasp": "node grasp.ts",
+    "all": "npm run check && node oop.ts && node solid.ts && node grasp.ts"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2"
+  }
+}

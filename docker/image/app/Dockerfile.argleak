@@ -1,0 +1,11 @@
+# The wrong way to give npm a private-registry token: a build ARG.
+# The .npmrc is deleted in the same RUN, so no layer holds the file, but the ARG
+# value is recorded in the image history of the RUN that used it.
+ARG NODE_IMAGE=node:24-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+FROM ${NODE_IMAGE}
+ARG NPM_TOKEN
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN echo "//npm.example.invalid/:_authToken=${NPM_TOKEN}" > /root/.npmrc \
+ && npm ci --omit=dev --ignore-scripts --no-audit --no-fund \
+ && rm /root/.npmrc

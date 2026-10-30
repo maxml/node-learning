@@ -1,0 +1,10 @@
+exports[`invoice rendering is stable 1`] = `
+{
+  "number": "INV-7",
+  "lines": [
+    "2 x A @ 30",
+    "1 x B @ 40"
+  ],
+  "total": 100
+}
+`;

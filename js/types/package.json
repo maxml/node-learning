@@ -1,0 +1,13 @@
+{
+  "name": "js-types-experiments",
+  "private": true,
+  "description": "Experiments behind the JavaScript type notes (types, coercion, numbers/strings/dates)",
+  "scripts": {
+    "all": "node 01-primitives-vs-objects.js && node 02-equality-and-copying.js && node 03-coercion.js && TZ=Europe/Kyiv node 04-numbers-strings-dates.js && node 06-old-examples-check.js && node 07-lodash-clonedeep.js && TZ=Europe/Kyiv node 09-moment-pitfalls.js",
+    "v8": "node --allow-natives-syntax 05-v8-representation.js"
+  },
+  "dependencies": {
+    "lodash": "4.18.1",
+    "moment": "2.31.0"
+  }
+}

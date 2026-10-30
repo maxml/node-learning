@@ -1,0 +1,11 @@
+{
+  "name": "mongo-examples",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "pool": "node pool.js"
+  },
+  "dependencies": {
+    "mongodb": "7.7.0"
+  }
+}

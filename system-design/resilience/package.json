@@ -1,0 +1,22 @@
+{
+  "name": "system-design-resilience-examples",
+  "private": true,
+  "type": "module",
+  "description": "Experiments behind the «перевірено» claims in System design/Патерни стійкості, Rate limiting, Оцінка навантаження",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "retry-storm": "node retry-storm.mjs",
+    "amplification": "node amplification.mjs",
+    "deadline": "node deadline.mjs",
+    "breaker": "node circuit-breaker.mjs",
+    "ratelimit-algos": "node ratelimit-algos.mjs",
+    "ratelimit-redis": "node ratelimit-redis.mjs",
+    "little": "node littles-law.mjs",
+    "utilisation": "node utilisation.mjs"
+  },
+  "dependencies": {
+    "ioredis": "6.0.0",
+    "opossum": "10.0.0",
+    "rate-limiter-flexible": "11.2.3"
+  }
+}

@@ -1,0 +1,3 @@
+node_modules/
+# mongod binary downloaded by mongodb-memory-server (293 MB unpacked), see package.json "config"
+.mongodb-binaries/

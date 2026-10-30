@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only used to download event-ruler and its dependencies into target/deps. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>kb.examples</groupId>
+  <artifactId>eventbridge-patterns</artifactId>
+  <version>1</version>
+  <dependencies>
+    <dependency>
+      <groupId>software.amazon.event.ruler</groupId>
+      <artifactId>event-ruler</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+  </dependencies>
+</project>

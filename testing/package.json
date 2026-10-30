@@ -1,0 +1,22 @@
+{
+  "name": "testing-examples",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test --test-reporter=spec \"test/*.test.js\" \"test/*.test.mjs\" \"test/*.test.ts\"",
+    "test:integration": "node --test --test-concurrency=1 --test-reporter=spec \"integration/*.test.js\"",
+    "test:module-mocks": "node --test --experimental-test-module-mocks --test-reporter=spec test/esm-mocking.test.mjs",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-reporter=spec test/discount.test.js",
+    "mutation:weak": "stryker run stryker.weak.config.json",
+    "mutation:strong": "stryker run stryker.strong.config.json",
+    "vitest": "vitest run --dir vitest"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "10.1.1",
+    "@stryker-mutator/tap-runner": "10.1.1",
+    "autocannon": "8.0.0",
+    "pg": "8.23.1",
+    "supertest": "7.3.1",
+    "vitest": "5.0.5"
+  }
+}

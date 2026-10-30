@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2024", "esnext.disposable", "esnext.error"]
+  },
+  "files": ["mongo-types.ts", "augment-types.ts", "augmentation.ts", "aws-events.ts", "using.ts", "errors-dup.ts"]
+}

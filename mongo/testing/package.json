@@ -1,0 +1,22 @@
+{
+  "name": "mongo-testing-examples",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test --test-concurrency=1 --test-reporter=tap \"test/*.test.js\"",
+    "bench": "node bench/startup.js"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "9.0.4",
+      "downloadDir": ".mongodb-binaries"
+    }
+  },
+  "dependencies": {
+    "@testcontainers/mongodb": "12.2.1",
+    "mongodb": "7.7.0",
+    "mongodb-memory-server-core": "11.3.0",
+    "mongoose": "9.11.4",
+    "testcontainers": "12.2.1"
+  }
+}

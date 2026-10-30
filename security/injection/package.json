@@ -1,0 +1,16 @@
+{
+  "name": "injection-examples",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "sql": "node sql_pg.js",
+    "mongo": "node nosql_mongo.js",
+    "cmd": "node cmd_node.js",
+    "header": "node header_node.js"
+  },
+  "dependencies": {
+    "mongodb": "7.7.0",
+    "mongoose": "9.11.4",
+    "pg": "8.23.1"
+  }
+}

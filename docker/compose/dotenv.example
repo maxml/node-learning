@@ -1,0 +1,6 @@
+# run.sh copies this file to .env (the repo's .gitignore excludes .env itself).
+# Compose reads .env automatically, for ${...} interpolation in compose.yaml only:
+# these values do NOT reach the containers unless compose.yaml passes them on.
+# No secrets here.
+APP_PORT=3100
+GREETING=hello-from-dotenv

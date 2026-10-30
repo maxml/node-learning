@@ -1,0 +1,12 @@
+{
+  "name": "saga-examples",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "saga": "node saga.mjs"
+  },
+  "dependencies": {
+    "mongodb": "7.7.0"
+  }
+}

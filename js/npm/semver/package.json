@@ -1,0 +1,13 @@
+{
+  "name": "semver-ranges-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "How npm range syntax resolves: caret, tilde, 0.x, prereleases",
+  "scripts": {
+    "start": "node ranges.mjs"
+  },
+  "dependencies": {
+    "semver": "7.8.5"
+  }
+}

@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile:1
+# Runtime on Chainguard's free node image. The free tier publishes only `latest`
+# (here Node 26), so the build stage uses the same image to avoid a version split.
+# Digest as pulled on 2026-10-30.
+ARG NODE_IMAGE=cgr.dev/chainguard/node:latest@sha256:6cb70d6b2a324e491263949ea9f58938ed19031ef478e0bdb0b1810f96f8b400
+
+FROM ${NODE_IMAGE} AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+
+FROM ${NODE_IMAGE} AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --ignore-scripts --no-audit --no-fund
+COPY tsconfig.json ./
+COPY src ./src
+RUN npm run build
+
+FROM ${NODE_IMAGE} AS runtime
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY package.json ./
+# Image default user is already node (uid 65532), ENTRYPOINT is /usr/bin/node.
+CMD ["dist/server.js"]

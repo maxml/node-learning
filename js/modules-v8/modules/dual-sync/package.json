@@ -1,0 +1,12 @@
+{
+  "name": "dual-sync-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "module-sync": "./lib/index.mjs",
+      "default": "./lib/index.cjs"
+    }
+  }
+}

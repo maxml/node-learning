@@ -1,0 +1,23 @@
+{
+  "name": "design-patterns-experiments",
+  "private": true,
+  "type": "module",
+  "description": "Experiments behind the notes Дизайн коду/{Патерни проєктування, Чистий код, Twelve-Factor App}",
+  "scripts": {
+    "gof": "node gof/creational.ts && node gof/structural.ts && node gof/behavioral.ts",
+    "typecheck": "tsc --noEmit --strict --target es2024 --lib es2025,esnext.iterator --module nodenext --types node --allowImportingTsExtensions gof/*.ts twelve-factor/config.ts",
+    "singleton": "node singleton/run.mjs",
+    "decorators": "node decorators/run.mjs",
+    "complexity": "eslint --no-config-lookup -c complexity/eslint.config.mjs complexity/",
+    "twelve-factor": "node twelve-factor/run.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "dotenv": "18.0.9",
+    "eslint": "10.14.0",
+    "eslint-plugin-sonarjs": "4.2.2",
+    "pino": "10.4.0",
+    "typescript": "npm:@typescript/typescript6@6.0.2"
+  }
+}

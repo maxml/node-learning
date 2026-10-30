@@ -1,0 +1,51 @@
+server 9.0.4 | internalQueryFrameworkControl trySbeRestricted
+hostInfo.memLimitMB {"high":0,"low":2048,"unsigned":false} | WT cache max MB 512
+
+== A. find({userId, type:'click'}).sort({ts:-1}).limit(10) ==
+profiler: slow ops (>20 ms) = 30 of 30
+profiler entry: {"millis":469,"planSummary":"IXSCAN { type: 1 }","keysExamined":250081,"docsExamined":250081,"nreturned":4,"hasSortStage":true,"queryFramework":"classic","planningTimeMicros":306,"queryShapeHash":"C21C2B8D9B1C","planCacheShapeHash":"3B5A8282"}
+$queryStats (before): {"cmd":"find","hash":"C21C2B8D9B1C","execCount":30,"totalMicros":13047076,"keys":7502430,"docs":7502430} → {"execCount":30,"avgMs":434.9,"avgKeys":250081,"avgDocs":250081}
+explain before: {"engine":"classic","stagesAfterCursor":"","plan":"SORT > FETCH > IXSCAN[type_1]","strategy":"","nReturned":4,"keys":250081,"docs":250081,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0} | client median ms 438
+profiler after: slow ops (>20 ms) = 0
+$queryStats (after, delta): {"execCount":30,"avgMs":0.4,"avgKeys":6,"avgDocs":6}
+explain after: {"engine":"classic","stagesAfterCursor":"","plan":"LIMIT > FETCH > IXSCAN[userId_1_type_1_ts_-1]","strategy":"","nReturned":4,"keys":4,"docs":4,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0} | client median ms 2
+
+== B. refunds by tier: $lookup users ==
+match-last, optimized first-stage plan: EQ_LOOKUP > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1] > COLLSCAN
+refunds (input of $lookup): 19963
+SBE, no index, users 50k, 200 input          {"ms":5454,"engine":"sbe","stagesAfterCursor":"$set,$group","plan":"EQ_LOOKUP > LIMIT > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1] > COLLSCAN","strategy":"NestedLoopJoin","nReturned":200,"keys":200,"docs":10000200,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0}
+SBE, index on uid, users 50k, 200 input      {"ms":7,"engine":"sbe","stagesAfterCursor":"$set,$group","plan":"EQ_LOOKUP > LIMIT > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1] > IXSCAN[uid_1]","strategy":"IndexedLoopJoin","nReturned":200,"keys":400,"docs":400,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0}
+SBE, index on uid, all refunds               {"ms":354,"engine":"sbe","stagesAfterCursor":"$set,$group","plan":"EQ_LOOKUP > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1] > IXSCAN[uid_1]","strategy":"IndexedLoopJoin","nReturned":19963,"keys":39926,"docs":39926,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0}
+same with $unwind instead of $first          {"ms":1816,"engine":"classic","stagesAfterCursor":"$lookup,$group","plan":"PROJECTION_SIMPLE > FETCH > IXSCAN[type_1]","strategy":"","nReturned":19963,"keys":19963,"docs":19963,"lookupKeys":19964,"lookupDocs":19964,"usedDisk":false,"spills":0}
+classic, index on uid, all refunds           {"ms":1824,"engine":"classic","stagesAfterCursor":"$lookup,$set,$group","plan":"PROJECTION_SIMPLE > FETCH > IXSCAN[type_1]","strategy":"","nReturned":19963,"keys":19963,"docs":19963,"lookupKeys":19963,"lookupDocs":19963,"usedDisk":false,"spills":0}
+classic, no index, users 50k, 200 input      {"ms":6890,"engine":"classic","stagesAfterCursor":"$lookup,$set,$group","plan":"LIMIT > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1]","strategy":"","nReturned":200,"keys":200,"docs":200,"lookupKeys":0,"lookupDocs":10000000,"usedDisk":false,"spills":0}
+refunds with userId < 10000: 3957
+SBE, no index, users10k                      {"ms":109,"engine":"sbe","stagesAfterCursor":"$set,$group","plan":"EQ_LOOKUP > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1] > COLLSCAN","strategy":"HashJoin","nReturned":3957,"keys":19963,"docs":29963,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0}
+SBE, index on uid, users10k                  {"ms":180,"engine":"sbe","stagesAfterCursor":"$set,$group","plan":"EQ_LOOKUP > PROJECTION_SIMPLE > FETCH > IXSCAN[type_1] > IXSCAN[uid_1]","strategy":"IndexedLoopJoin","nReturned":3957,"keys":23920,"docs":23920,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0}
+
+== C. $group by userId (50k groups) with 1 MB stage limit ==
+default limit (100 MB)                       {"ms":2368,"engine":"sbe","stagesAfterCursor":"","plan":"GROUP > COLLSCAN","strategy":"","nReturned":50000,"keys":0,"docs":1000000,"lookupKeys":0,"lookupDocs":0,"usedDisk":false,"spills":0}
+1 MB limit, allowDiskUse default             {"ms":17380,"engine":"sbe","stagesAfterCursor":"","plan":"GROUP > COLLSCAN","strategy":"","nReturned":50000,"keys":0,"docs":1000000,"lookupKeys":0,"lookupDocs":0,"usedDisk":true,"spills":95}
+allowDiskUse:false → QueryExceededMemoryLimitNoDiskUseAllowed Executor error during aggregate command on namespace: shop.events :: caused by :: Exceeded memory limit for group, but d
+
+== D. plan cache: {country, channel} with cross-skewed values ==
+$planCacheStats after PL/web ×3: [{"isActive":true,"works":{"high":0,"low":118,"unsigned":false},"planCacheShapeHash":"4A6EE931","plan":"FETCH > IXSCAN[country_1]"}]
+UA/sms: {"nreturned":2707,"replanned":true,"replanReason":"cached plan was less efficient than expected: expected trial execution to take 118 works but it took at least 1180 works","planSummary":"IXSCAN { channel: 1 }","keysExamined":108,"millis":3}
+$planCacheStats after UA/sms: [{"isActive":true,"works":{"high":0,"low":108,"unsigned":false},"plan":"FETCH > IXSCAN[channel_1]"}]
+planCacheClear: 1 | entries left 0
+
+== E. $indexStats after the workload ==
+channel_1              ops {"high":0,"low":1,"unsigned":false}
+type_1                 ops {"high":0,"low":69,"unsigned":false}
+_id_                   ops {"high":0,"low":0,"unsigned":false}
+country_1              ops {"high":0,"low":3,"unsigned":false}
+userId_1_type_1_ts_-1  ops {"high":0,"low":30,"unsigned":false}
+hidden type_1; app query plan: LIMIT > FETCH > IXSCAN[userId_1_type_1_ts_-1]
+
+== E2. write amplification: insertMany 200k docs ==
+{"secondaryIndexes":0,"ms":3069,"totalIndexSizeMB":1.7,"storageSizeMB":7.7}
+{"secondaryIndexes":3,"ms":4759,"totalIndexSizeMB":6.1,"storageSizeMB":8.8}
+{"secondaryIndexes":6,"ms":10137,"totalIndexSizeMB":16,"storageSizeMB":8.9}
+
+== F. cache counters ==
+{"maxMB":512,"inCacheMB":348,"dirtyMB":25}

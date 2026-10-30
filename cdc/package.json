@@ -1,0 +1,12 @@
+{
+  "name": "cdc-examples",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "mongo": "node mongo_cdc.js",
+    "history-lost": "node mongo_history_lost.js"
+  },
+  "dependencies": {
+    "mongodb": "7.7.0"
+  }
+}

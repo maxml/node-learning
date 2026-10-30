@@ -1,0 +1,5 @@
+seeded 1000000 events, 50000 users
+distinct userId: 50000
+by type: [{"_id":"view","count":600396},{"_id":"click","count":250081},{"_id":"cart","count":79848},{"_id":"buy","count":49712},{"_id":"refund","count":19963}]
+by country: [{"_id":"UA","count":899743},{"_id":"DE","count":97209},{"_id":"PL","count":3048}]
+by channel: [{"_id":"web","count":900183},{"_id":"app","count":96806},{"_id":"sms","count":3011}]

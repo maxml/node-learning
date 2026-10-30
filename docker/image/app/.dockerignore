@@ -1,0 +1,11 @@
+# The build context is everything the client sends to BuildKit. Keep it small and
+# keep host artefacts out of the image: a host node_modules may hold binaries built
+# for another OS/libc, and .env / .git may hold secrets.
+node_modules
+dist
+.git
+.env
+.env.*
+*.log
+Dockerfile*
+.dockerignore

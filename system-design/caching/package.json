@@ -1,0 +1,19 @@
+{
+  "name": "system-design-caching-examples",
+  "private": true,
+  "type": "commonjs",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "stampede": "node stampede.js",
+    "xfetch": "node xfetch.js",
+    "race": "node race.js",
+    "replication": "node replication_loss.js",
+    "eviction": "node eviction.js",
+    "blocking": "node blocking.js"
+  },
+  "dependencies": {
+    "redis": "6.3.1"
+  }
+}

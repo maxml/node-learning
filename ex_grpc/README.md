@@ -1,51 +1,52 @@
-gRPC in 3 minutes (Node.js)
-===========================
+# ex_grpc
 
-PREREQUISITES
--------------
+Лекція 19 «Сокети. gRPC. NoSQL». Офіційні приклади gRPC для Node.js (Apache 2.0, автори
+gRPC) з динамічною генерацією коду: `.proto` читається під час запуску через
+`@grpc/proto-loader`, без `protoc`.
 
-- `node`: This requires Node 0.12.x or greater.
+| Файл | Що показує |
+| --- | --- |
+| `helloworld.proto` | сервіс `Greeter` з двома unary-методами `SayHello`, `SayHelloAgain` |
+| `dynamic_codegen/greeter_server.js` | сервер `Greeter` на `0.0.0.0:50051` без TLS |
+| `dynamic_codegen/greeter_client.js` | клієнт, що викликає обидва методи |
+| `dynamic_codegen/route_guide/route_guide_server.js` | усі чотири види RPC: unary `getFeature`, server streaming `listFeatures`, client streaming `recordRoute`, bidi `routeChat` |
+| `dynamic_codegen/route_guide/route_guide_client.js` | клієнт до цих чотирьох методів |
+| `dynamic_codegen/route_guide/route_guide_db.json` | точки для `route_guide` |
 
-INSTALL
--------
+## Запуск (як задумано)
 
-   ```sh
-   $ # Get the gRPC repository
-   $ export REPO_ROOT=grpc # REPO root can be any directory of your choice
-   $ git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc $REPO_ROOT
-   $ cd $REPO_ROOT
+```bash
+cd ex_grpc
+npm ci
+node ./dynamic_codegen/greeter_server.js &
+node ./dynamic_codegen/greeter_client.js
+```
 
-   $ cd examples/node
-   $ npm install
-   ```
+Детальний розбір: «gRPC Basics: Node.js» на grpc.io. Початковий текст цього README
+(«gRPC in 3 minutes») згадував ще `static_codegen/`, але в репозиторій ця тека не потрапила.
 
-TRY IT!
--------
+## Стан на Node 24.14.1
 
-[Main link] (https://grpc.io/docs/quickstart/node/) 
-There are two ways to generate the code needed to work with protocol buffers in Node.js - one approach uses [Protobuf.js](https://github.com/dcodeIO/ProtoBuf.js/) to dynamically generate the code at runtime, the other uses code statically generated using the protocol buffer compiler `protoc`. The examples behave identically, and either server can be used with either client.
+Не запускається. Пакет `grpc@1.24.2` це нативний аддон, а готової збірки під Node 24
+(ABI `node-v137`) немає; збірка з вихідників (`npm rebuild grpc`) падає на компіляції.
+Обидва сервери завершуються помилкою `Failed to load … grpc_node.node`.
+Пакет `grpc` deprecated; заміна, чистий JS без збірки: `@grpc/grpc-js` (той самий API
+`Server`, `credentials`, `loadPackageDefinition`).
 
- - Run the server
+## Відомі проблеми
 
-   ```sh
-   $ # from this directory
-   $ node ./dynamic_codegen/greeter_server.js &
-   $ # OR
-   $ node ./static_codegen/greeter_server.js &
-   ```
+- `package.json`: залежність `grpc` (нативна, deprecated) замість `@grpc/grpc-js`;
+  `@grpc/proto-loader@0.1.0` дуже стара.
+- `dynamic_codegen/route_guide/route_guide_server.js:19` і `route_guide_client.js:19`:
+  `PROTO_PATH` вказує на `../../../protos/route_guide.proto`, такого файлу в репозиторії
+  немає.
+- `dynamic_codegen/greeter_client.js:39`, `:43`: `err` не перевіряється; якщо сервер
+  недоступний, `response.message` кидає `TypeError`.
+- `dynamic_codegen/greeter_server.js:53`: `bind` без перевірки результату й без TLS
+  (`createInsecure`); для навчального прикладу нормально, для продакшну ні.
 
- - Run the client
+## Теорія
 
-   ```sh
-   $ # from this directory
-   $ node ./dynamic_codegen/greeter_client.js
-   $ # OR
-   $ node ./static_codegen/greeter_client.js
-   ```
-
-TUTORIAL
---------
-You can find a more detailed tutorial in [gRPC Basics: Node.js][]
-
-[Install gRPC Node]:../../src/node
-[gRPC Basics: Node.js]:https://grpc.io/docs/tutorials/basic/node.html
+- «REST проти GraphQL і gRPC»
+- «Версії HTTP» (gRPC працює поверх HTTP/2)
+- «Дизайн REST API» (порівняння контрактів)

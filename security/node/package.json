@@ -1,0 +1,10 @@
+{
+  "name": "security-node-examples",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "lodash": "latest",
+    "lodash.merge": "latest",
+    "lodash-4.17.4": "npm:lodash@4.17.4"
+  }
+}

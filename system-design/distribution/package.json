@@ -1,0 +1,19 @@
+{
+  "name": "system-design-distribution",
+  "private": true,
+  "type": "module",
+  "description": "Experiments behind System design notes: consistent hashing, load balancing, ID generation",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "hashing": "node hashing.js",
+    "lb": "node lb_sim.js",
+    "ids-node": "node ids_node.js",
+    "ids-pg": "node ids_pg.js",
+    "ids-mongo": "node ids_mongo.js"
+  },
+  "dependencies": {
+    "mongodb": "7.7.0",
+    "pg": "8.23.1",
+    "uuid": "14.0.3"
+  }
+}

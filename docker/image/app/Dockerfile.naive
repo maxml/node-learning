@@ -1,0 +1,11 @@
+# The Dockerfile most tutorials start from. Kept only as the "before" for size and
+# cache measurements. Every line here is a pitfall listed in the vault note.
+FROM node:24
+WORKDIR /app
+# Whole context first: any source edit invalidates the npm install layer below.
+COPY . .
+# Dev dependencies (TypeScript) and npm cache end up in the image.
+RUN npm install
+RUN npm run build
+# Runs as root; npm is PID 1 (see the runtime experiment for what that does to SIGTERM).
+CMD ["npm", "start"]

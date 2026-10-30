@@ -1,0 +1,16 @@
+{
+  "name": "js-objects-functions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Experiments behind the JS notes: objects/prototypes, functions/closures, immutability/FP",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "all": "node 01-properties.js && node 02-prototypes-classes.js && node 03-proxy-symbols.js && node 04-functions-this.js && node --expose-gc 05-closure-retention.js && node 06-immutability.js && node 07-fp.js"
+  },
+  "dependencies": {
+    "lodash": "4.18.1"
+  }
+}

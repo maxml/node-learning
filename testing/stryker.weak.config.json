@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "testRunner": "tap",
+  "tap": { "testFiles": ["test/discount.test.js"] },
+  "mutate": ["src/discount.js"],
+  "reporters": ["clear-text"],
+  "coverageAnalysis": "off",
+  "concurrency": 2,
+  "tempDirName": ".stryker-tmp"
+}

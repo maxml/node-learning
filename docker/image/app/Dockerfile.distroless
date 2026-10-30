@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1
+# Build on Debian 13 slim (same glibc line as the runtime), run on distroless.
+# The distroless runtime has no shell and no npm; its ENTRYPOINT is already
+# /nodejs/bin/node, so CMD holds only the script.
+# Digests as pulled on 2026-10-30.
+ARG BUILD_IMAGE=node:24-trixie-slim@sha256:6950b66b4c0cb0151ce89fa75074673850763d096b044f422c6729b588dd4956
+ARG RUN_IMAGE=gcr.io/distroless/nodejs24-debian13@sha256:51eee69b25037942014428da85f5b436a4d88f283e545981d03f25b7db72469a
+
+FROM ${BUILD_IMAGE} AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+
+FROM ${BUILD_IMAGE} AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci --ignore-scripts --no-audit --no-fund
+COPY tsconfig.json ./
+COPY src ./src
+RUN npm run build
+
+FROM ${RUN_IMAGE} AS runtime
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY package.json ./
+# The :latest distroless tag runs as root (uid 0); switch explicitly.
+USER 65532:65532
+CMD ["dist/server.js"]

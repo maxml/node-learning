@@ -1,0 +1,10 @@
+{
+  "name": "kbdock-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node w.js handler",
+    "start:nohandler": "node w.js no-handler",
+    "start:exec": "exec node w.js handler"
+  }
+}

@@ -1,0 +1,59 @@
+# Local development stack: MongoDB + Redis + the app.
+# Run through run.sh, which sets the project name (kbdock-compose) and cleans up.
+name: kbdock-compose
+
+services:
+  mongo:
+    image: mongo:9
+    healthcheck:
+      # "Container is running" is not "mongod accepts connections": ask it.
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+      start_interval: 1s
+    volumes:
+      - mongo-data:/data/db # named volume: survives `down`, removed by `down -v`
+
+  redis:
+    image: redis:8.10.3
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 10s # Compose rejects start_interval without start_period
+      start_interval: 1s
+
+  app:
+    build: ./app
+    env_file: app.env # values go INTO the container's environment
+    environment:
+      GREETING: ${GREETING:-hello} # interpolated by compose from .env / shell
+    ports:
+      - "127.0.0.1:${APP_PORT:-3100}:3000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: sync # copy changed files into the running container
+          path: ./app/src
+          target: /app/src
+        - action: rebuild # dependency change: rebuild the image
+          path: ./app/package.json
+
+  # One-off tool, started only with --profile tools.
+  seed:
+    image: mongo:9
+    profiles: [tools]
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command: ["mongosh", "--quiet", "--host", "mongo", "--eval", "db.items.insertOne({seeded: true}).acknowledged"]
+
+volumes:
+  mongo-data:
