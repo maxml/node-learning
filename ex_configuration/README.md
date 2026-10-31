@@ -19,12 +19,21 @@ node exConfig.js
 node exDotenv.js
 ```
 
+## Залежності
+
+`config` 3.3.12, `dotenv` 8.2.0, `lodash` 4.18.1 (точні версії, оновлено 2026-10-31).
+Раніше стояли `config@3.2.5` (тягнув `json5@1.0.1` з prototype pollution і `minimist`),
+`lodash@4.17.15` (prototype pollution, command/code injection у `_.template`, ReDoS).
+`config@3.3.x` бере `json5@2.2.3` і більше не викликає `util.isRegExp`, тож заодно ожив
+`exConfig.js`. `dotenv` лишено на 8.2.0: вразливостей у нього немає, а новіші мажорні
+версії друкують власний рядок у вивід. Код не змінювався. `npm audit`: 0.
+
 ## Стан на Node 24.14.1
 
-- `index.js`: працює.
-- `exConfig.js`: падає, `TypeError: Utils.isRegExp is not a function` у
-  `node_modules/config/lib/config.js:946`. Закріплений `config@3.2.5` викликає
-  `util.isRegExp`, якого в Node 24 вже немає.
+- `index.js`: працює, вивід той самий, що й до оновлення.
+- `exConfig.js`: працює (з 2026-10-31, після переходу на `config@3.3.12`), друкує
+  `value` і `s;fngsd;l`. На `config@3.2.5` падав з
+  `TypeError: Utils.isRegExp is not a function`: у Node 24 немає `util.isRegExp`.
 - `exDotenv.js`: виконується, але друкує `undefined`.
 
 ## Відомі проблеми

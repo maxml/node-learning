@@ -16,6 +16,14 @@
 | `mongodb` / `mongoose` | 7.7.0 / 9.11.4 | типи драйвера й ODM (§9, без сервера) |
 | `@types/aws-lambda` / `@aws-sdk/client-sqs` | 8.10.164 / 3.1160.0 | типи Lambda і SDK v3 (§9, без AWS) |
 | `express` / `@types/express` / `fastify` | 5.3.0 / 5.0.6 / 5.12.7 | module augmentation `Request` (§9) |
+| `minimatch` (транзитивна, через `overrides`) | 11.0.3 | див. нижче |
+
+`overrides.minimatch = 11.0.3` (2026-10-31): `eslint` 10.x, `@eslint/config-array` і
+`typescript-eslint` тягнуть `minimatch@^10`, а advisory GHSA-g3hv-75wg-m249 (DoS через
+globparts) виправлено лише в 11.0.1; виправленого релізу ESLint ще немає. Після override
+`npm audit` = 0, `npm run lint` дає ті самі 14 помилок, `check`/`flags`/`holes`/`boundary`/
+`erasable`/`backend` виходять з кодом 0. Прибрати override, коли ESLint перейде на
+`minimatch@11`.
 
 Схема з двома аліасами це рекомендований спосіб із
 [анонсу TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/):

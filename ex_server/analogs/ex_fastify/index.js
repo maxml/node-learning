@@ -9,7 +9,8 @@ fastify.get('/', async (request, reply) => {
 // Run the server!
 const start = async () => {
     try {
-        await fastify.listen(3000)
+        // Fastify 4+ takes an options object; listen(3000) was removed
+        await fastify.listen({ port: 3000 })
         fastify.log.info(`server listening on ${fastify.server.address().port}`)
     } catch (err) {
         fastify.log.error(err)

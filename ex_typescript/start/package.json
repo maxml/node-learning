@@ -12,9 +12,7 @@
   "author": "maxml",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.16.1",
-    "@types/node": "^14.0.9",
-    "express": "^4.16.4",
-    "typescript": "^3.9.0"
+    "@types/node": "14.0.9",
+    "typescript": "3.9.2"
   }
 }

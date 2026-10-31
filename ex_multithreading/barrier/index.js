@@ -1,7 +1,13 @@
 var simpleBarrier = require('./library'),
     fs = require('fs');
 
-var request = require('request');
+// `request` (deprecated, vulnerable) replaced with the global fetch (Node 18+),
+// wrapped into the same Node-style callback that barrier.waitOn() expects.
+function request(url, callback) {
+    fetch(url)
+        .then(function (res) { return res.text(); })
+        .then(function (body) { callback(null, body); }, callback);
+}
 
 var barrier = simpleBarrier();
 

@@ -1,0 +1,5 @@
+# generated locally by `npm run cert`; never commit a private key
+server.key
+server.crt
+server.csr
+server.pass.key

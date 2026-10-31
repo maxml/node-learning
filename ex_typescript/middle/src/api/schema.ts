@@ -1,4 +1,5 @@
-import { makeExecutableSchema } from "graphql-tools";
+// graphql-tools@3 → @graphql-tools/schema: та сама makeExecutableSchema
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApiResolver } from "./resolver";
 
 const schema = `

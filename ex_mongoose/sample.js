@@ -85,17 +85,11 @@ const bookSchema = mongoose.Schema({
 });
 const Book = mongoose.model('Book', bookSchema);
 
-mongoose.connect('mongodb://localhost/test',
-    { useUnifiedTopology: true, useNewUrlParser: true })
-    .then(() => {
-        console.log('Connected to mongo');
-    })
-    .catch(err => {
-        console.log(`Error: ${err}`);
-        throw err;
-    });
+// Mongoose 7+ не приймає колбеки: усі виклики нижче через async/await.
+// Опції useUnifiedTopology/useNewUrlParser з Mongoose 6 не потрібні.
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/test';
 
-function createAuthor() {
+async function createAuthor() {
     const jamieAuthor = new Author(
         {
             _id: new mongoose.Types.ObjectId(),
@@ -108,96 +102,81 @@ function createAuthor() {
             facebook: 'https://www.facebook.com/End-Your-If-194251957252562/'
         });
 
-    jamieAuthor.save(function (err) {
-        if (err) {
-            throw err;
-        }
+    await jamieAuthor.save();
+    console.log('Author successfully saved.');
 
-        console.log('Author successfully saved.');
-
-        var mvcBook = new Book({
-            _id: new mongoose.Types.ObjectId(),
-            title: 'ASP.NET MVC 5 with Bootstrap and Knockout.js',
-            author: jamieAuthor._id,
-            ratings: [{
-                summary: 'Great read'
-            }]
-        });
-
-        mvcBook.save(function (err) {
-            if (err) throw err;
-
-            console.log('Book successfully saved.');
-        });
-
-        var knockoutBook = new Book({
-            _id: new mongoose.Types.ObjectId(),
-            title: 'Knockout.js: Building Dynamic Client-Side Web Applications',
-            author: jamieAuthor._id
-        });
-
-        knockoutBook.save(function (err) {
-            if (err) throw err;
-
-            console.log('Book successfully saved.');
-        });
+    const mvcBook = new Book({
+        _id: new mongoose.Types.ObjectId(),
+        title: 'ASP.NET MVC 5 with Bootstrap and Knockout.js',
+        author: jamieAuthor._id,
+        ratings: [{
+            summary: 'Great read'
+        }]
     });
-}
-// createAuthor();
 
-function findAllAuthors() {
-    Author.find().exec((err, authors) => {
-        if (err) {
-            throw err;
-        }
-
-        console.log(authors);
+    const knockoutBook = new Book({
+        _id: new mongoose.Types.ObjectId(),
+        title: 'Knockout.js: Building Dynamic Client-Side Web Applications',
+        author: jamieAuthor._id
     });
-}
-// findAllAuthors();
 
-function findBooks() {
-    Book.find({
+    await Promise.all([mvcBook.save(), knockoutBook.save()]);
+    console.log('Books successfully saved.');
+
+    return jamieAuthor._id;
+}
+
+async function findAllAuthors() {
+    const authors = await Author.find().exec();
+    console.log(authors);
+}
+
+async function findBooks() {
+    const books = await Book.find({
         title: /mvc/i
-    }).exec(function (err, books) {
-        if (err) throw err;
+    }).exec();
+    console.log(books);
 
-        console.log(books);
-    });
-
-    Book.find({
+    const sorted = await Book.find({
         title: /mvc/i
     })
         .sort('created')
         .limit(5)
-        .exec(function (err, books) {
-            if (err) throw err;
-
-            console.log(books);
-        });
+        .exec();
+    console.log(sorted);
 }
-// findBooks();
 
-function findById() {
-    Author.findById('5ea4c7182cf0ca61c12d1cda', function (err, author) {
-        if (err) throw err;
-
-        console.log(author);
-    });
+async function findById(id) {
+    const author = await Author.findById(id);
+    console.log(author);
 }
-findById();
 
-function update() {
-    Author.defindByIdAndUpdate('5ea4c7182cf0ca61c12d1cda',
+async function update(id) {
+    const author = await Author.findByIdAndUpdate(id,
         { linkedin: 'https://www.linkedin.com/in/jamie-munro-3/' },
-        function (err, author) {
-            if (err) throw err;
+        { returnDocument: 'after', runValidators: true });  // `new: true` у Mongoose 9 deprecated
+    console.log(author);
 
-            console.log(author);
-
-            findAllAuthors();
-        });
+    await findAllAuthors();
 }
-update();
 
 // TODO: delete
+
+async function main() {
+    await mongoose.connect(MONGODB_URI);
+    console.log('Connected to mongo');
+    try {
+        // id автора, створеного в цьому ж прогоні, а не захардкоджений з чужої бази
+        const id = await createAuthor();
+        await findBooks();
+        await findById(id);
+        await update(id);
+    } finally {
+        await mongoose.disconnect();
+    }
+}
+
+main().catch(err => {
+    console.log(`Error: ${err}`);
+    process.exitCode = 1;
+});

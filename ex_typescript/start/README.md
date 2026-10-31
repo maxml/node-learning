@@ -25,6 +25,12 @@ npm install typescript @types/node express @types/express
 ./node_modules/typescript/bin/tsc --init
 ```
 
+`express` і `@types/express` з `package.json` прибрано 2026-10-31: жоден `.ts` їх не
+імпортує, а `express@4.17.1` тягнув 6 вразливих пакетів (`body-parser`, `cookie`,
+`path-to-regexp`, `proxy-addr`, `qs`, `send`). Лишились `typescript` 3.9.2 і
+`@types/node` 14.0.9, закріплені точно. `npm audit`: 8 → 0; `npm start` і всі 13 файлів
+`build/` дають код 0, перезбірка не змінює `build/`.
+
 ## Запуск
 
 ```bash

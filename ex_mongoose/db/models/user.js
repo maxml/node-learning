@@ -20,20 +20,13 @@ userSchema.methods.getInitials = function () {
     return this.firstName[0] + this.lastName[0]
 }
 
+// Mongoose 7+ не приймає колбеки: find() повертає thenable Query
 userSchema.statics.getUsers = function () {
-    return new Promise((resolve, reject) => {
-        this.find((err, docs) => {
-            if (err) {
-                console.error(err)
-                return reject(err)
-            }
-
-            resolve(docs)
-        })
-    })
+    return this.find()
 }
 
-module.exports = mongoose.model('User', userSchema)
+const UserModel = mongoose.model('User', userSchema)
+module.exports = UserModel
 
 function checkVirtualField() {
     let model = new UserModel()

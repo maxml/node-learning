@@ -1,7 +1,11 @@
+const { Server } = require('socket.io');
 const express = require('express'),
     app = express(),
     server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
+    // socket.io 3+: `new Server(httpServer)` replaces `.listen(server)`.
+    // maxHttpBufferSize caps one message (images arrive as base64 data URLs);
+    // the v4 default is 1 MB, v2 allowed 100 MB.
+    io = new Server(server, { maxHttpBufferSize: 5e6 }),
     users = [];
 
 app.use('/', express.static(__dirname + '/www'));

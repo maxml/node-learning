@@ -1,10 +1,13 @@
 const Product = require('../models/product.model');
 
+// Mongoose 7+ не приймає колбеки, тому обробники async. Express 5 сам передає
+// відхилений проміс з async-обробника в next(err), окремий try/catch не потрібен.
+
 exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 
-exports.productCreate = function (req, res, next) {
+exports.productCreate = async function (req, res) {
     let product = new Product(
         {
             name: req.body.name,
@@ -12,34 +15,22 @@ exports.productCreate = function (req, res, next) {
         }
     );
 
-    product.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-
-        res.send('Product Created successfully')
-    })
+    await product.save();
+    res.send('Product Created successfully');
 };
 
-exports.productDetails = function (req, res) {
-    Product.findById(req.params.id, function (err, product) {
-        if (err) {
-            return next(err);
-        }
-        res.send(product);
-    })
+exports.productDetails = async function (req, res) {
+    const product = await Product.findById(req.params.id);
+    res.send(product);
 };
 
-exports.productUpdate = function (req, res) {
-    Product.findByIdAndUpdate(req.params.id, { $set: req.body }, function (err, product) {
-        if (err) return next(err);
-        res.send('Product udpated.');
-    });
+exports.productUpdate = async function (req, res) {
+    await Product.findByIdAndUpdate(req.params.id, { $set: req.body });
+    res.send('Product udpated.');
 };
 
-exports.productDelete = function (req, res) {
-    Product.findByIdAndRemove(req.params.id, function (err) {
-        if (err) return next(err);
-        res.send('Deleted successfully!');
-    })
+exports.productDelete = async function (req, res) {
+    // findByIdAndRemove прибрано в Mongoose 8
+    await Product.findByIdAndDelete(req.params.id);
+    res.send('Deleted successfully!');
 };

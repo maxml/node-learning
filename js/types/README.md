@@ -6,7 +6,8 @@
 
 Прогін 2026-10-30: Node v24.14.1 (V8 13.6.233.17-node.44), npm 11, Linux x64.
 Node 25.9.0 і 26.13.0 запускались з офіційних Docker-образів `node:25`, `node:26`.
-Залежності закріплені точно: `lodash@4.18.1`, `moment@2.31.0`.
+Залежності закріплені точно: `lodash@4.18.1`, `moment@2.31.0`, `bson@7.3.3` (для 11).
+Файли 10 і 11 додано 2026-10-31 і прогнано на Node v24.14.1 та в `node:26` (v26.13.0).
 
 | Файл | Що показує |
 | --- | --- |
@@ -19,14 +20,66 @@ Node 25.9.0 і 26.13.0 запускались з офіційних Docker-об�
 | `07-lodash-clonedeep.js` | `_.cloneDeep` проти `structuredClone` |
 | `08-runtime-features.js` | Temporal і нові API ES2026 у Node 24 / 25 / 26 |
 | `09-moment-pitfalls.js` | чому moment не для нового коду: мутабельність, fallback-парсинг, глобальна локаль |
+| `10-article-claims.js` | тези статті dev.to «Primitive and Object types in Javascript» (2021): переприсвоєння проти мутації, чи викликається `valueOf` при виклику методу примітива, `car[0] = 'b'` у sloppy і strict, `Object.freeze`, поверхнева копія в «чистій» функції |
+| `11-backend-identity.js` (+ `11-config.js`) | де ідентичність кусає на бекенді: `ObjectId` з `bson`, `Date`, `Buffer`, кеш модулів `require`, символи як ключі `WeakMap` |
+| `12-factcheck.js` (+ `12-esm-config.mjs`) | незалежні контрприклади: this у strict/sloppy, Symbol.toPrimitive, strict у класах/ESM, кеш за URL, перезавантаження CommonJS, межі freeze, Invalid Date, безвтратні ключі Buffer, відмінності v8.serialize і structuredClone |
+| `13-factcheck-agy.js` | другий прохід фактчеку: власний `length` обгортки `String` проти `String.prototype`, обгортки `Object(sym)`/`Object(10n)`, `typeof` проти `Object(x) === x`, канонізація `-0` у `Set`, пастки `_.cloneDeep` (`Buffer` ділить пам'ять, `Error` → `{}`, `#private` кидає `TypeError`), JSON у масивах і на верхньому рівні, `Object.freeze` на `Buffer`/`TypedArray` і `#private`, `===` на `NaN`/`±0`, V8 `ConsString` і кодування літералів |
 
 ## Запуск
 
 ```bash
 npm ci
-npm run all     # 01–04, 06, 07, 09; 04 і 09 з TZ=Europe/Kyiv
+npm run all     # 01–04, 06, 07, 09–11; 04 і 09 з TZ=Europe/Kyiv
+npm run factcheck # незалежні контрприклади, 12 і 13
 npm run v8 | grep -E '^#|DebugPrint|- type'
 docker run --rm -v "$PWD":/w -w /w node:26 node 08-runtime-features.js
+```
+
+## Незалежний фактчек 2026-10-31
+
+Codex CLI, GPT-6. Повторено 01, 02, 07, 10, 11 локально на Node v24.14.1;
+10, 11 і новий 12 також на Node v26.13.0 з уже наявного офіційного образу node:26.
+Новий 12 пройшов і локально. Нові залежності не встановлювалися; bson лишається 7.3.3.
+Показаний нижче вивід — дослівний локальний запуск `node 12-factcheck.js`.
+У Docker відрізняється лише перший рядок: `# independent factcheck, node v26.13.0`.
+
+Повторити контрприклади після `npm ci` можна однією командою `npm run factcheck`.
+Другий рантайм:
+
+```bash
+docker run --rm --network none --mount type=bind,source="$PWD",target=/w,readonly -w /w node:26 npm run factcheck
+```
+
+```text
+# independent factcheck, node v24.14.1
+method this: strict=string, sloppy=object
+Symbol.toPrimitive wins: result=8, valueOf calls=0
+string index: sloppy=car, class=TypeError, ESM=TypeError
+ESM: same URL shares mutation; different query has separate config
+CommonJS: same cache entry shares; cache deletion reloads config
+freeze: data property locked; nested, accessor, Date and Map state can change
+invalid Date: getTime equality=false, <=false
+Buffer key: UTF-8 can collide; hex distinguishes 80 and 81
+cloning: structuredClone(Buffer)=Uint8Array; v8 round trip preserves Buffer
+SharedArrayBuffer: structuredClone shares memory; v8.serialize throws
+WeakMap: local and well-known symbols accepted; registered symbol and string rejected
+all counterexample assertions passed
+```
+
+Другий незалежний прохід 2026-10-31 (Antigravity agy, gemini-4-argon-high): повторно запущено `npm run all`, `05-v8-representation.js`, `12-factcheck.js` і новий `13-factcheck-agy.js` на Node v24.14.1 (V8 13.6.233.17-node.44) та в офіційному образі `node:26` (Node v26.13.0, V8 14.6.202.34-node.40, `--rm --network none`). У Docker змінюється лише перший рядок (`node v26.13.0, V8 14.6.202.34-node.40`):
+
+```text
+# independent factcheck (agy), node v24.14.1, V8 13.6.233.17-node.44, lodash 4.18.1
+String wrapper: length/indices are own props (String.prototype.length=0); methods are on prototype
+ToObject wrappers: Symbol(sym) throws; BigInt(10n)=bigint; Object(sym)/Object(10n) wrap
+object check: typeof excludes functions/classes; Object(x)===x matches all objects only
+CanonicalizeKeyedCollectionKey: Set([-0]) also stores +0, not -0
+lodash.cloneDeep: shares Buffer memory, Error->{}, class #private throws TypeError
+JSON round-trip: object props omitted, array->[null,null,null], top-level undefined->SyntaxError
+Object.freeze: throws on non-empty Buffer/TypedArray; #private fields stay mutable
+primitive === edge cases: NaN===NaN is false; +0===-0 is true while Object.is is false
+V8 strings: Latin1=ONE_BYTE, Cyrillic=TWO_BYTE; len12=SEQ, len13=CONS; .length stays unflat, [0]/charCodeAt flatten
+all agy factcheck assertions passed
 ```
 
 ## Результати прогону 2026-10-30 (уривки, дослівно)
@@ -200,4 +253,48 @@ start after add (start moved too)                    2026-10-31T10:00:00.000Z
 '30.10.2026' (falls back to Date, which rejects it)  false
 moment('12/25/1995', 'MM-DD-YYYY').isValid()         true
 same with strict=true                                false
+```
+
+`10-article-claims.js` (2026-10-31, Node v24.14.1; на v26.13.0 ті самі рядки):
+
+```
+reassign: newCars (article claims ["tesla","audi"])  ["tesla"]
+reassign: cars === newCars                           false
+mutate: newCars2                                     ["tesla","audi"]
+String.prototype.valueOf calls during the method call 0
+s.length + s.indexOf(...) valueOf calls              0 (n=4)
+new String('x') + '!' valueOf calls                  1 (x!)
+'x'.whoAmI() typeof this (strict method)             string
+sloppy: car after car[0] = "b"                       car
+strict: c[0] = "b"                                   TypeError: Cannot assign to read only property '0' of string 'car'
+typeof car.year (article prints "2021")              number
+Object.isFrozen / frozen.year                        true / undefined
+Object.isFrozen("abc") (primitives count as frozen)  true
+caller person.address.city after "pure" move()       Lviv
+```
+
+`11-backend-identity.js` (2026-10-31; у `node:26` перший рядок `# node v26.13.0, bson 7.3.3`, значення ті самі):
+
+```
+# node v24.14.1, bson 7.3.3
+typeof a                                             object
+a === b                                              false
+a == b                                               false
+a.equals(b)                                          true
+a.equals(hex string)                                 true
+String(a) === String(b)                              true
+[a].includes(b)                                      false
+new Set([a, b]).size                                 2
+Map keyed by ObjectId: get(b)                        undefined
+Map keyed by hex: get(b.toHexString())               Ann
+d1 === d2                                            false
+d1.getTime() === d2.getTime()                        true
+d1 <= d2 && d1 >= d2 (ToPrimitive number)            true
+x === y                                              false
+x.equals(y)                                          true
+cfg1 === cfg2                                        true
+cfg2.timeoutMs after cfg1.timeoutMs = 1              1
+WeakMap.set(Symbol('k'))                             ok
+WeakMap.set(Symbol.for('k'))                         TypeError: Invalid value used as weak map key
+WeakMap.set('k')                                     TypeError: Invalid value used as weak map key
 ```

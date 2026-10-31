@@ -16,5 +16,8 @@
     "bullmq": "6.5.2",
     "ioredis": "6.0.0",
     "piscina": "5.3.2"
+  },
+  "overrides": {
+    "hyperid": "4.0.0"
   }
 }

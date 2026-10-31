@@ -19,6 +19,16 @@ and @stryker-mutator/tap-runner 10.1.1, TypeScript 7.0.2 as `@typescript/native`
 `tsc --noEmit`) and 6.0.2 as `typescript` (compiler API for Stryker and sonarjs), @types/node 24.19.2, eslint 10.14.0, eslint-plugin-sonarjs 4.2.2. The machine is shared, so
 durations are noisy; all counts are deterministic.
 
+Later on 2026-10-31 `package.json` got `overrides` for transitive dependencies (the direct ones
+are already the latest releases): `minimatch` 10.2.6 → 11.0.3 (asked for as `~10.2.4`/`^10.2`
+by Stryker core, eslint, `@eslint/config-array`, eslint-plugin-sonarjs; GHSA-g3hv-75wg-m249,
+fixed in 11.0.1), `glob` 13.0.6 → 14.0.3 (Stryker tap-runner pins `~13.0.0`;
+GHSA-3g3m-2fjr-6pw4), `qs` 6.15.1 → 6.17.1 (`typed-rest-client@2.3.1` under Stryker pins
+`6.15.1`; four DoS advisories). `npm audit`: 0. Re-run after the change: `npm test` (17/17,
+same diagnostics), `npm run typecheck`, `npm run complexity`, and all four Stryker runs; every
+number in the results table below came out identical (84.89 / 99.28 / 97.42 / 99.35, same
+killed/survived/timeout counts).
+
 ## Run
 
 ```bash

@@ -3,7 +3,8 @@ import * as express from 'express';
 // Create a new express application instance
 const app: express.Application = express.default();
 
-app.get('*', function (req, res) {
+// Express 5 (path-to-regexp 8) не приймає голий '*': потрібен іменований wildcard
+app.get('/{*path}', function (req, res) {
   res.send('Hello World!');
 });
 

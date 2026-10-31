@@ -19,6 +19,15 @@ guard записує його з автентифікованого запиту
 | autocannon | 8.0.0 |
 | PostgreSQL | 18.6 (`postgres:18.6-alpine` у Docker) |
 
+Після прогону (2026-10-31, вдень) у `package.json` додано `overrides.hyperid` = 4.0.0:
+`autocannon@8.0.0` (остання версія) просить `hyperid@^3`, а той тягне `uuid@8.3.2`
+(GHSA-w5hq-g745-h8pq, виправлено в `uuid` 11.1.1). `hyperid` 4 має той самий API і бере
+`crypto.randomUUID` замість пакета `uuid`. `npm audit`: 0. У autocannon `hyperid` лише генерує
+id для підстановки `[<id>]`, якої `bench.ts` не використовує, тож результати нижче лишаються
+чинними; повний bench не перезапускали. Перевірено коротким прогоном
+`DURATION=2 REPEAT=1 node dist/bench.js explicit,als` (memory): обидва варіанти без non-2xx
+і помилок.
+
 ## Як запустити
 
 ```bash

@@ -23,6 +23,20 @@ node -e "require('./exWinstonLogger')('demo').info('hello', { a: 1 })"
 
 Файли логів пишуться в `ex_logger/logs/` (у `.gitignore`).
 
+## Залежності
+
+`debug` 4.4.3, `winston` 3.19.0, `winston-daily-rotate-file` 5.0.0 (точні версії, оновлено
+2026-10-31). Раніше lockfile v1 мав `debug@4.1.1` (ReDoS), `winston@3.2.1` з `async@2.6.3`
+(prototype pollution) і `color-string` < 1.5.5 (ReDoS), `winston-daily-rotate-file@3.10.0`,
+що через `file-stream-rotator@0.4` тягнув `moment` < 2.29.4; плюс `lodash@4.17.15` і
+`semver` < 6.3.1. `winston-daily-rotate-file` 5.x вимагає лише `winston@^3`, API транспорту
+той самий. Код не змінювався. `npm audit`: 0.
+
+Перевірено викликом `exDebug`, `exWinston`, `exSanya` до й після оновлення: вивід у консоль
+і файли логів однакові (без часових міток), крім одного: коли `Error` іде метою після
+повідомлення з пробілом у кінці (`index.js:96-97`, `'Maybe important error: '`), winston
+3.19 вставляє ще один пробіл (`Maybe important error:  Error passed as meta`).
+
 ## Стан на Node 24.14.1
 
 `index.js` і `exWinstonLogger.js` завершуються з кодом 0, нічого не друкуючи (усі виклики
@@ -39,7 +53,6 @@ node -e "require('./exWinstonLogger')('demo').info('hello', { a: 1 })"
 - `util/ex_sanya.js:13`: `__dirname + '../logs/'` без `/`; логи потрапляють у каталог
   `util..` поруч з `util/`. `:22`: новий логер (і нові файлові дескриптори) на кожен виклик
   `log()`.
-- `index.js:22`: пакет `debug@4.1.1` має відому ReDoS-регресію (npm радить 4.3.1+).
 
 ## Теорія
 

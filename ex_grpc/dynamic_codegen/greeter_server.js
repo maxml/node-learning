@@ -18,7 +18,7 @@
 
 var PROTO_PATH = __dirname + '/../helloworld.proto';
 
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
   PROTO_PATH,
@@ -50,8 +50,13 @@ function main() {
   var server = new grpc.Server();
   server.addService(hello_proto.Greeter.service,
     { sayHello: sayHello, sayHelloAgain: sayHelloAgain });
-  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
-  server.start();
+  // @grpc/grpc-js has only the async bind; the server starts serving once the
+  // port is bound (the old `server.start()` is deprecated and not needed).
+  server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(),
+    function (err, port) {
+      if (err) throw err;
+      console.log('Greeter server listening on port', port);
+    });
 }
 
 main();

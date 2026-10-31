@@ -2,15 +2,14 @@
   "name": "ex_sockets",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1",
-    "ws": "^7.2.5"
+    "ws": "7.5.13"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

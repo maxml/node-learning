@@ -196,7 +196,11 @@ order still has qty: 1
 spread is shallow: copy.nested === src.nested -> true
 ```
 
-`practices/lint/`: `npm ci && npx eslint .` (ESLint 10.13.0, flat config). The folder also has a
+`practices/lint/`: `npm ci && npx eslint .` (ESLint 10.14.0, flat config; re-run 2026-10-31 after
+the bump from 10.13.0, output unchanged). `package.json` overrides `minimatch` to 11.0.3: ESLint
+10.14 and `@eslint/config-array` still ask for `minimatch@^10.2`, and GHSA-g3hv-75wg-m249 (DoS via
+globparts amplification) is fixed only in 11.0.1; with the override `npm audit` reports 0
+vulnerabilities and the lint output below is identical. The folder also has a
 `.eslintrc.json` that bans `console`; ESLint 10 ignores it (eslintrc was removed in 10.0.0), so
 the `console.log` line in `bad.js` is not reported:
 

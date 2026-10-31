@@ -16,6 +16,13 @@
 | `eslint-plugin-sonarjs` | 4.2.2 | правило `cognitive-complexity` |
 | `pino` | 10.4.0 | JSON-логи в stdout |
 | `dotenv` | 18.0.9 | порівняння з `--env-file` |
+| `minimatch` (транзитивна, через `overrides`) | 11.0.3 | див. нижче |
+
+`overrides.minimatch = 11.0.3` (2026-10-31): `eslint` 10.14.0 і `eslint-plugin-sonarjs` 4.2.2
+тягнуть `minimatch@^10`, а advisory GHSA-g3hv-75wg-m249 (DoS через globparts) виправлено
+лише в 11.0.1; виправлених релізів цих пакетів ще немає. Після override `npm audit` = 0,
+вивід `npm run complexity` не змінився, `typecheck`/`gof`/`singleton`/`decorators` виходять
+з кодом 0. Прибрати override, коли ESLint і sonarjs перейдуть на `minimatch@11`.
 
 ```bash
 npm ci

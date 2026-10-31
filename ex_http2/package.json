@@ -1,16 +1,16 @@
 {
   "name": "ex_http2",
   "version": "1.0.0",
-  "description": "How to create self-signed certificate:",
-  "main": "index.js",
+  "description": "HTTP/2 over TLS: the built-in http2 module and Fastify with http2: true",
+  "main": "http2.js",
   "scripts": {
+    "cert": "openssl req -x509 -newkey rsa:2048 -nodes -sha256 -days 365 -subj /CN=localhost -keyout server.key -out server.crt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "spdy": "^4.0.2"
+    "fastify": "5.12.7"
   }
 }

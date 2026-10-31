@@ -7,7 +7,7 @@ export class Requester {
   role: Role;
 }
 
-export const generateToken = (): String => {
+export const generateToken = (): string => {
   return jwt.sign({ username: "admin", role: Role.ADMIN }, config.auth.secret);
 };
 

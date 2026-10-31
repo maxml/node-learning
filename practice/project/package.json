@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^17.1.0",
-    "moment": "^2.24.0"
+    "joi": "18.3.1",
+    "moment": "2.31.0"
   }
 }

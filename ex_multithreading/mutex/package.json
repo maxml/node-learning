@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.2.0",
-    "fs-ext": "^2.0.0",
-    "live-mutex": "^0.2.24"
+    "fs-ext": "2.1.1"
   }
 }

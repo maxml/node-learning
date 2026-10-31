@@ -19,5 +19,8 @@
     "eslint-plugin-sonarjs": "4.2.2",
     "pino": "10.4.0",
     "typescript": "npm:@typescript/typescript6@6.0.2"
+  },
+  "overrides": {
+    "minimatch": "11.0.3"
   }
 }

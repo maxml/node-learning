@@ -18,7 +18,7 @@
 
 var PROTO_PATH = __dirname + '/../helloworld.proto';
 
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
   PROTO_PATH,
@@ -36,10 +36,12 @@ function main() {
     grpc.credentials.createInsecure());
 
   client.sayHello({ name: 'you' }, function (err, response) {
+    if (err) return console.error('sayHello failed:', err.message);
     console.log('Greeting:', response.message);
   });
 
   client.sayHelloAgain({ name: 'you' }, function (err, response) {
+    if (err) return console.error('sayHelloAgain failed:', err.message);
     console.log('Greeting:', response.message);
   });
 }

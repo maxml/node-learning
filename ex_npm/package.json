@@ -16,6 +16,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "husky": "^4.2.5"
+    "husky": "4.3.8"
   }
 }

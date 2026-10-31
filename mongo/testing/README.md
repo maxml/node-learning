@@ -8,6 +8,18 @@
 `mongodb-memory-server-core` 11.3.0, `@testcontainers/mongodb` і `testcontainers` 12.2.1.
 Сервер MongoDB 9.0.4 в обох бекендах. Тести на вбудованому `node:test` (Node 24.14.1).
 
+2026-10-31 у `package.json` додано `overrides` для транзитивних залежностей
+`testcontainers@12.2.1` (остання версія) → `archiver@7.0.1`: `glob` 10.5.0 → 14.0.3 (через
+`archiver-utils`), `readdir-glob` 1.1.3 → 3.0.0, `minimatch` 9.0.9/5.1.9 → 11.0.3. Advisory:
+GHSA-g3hv-75wg-m249 (`minimatch` < 11.0.1, DoS) і GHSA-3g3m-2fjr-6pw4 (`glob` 9–14.0.1).
+`archiver@8` з виправленими залежностями не підходить: він лише ESM і без фабрики
+`archiver('tar')`, яку викликає `testcontainers`. `npm audit`: 0. Перевірено після
+оновлення: `npm test` 14/14 pass (16,6 с); Testcontainers-бекенд 14/14 pass (51,8 с), але на
+локальному образі `mongo:8` (`MONGO_IMAGE=mongo:8`), бо `mongo:9` на машині вже не було;
+шлях `archiver` (tar з `append`, `directory`, `glob`, яким `@testcontainers/mongodb` копіює
+keyfile) окремо прогнано скриптом поза репозиторієм, `tar -t` читає архів. Числа нижче з
+прогону 2026-10-30 і не перераховувались.
+
 | Файл                          | Що перевіряє                                                                                   |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
 | `lib/servers.js`              | три способи підняти `mongod`: Testcontainers (replica set), MMS replica set, MMS standalone       |

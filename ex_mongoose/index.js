@@ -37,7 +37,7 @@ function updateRecord() {
                 email: 'theoutlander@live.com'   // field:values to update
             },
             {
-                new: true,                       // return updated doc
+                returnDocument: 'after',         // return updated doc (`new: true` deprecated у Mongoose 9)
                 runValidators: true              // validate before update
             })
         .then(doc => {
@@ -50,7 +50,7 @@ function updateRecord() {
 
 function deleteRecord() {
     EmailModel
-        .findOneAndRemove({
+        .findOneAndDelete({   // findOneAndRemove прибрано в Mongoose 8
             email: 'theoutlander@live.com'
         })
         .then(response => {

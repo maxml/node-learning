@@ -18,5 +18,10 @@
     "mongodb-memory-server-core": "11.3.0",
     "mongoose": "9.11.4",
     "testcontainers": "12.2.1"
+  },
+  "overrides": {
+    "glob": "14.0.3",
+    "minimatch": "11.0.3",
+    "readdir-glob": "3.0.0"
   }
 }

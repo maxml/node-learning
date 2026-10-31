@@ -5,7 +5,9 @@ var Sequelize = require('sequelize');
 var basename = path.basename(__filename);
 var env = process.env.NODE_ENV || 'development';
 
-var config = require('./config.js')[env];
+// розкладка sequelize-cli: конфіг у ../config, а не в models/ (інакше цикл нижче
+// завантажив би config.js як модель)
+var config = require('../config/config.js')[env];
 
 var db = {};
 
@@ -21,7 +23,8 @@ fs
         return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
     })
     .forEach(file => {
-        var model = sequelize['import'](path.join(__dirname, file));
+        // sequelize.import() прибрано в Sequelize 6: модуль моделі викликаємо напряму
+        var model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
         db[model.name] = model;
     });
 

@@ -24,5 +24,7 @@ function exConfig() {
     const Sequelize = require('sequelize');
     const connection = require('./connection.json');
 
-    const sequelize = new Sequelize(connection);
+    // з v4 `dialect` обов'язковий; ключ `username`, не `user`; пароль з оточення
+    const sequelize = new Sequelize({ ...connection, password: process.env.PGPASSWORD });
+    return sequelize;
 }

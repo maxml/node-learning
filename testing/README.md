@@ -10,6 +10,22 @@
 `package.json`: supertest 7.3.1, pg 8.23.1, autocannon 8.0.0, vitest 5.0.5,
 @stryker-mutator/core і @stryker-mutator/tap-runner 10.1.1. Залежності ставляться лише в цю теку.
 
+2026-10-31 у `package.json` додано `overrides` для транзитивних залежностей, бо прямі вже на
+останніх версіях, а виправлень у їхніх діапазонах немає:
+
+| Пакет | Було → стало | Хто тягне | Advisory |
+| --- | --- | --- | --- |
+| `minimatch` | 10.2.6 → 11.0.3 | `@stryker-mutator/core` (`~10.2.4`), `glob` | GHSA-g3hv-75wg-m249 (DoS, виправлено в 11.0.1) |
+| `glob` | 13.0.6 → 14.0.3 | `@stryker-mutator/tap-runner` (`~13.0.0`) | GHSA-3g3m-2fjr-6pw4 (обхід скасування через AbortSignal, `<=14.0.1`) |
+| `qs` | 6.15.1 → 6.17.1 | `typed-rest-client@2.3.1` (точно `6.15.1`) через Stryker | GHSA-q8mj-m7cp-5q26, GHSA-x5fp-wj9c-mxmx, GHSA-4mjr-xmp4-gh2g, GHSA-6pq8-jhm2-2vcw (DoS) |
+| `hyperid` | 3.3.0 → 4.0.0 | `autocannon@8.0.0` (`^3`) | через `uuid@8.3.2`: GHSA-w5hq-g745-h8pq; `hyperid` 4 бере `crypto.randomUUID` |
+
+`npm audit`: 0. Після оновлення перезапущено `npm test` (24 тести: 23 pass, 1 skip),
+`npm run coverage` (100/100), `npm run mutation:weak` (55,56: 5 вбито, 4 вижили, ті самі
+чотири мутанти), `npm run mutation:strong` (100,00: 9 вбито), `npm run vitest` (2 pass):
+результати збігаються з наведеними нижче. `load/compare.mjs` не перезапускали: `hyperid` в
+autocannon лише генерує id для `[<id>]`, якого `load/` не використовує.
+
 Машина спільна з іншими процесами, тож абсолютні мілісекунди шумні; напрям і порядок
 величини відтворюються, точні числа ні.
 

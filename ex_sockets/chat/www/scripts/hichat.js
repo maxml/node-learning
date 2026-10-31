@@ -156,7 +156,7 @@ HiChat.prototype = {
     _initialEmoji: function () {
         const emojiContainer = document.getElementById('emojiWrapper'),
             docFragment = document.createDocumentFragment();
-        for (const i = 69; i > 0; i--) {
+        for (let i = 69; i > 0; i--) {
             const emojiItem = document.createElement('img');
             emojiItem.src = '../content/emoji/' + i + '.gif';
             emojiItem.title = i;
@@ -165,15 +165,39 @@ HiChat.prototype = {
         emojiContainer.appendChild(docFragment);
     },
 
+    // Everything that comes from other users (nick, text, image data, color) is
+    // untrusted: text goes through textContent / _escapeHtml, never raw innerHTML.
+    _escapeHtml: function (text) {
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    },
+
+    _appendHeader: function (msgToDisplay, user, color) {
+        const date = new Date().toTimeString().substr(0, 8),
+            timespan = document.createElement('span');
+
+        // a string assigned to style.color cannot inject markup;
+        // an invalid value is simply ignored by the browser
+        msgToDisplay.style.color = color || '#000';
+        msgToDisplay.appendChild(document.createTextNode(user));
+        timespan.className = 'timespan';
+        timespan.textContent = '(' + date + '): ';
+        msgToDisplay.appendChild(timespan);
+    },
+
     _displayNewMsg: function (user, msg, color) {
         const container = document.getElementById('historyMsg'),
             msgToDisplay = document.createElement('p'),
-            date = new Date().toTimeString().substr(0, 8),
-            //determine whether the msg contains emoji
-            msg = this._showEmoji(msg);
+            body = document.createElement('span');
 
-        msgToDisplay.style.color = color || '#000';
-        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+        this._appendHeader(msgToDisplay, user, color);
+        // escape first, then turn [emoji:N] markers into <img>
+        body.innerHTML = this._showEmoji(this._escapeHtml(msg));
+        msgToDisplay.appendChild(body);
 
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
@@ -181,19 +205,33 @@ HiChat.prototype = {
 
     _displayImage: function (user, imgData, color) {
         const container = document.getElementById('historyMsg'),
-            msgToDisplay = document.createElement('p'),
-            date = new Date().toTimeString().substr(0, 8);
+            msgToDisplay = document.createElement('p');
 
-        msgToDisplay.style.color = color || '#000';
-        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+        this._appendHeader(msgToDisplay, user, color);
+        msgToDisplay.appendChild(document.createElement('br'));
+        // accept only base64 image data URLs (what FileReader.readAsDataURL
+        // produces); anything else, e.g. "javascript:", is dropped
+        if (typeof imgData === 'string' && /^data:image\/(png|jpe?g|gif|webp|bmp);base64,[A-Za-z0-9+/=]+$/.test(imgData)) {
+            const link = document.createElement('a'),
+                img = document.createElement('img');
+            link.href = imgData;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            img.src = imgData;
+            link.appendChild(img);
+            msgToDisplay.appendChild(link);
+        } else {
+            msgToDisplay.appendChild(document.createTextNode('[unsupported image]'));
+        }
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     },
 
     _showEmoji: function (msg) {
-        const match, reg = /\[emoji:\d+\]/g,
+        const reg = /\[emoji:\d+\]/g,
             totalEmojiNum = document.getElementById('emojiWrapper').children.length;
 
+        let match;
         let result = msg;
         let emojiIndex;
         while (match = reg.exec(msg)) {
