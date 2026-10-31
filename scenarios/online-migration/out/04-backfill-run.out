@@ -1,0 +1,4 @@
+start: last_id=0 target_id=5048751 rows_done=0 batch=10000 sleep=20ms
+simulated crash after 250 batches at last_id=2500000
+start: last_id=2500000 target_id=5048751 rows_done=500000 batch=10000 sleep=20ms
+done: 255 batches, 2524707 rows in 34.3 s (73667 rows/s), WAL 1542 MiB (45.0 MiB/s); rows with tenant_id NULL left: 0

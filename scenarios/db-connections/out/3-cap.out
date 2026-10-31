@@ -1,0 +1,3 @@
+3a pools capped 6x1, no acquire timeout | 6x1=6 | offered 2800 | ok 2801 (<=1s: 213) | p50 6289 | p99 12300 | pool-wait p99 12257 | errors {} | backends peak 6 (active 6) | DB CPU 1.99 cores | pgss mean 65.9 ms | ELD p99 10.8 ms
+3b pools capped 6x1, acquire 250ms    | 6x1=6 | offered 2800 | ok 1736 (<=1s: 1736) | p50 296 | p99 348 | pool-wait p99 250 | errors {"pool-timeout":1065} | backends peak 6 (active 6) | DB CPU 1.99 cores | pgss mean 68.1 ms | ELD p99 10.8 ms
+3c PgBouncer tx pool=4, wait 250ms  | 6x30=180 | offered 2800 | ok 544 (<=1s: 370) | p50 711 | p99 1434 | pool-wait p99 493 | errors {"08P01":2254} | backends peak 4 (active 4) | DB CPU 0.75 cores | pgss mean 35.2 ms | ELD p99 11.2 ms

@@ -1,0 +1,22 @@
+== build under 4 writers (50% UPDATE, 50% INSERT)
+CREATE INDEX              | build 3630 ms | writes during build 2 (1/s, baseline 3319/s) | write max 3630 ms
+CREATE INDEX CONCURRENTLY | build 11325 ms | writes during build 36023 (3181/s, baseline 3561/s) | write max 7.7 ms
+
+== CIC waits for any transaction holding an old snapshot (here: on another table)
+phases seen: building index: scanning table -> building index: sorting live tuples -> building index: loading tuples in tree -> index validation: scanning index -> index validation: sorting tuples -> index validation: scanning table -> waiting for old snapshots
+reached "waiting for old snapshots" at 4607 ms, still "waiting for old snapshots" 5 s later; finished 0.5 ms after the other transaction committed
+
+== failed CIC leaves an INVALID index
+CIC cancelled: 57014 canceling statement due to statement timeout
+cancelled during the first scan, left behind: {"indisvalid":false,"indisready":false,"size":"0 bytes"}
+cancelled while "waiting for old snapshots" (57014), left behind: {"indisvalid":false,"indisready":true,"size":"152 MB"}
+re-run with IF NOT EXISTS: "relation "orders_tenant_created_idx" already exists, skipping" -> still {"indisvalid":false,"indisready":true,"size":"152 MB"}
+after DROP INDEX CONCURRENTLY + CIC: {"indisvalid":true,"indisready":true,"size":"152 MB"}
+
+== CIC inside a transaction (what a migration runner does by default)
+25001 CREATE INDEX CONCURRENTLY cannot run inside a transaction block
+
+== which index serves "latest 50 orders of a tenant"
+(tenant_id, created_at) | Limit > Index Scan(orders_tenant_created_idx) | buffers 55 | 0.25 ms
+(tenant_id) only        | Limit > Sort > Bitmap Heap Scan > Bitmap Index Scan(orders_tenant_only_idx) | buffers 4882 | 17.21 ms
+(created_at) only       | Limit > Index Scan(orders_created_only_idx) | buffers 48911 | 57.16 ms

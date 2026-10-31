@@ -1,0 +1,28 @@
+{
+  "name": "scenario-refactoring-pricing",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.14" },
+  "scripts": {
+    "test": "node --test --test-reporter=spec \"test/*.test.ts\"",
+    "approve": "node scripts/approve.ts",
+    "golden:show": "node scripts/golden-show.ts",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-include=\"src/legacy/**\" test/characterization.test.ts",
+    "mutation": "stryker run stryker.config.json",
+    "mutation:coarse": "MATRIX=coarse stryker run stryker.config.json",
+    "mutation:core": "stryker run stryker.core.config.json",
+    "mutation:core-golden-only": "stryker run stryker.golden-only.config.json",
+    "complexity": "node scripts/complexity.ts",
+    "rounding-diff": "node scripts/rounding-diff.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "10.1.1",
+    "@stryker-mutator/tap-runner": "10.1.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.14.0",
+    "eslint-plugin-sonarjs": "4.2.2",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "typescript": "npm:@typescript/typescript6@6.0.2"
+  }
+}

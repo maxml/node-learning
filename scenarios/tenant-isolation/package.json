@@ -1,0 +1,32 @@
+{
+  "name": "scenario-tenant-isolation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "db:up": "docker run -d --name scen-tenant-pg -e POSTGRES_PASSWORD=postgres -p 55435:5432 postgres:18.6-alpine",
+    "db:down": "docker rm -f scen-tenant-pg",
+    "setup": "node dist/setup.js",
+    "race": "node dist/race.js",
+    "bench": "node dist/bench.js",
+    "rls": "node dist/rls-demo.js",
+    "als": "node dist/als-pitfalls.js",
+    "test": "node --test --test-concurrency=1 --test-reporter=spec \"test/*.test.mjs\"",
+    "all": "npm run build && npm run setup && npm run race && npm run rls && npm run als && npm test"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.3.2",
+    "@nestjs/core": "12.3.2",
+    "@nestjs/platform-express": "12.3.2",
+    "nestjs-cls": "7.0.2",
+    "pg": "8.23.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "autocannon": "8.0.0",
+    "typescript": "7.0.2"
+  }
+}

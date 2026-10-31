@@ -1,0 +1,14 @@
+NOTICE:  table "orders" does not exist, skipping
+NOTICE:  table "ledger" does not exist, skipping
+ setseed 
+---------
+ 
+(1 row)
+
+NOTICE:  role "app" does not exist, skipping
+ max_connections 
+-----------------
+ 100
+(1 row)
+
+PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit

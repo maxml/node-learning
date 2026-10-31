@@ -1,0 +1,20 @@
+
+== no lock_timeout
+┌─────────┬───────────────┬───────────────────────┬─────────┬───┐
+│ (index) │ app           │ mode                  │ granted │ n │
+├─────────┼───────────────┼───────────────────────┼─────────┼───┤
+│ 0       │ 'long-report' │ 'AccessShareLock'     │ true    │ 1 │
+│ 1       │ 'api'         │ 'AccessShareLock'     │ false   │ 8 │
+│ 2       │ 'migration'   │ 'AccessExclusiveLock' │ false   │ 1 │
+└─────────┴───────────────┴───────────────────────┴─────────┴───┘
+ALTER done after 5005 ms, attempts=1; traffic over 5.5 s: 5437 queries (987/s), p50=0.7 ms, p99=2.0 ms, max=5007 ms, >100ms: 8
+
+== lock_timeout = '200ms' + retry with backoff
+┌─────────┬───────────────┬───────────────────────┬─────────┬───┐
+│ (index) │ app           │ mode                  │ granted │ n │
+├─────────┼───────────────┼───────────────────────┼─────────┼───┤
+│ 0       │ 'long-report' │ 'AccessShareLock'     │ true    │ 1 │
+│ 1       │ 'api'         │ 'AccessShareLock'     │ false   │ 8 │
+│ 2       │ 'migration'   │ 'AccessExclusiveLock' │ false   │ 1 │
+└─────────┴───────────────┴───────────────────────┴─────────┴───┘
+ALTER done after 6010 ms, attempts=6; traffic over 6.5 s: 53646 queries (8241/s), p50=0.7 ms, p99=2.8 ms, max=203 ms, >100ms: 40

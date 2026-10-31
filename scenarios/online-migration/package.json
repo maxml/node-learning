@@ -1,0 +1,13 @@
+{
+  "name": "scenario-online-migration",
+  "private": true,
+  "type": "module",
+  "description": "Online migration of a large PostgreSQL table: add a required tenant_id and an index without a maintenance window",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "all": "bash run.sh"
+  },
+  "dependencies": {
+    "pg": "8.23.1"
+  }
+}

@@ -1,0 +1,2 @@
+startup parameter statement_timeout=1000 via PgBouncer: refused (08P01 unsupported startup parameter: statement_timeout)
+SET LOCAL statement_timeout = 200ms inside a transaction: 57014 canceling statement due to statement timeout

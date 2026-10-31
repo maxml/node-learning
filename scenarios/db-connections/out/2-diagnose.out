@@ -1,0 +1,17 @@
+                                 query                                  | calls | total_s | mean_ms |  pct  
+------------------------------------------------------------------------+-------+---------+---------+-------
+ select count(*), coalesce(sum(amount), $2) from orders where customer_ |  1596 |  2262.4 | 1417.53 | 100.0
+
+                               QUERY PLAN                               
+------------------------------------------------------------------------
+ Aggregate (actual time=16.930..16.931 rows=1.00 loops=1)
+   Buffers: shared hit=2206
+   ->  Seq Scan on orders (actual time=3.930..16.920 rows=4.00 loops=1)
+         Filter: (customer_id = 4242)
+         Rows Removed by Filter: 299996
+         Buffers: shared hit=2206
+ Planning:
+   Buffers: shared hit=59
+ Planning Time: 0.181 ms
+ Execution Time: 16.948 ms
+

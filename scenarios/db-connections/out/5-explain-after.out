@@ -1,0 +1,17 @@
+                                              QUERY PLAN                                              
+------------------------------------------------------------------------------------------------------
+ Aggregate (actual time=0.069..0.070 rows=1.00 loops=1)
+   Buffers: shared hit=7
+   ->  Bitmap Heap Scan on orders (actual time=0.048..0.063 rows=4.00 loops=1)
+         Recheck Cond: (customer_id = 4242)
+         Heap Blocks: exact=4
+         Buffers: shared hit=7
+         ->  Bitmap Index Scan on orders_customer_id_idx (actual time=0.025..0.025 rows=4.00 loops=1)
+               Index Cond: (customer_id = 4242)
+               Index Searches: 1
+               Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=76 read=1
+ Planning Time: 0.268 ms
+ Execution Time: 0.085 ms
+

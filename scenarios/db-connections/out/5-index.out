@@ -1,0 +1,1 @@
+5 'sixty replicas' + index | 6x30=180 | offered 2800 | ok 2800 (<=1s: 2800) | p50 0.6 | p99 1.1 | pool-wait p99 0.1 | errors {} | backends peak 10 (active 1) | DB CPU 0.04 cores | pgss mean 0.0 ms | ELD p99 11.0 ms

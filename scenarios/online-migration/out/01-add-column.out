@@ -1,0 +1,7 @@
+case | ms under ACCESS EXCLUSIVE | heap rewritten
+nullable, no default | 1.3 | false
+constant default 0 | 2.5 | false
+constant default + NOT NULL | 1.2 | false
+volatile default clock_timestamp() | 10253 | true
+
+expand: ALTER TABLE orders ADD COLUMN tenant_id bigint -> 0.7 ms

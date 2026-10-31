@@ -1,0 +1,14 @@
+rows with tenant_id NULL before: 0
+step | duration | concurrent reads | concurrent writes | note
+(a) SET NOT NULL, naive (rolled back) | 786 ms | reads max 785 ms | writes max 785 ms
+(b1) ADD CHECK … NOT VALID | 0.8 ms | reads max 5.9 ms | writes max 6.3 ms
+(b2) VALIDATE CONSTRAINT | 1888 ms | reads max 7.0 ms | writes max 7.0 ms | lock: ShareUpdateExclusiveLock
+(b3) SET NOT NULL using the CHECK | 2.6 ms | reads max 2.0 ms | writes max 2.6 ms | existing constraints on column "orders.tenant_id" are sufficient to prove that it does not contain nulls
+(c1) ADD CONSTRAINT … NOT NULL tenant_id NOT VALID | 0.8 ms | reads max 2.0 ms | writes max 2.1 ms
+    catalog after NOT VALID: {"attnotnull":true,"convalidated":false}
+    insert with NULL tenant_id: rejected (23502 null value in column "tenant_id" of relation "orders" violates not-null constraint)
+(c2) VALIDATE CONSTRAINT (NOT NULL) | 2697 ms | reads max 10.2 ms | writes max 8.1 ms | lock: ShareUpdateExclusiveLock
+    catalog after VALIDATE: {"attnotnull":true,"convalidated":true}
+    probe: NOT VALID added over an existing NULL; VALIDATE -> 23502 column "x" of relation "nn_probe" contains null values
+(c3) SET NOT NULL over the NOT VALID one | 1145 ms | reads max 1145 ms | writes max 1145 ms | lock: AccessExclusiveLock
+    catalog after SET NOT NULL: {"attnotnull":true,"convalidated":true}

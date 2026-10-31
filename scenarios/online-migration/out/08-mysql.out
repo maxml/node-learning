@@ -1,0 +1,18 @@
+Query OK, 0 rows affected (0.00 sec)
+Query OK, 0 rows affected (0.00 sec)
+Query OK, 0 rows affected (0.00 sec)
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+Query OK, 0 rows affected (0.00 sec)
+Query OK, 1000000 rows affected (7.07 sec)
+| ADD COLUMN NULL, ALGORITHM=INSTANT |
+Query OK, 0 rows affected (0.00 sec)
+Query OK, 1000000 rows affected (18.25 sec)
+| MODIFY NOT NULL, ALGORITHM=INSTANT (expected to be refused) |
+ERROR 1845 (0A000) at line 20: ALGORITHM=INSTANT is not supported for this operation. Try ALGORITHM=COPY/INPLACE.
+| MODIFY NOT NULL, ALGORITHM=INPLACE, LOCK=NONE (online, but rebuilds the table) |
+Query OK, 0 rows affected (1.22 sec)
+| ADD INDEX, ALGORITHM=INSTANT (expected to be refused) |
+ERROR 1845 (0A000) at line 26: ALGORITHM=INSTANT is not supported for this operation. Try ALGORITHM=COPY/INPLACE.
+| ADD INDEX, ALGORITHM=INPLACE, LOCK=NONE |
+Query OK, 0 rows affected (1.81 sec)
+Query OK, 0 rows affected (0.01 sec)

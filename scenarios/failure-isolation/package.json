@@ -1,0 +1,16 @@
+{
+  "name": "scenario-failure-isolation",
+  "private": true,
+  "type": "module",
+  "description": "Scenario: one of three downstream services goes from 200 ms to 20 s; cascade before and after timeouts, bulkhead, breaker",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "pg:up": "docker run -d --name scen-fi-pg -e POSTGRES_PASSWORD=postgres -p 127.0.0.1:55442:5432 postgres:18.6-alpine",
+    "pg:down": "docker rm -fv scen-fi-pg",
+    "start": "node run.mjs"
+  },
+  "dependencies": {
+    "opossum": "10.0.0",
+    "pg": "8.23.1"
+  }
+}

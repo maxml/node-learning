@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "testRunner": "tap",
+  "tap": { "testFiles": ["test/equivalence.test.ts", "test/decide.test.ts", "test/outbox.test.ts", "test/new-rule.test.ts"] },
+  "mutate": ["src/pricing/decide.ts", "src/pricing/rules.ts", "src/pricing/spec.ts", "src/pricing/pricing.service.ts"],
+  "reporters": ["clear-text"],
+  "coverageAnalysis": "off",
+  "concurrency": 4,
+  "tempDirName": ".stryker-tmp"
+}

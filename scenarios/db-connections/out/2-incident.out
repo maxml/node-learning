@@ -1,0 +1,2 @@
+2a 'twenty replicas' | 2x30=60 | offered 2800 | ok 2800 (<=1s: 71) | p50 8898 | p99 16953 | pool-wait p99 16464 | errors {} | backends peak 60 (active 60) | DB CPU 2.00 cores | pgss mean 726.1 ms | ELD p99 12.1 ms
+2b 'sixty replicas'  | 6x30=180 | offered 2800 | ok 1596 (<=1s: 38) | p50 3380 | p99 7283 | pool-wait p99 5852 | errors {"53300":1206} | backends peak 96 (active 96) | DB CPU 2.00 cores | pgss mean 1417.5 ms | ELD p99 13.0 ms

@@ -1,0 +1,5 @@
+{"node":"v24.14.1"}
+{"path":"/heavy-block","heavyStatus":201,"pings":1,"pingMaxMs":10497,"pingP50Ms":10497.2}
+{"path":"/heavy","heavyStatus":201,"pings":182,"pingMaxMs":8,"pingP50Ms":1.9}
+{"burst6_pool2_queue2":[{"status":201,"ms":10372},{"status":201,"ms":10465},{"status":201,"ms":20394},{"status":201,"ms":20546},{"status":503,"ms":7},{"status":503,"ms":7}]}
+{"sigtermDuringHeavy":{"inFlightStatus":201,"exit":"SIGTERM","exitMs":8585,"poolClosedLogged":true}}

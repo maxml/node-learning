@@ -1,0 +1,13 @@
+ok    | ADD COLUMN tenant_id on the parent (propagates to partitions)
+ok    | ADD CHECK (tenant_id IS NOT NULL) NOT VALID on the parent
+ok    | VALIDATE CONSTRAINT on the parent (recurses)
+ok    | ADD … NOT NULL tenant_id NOT VALID on the parent (PG 18)
+error | CREATE INDEX CONCURRENTLY on the parent -> 0A000 cannot create index on partitioned table "events" concurrently
+ok    | CREATE INDEX ON ONLY events (parent only, no data)
+      parent index valid: false
+ok    | CREATE INDEX CONCURRENTLY on events_2026_09
+ok    | ALTER INDEX events_tenant_idx ATTACH PARTITION events_2026_09_tenant_idx
+      parent index valid: false
+ok    | CREATE INDEX CONCURRENTLY on events_2026_10
+ok    | ALTER INDEX events_tenant_idx ATTACH PARTITION events_2026_10_tenant_idx
+      parent index valid: true

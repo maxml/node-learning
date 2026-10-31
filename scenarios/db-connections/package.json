@@ -1,0 +1,13 @@
+{
+  "name": "scenario-db-connections",
+  "private": true,
+  "type": "module",
+  "description": "DB connection exhaustion under load: N replicas x pool size against a CPU-limited PostgreSQL, and the fixes",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "all": "bash run.sh"
+  },
+  "dependencies": {
+    "pg": "8.23.1"
+  }
+}

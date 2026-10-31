@@ -1,0 +1,22 @@
+{
+  "name": "scenario-cpu-bound-nest",
+  "private": true,
+  "description": "NestJS part of the cpu-bound scenario: worker pool as a provider, onModuleDestroy, blocking handler vs pool",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "npm run build && node check.mjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.3.2",
+    "@nestjs/core": "12.3.2",
+    "@nestjs/platform-express": "12.3.2",
+    "piscina": "5.3.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "5.9.3"
+  }
+}
