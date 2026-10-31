@@ -1,0 +1,11 @@
+versions {"node":"v24.14.1","ws":"8.22.0","socketio":"4.8.4","date":"2026-10-31T10:29:13.719Z"}
+native-and-binary {"nativeEcho":true,"nativeOrigin":null,"binary":[0,1,255],"upgradeHttpHandlers":0}
+upgrade-policy {"badOrigin":403,"noAuth":401,"authenticated":true,"draining":503}
+message-limit {"fragmentsReassembled":"hello","aggregateBytes":1200,"maxPayload":1024,"closeCode":1009,"serverError":"WS_ERR_UNSUPPORTED_MESSAGE_LENGTH"}
+fragment-limit {"totalBytes":3,"maxPayload":1024,"maxFragments":2,"closeCode":1008,"serverError":"WS_ERR_TOO_MANY_BUFFERED_PARTS"}
+heartbeat {"automaticPong":true,"silentPongs":0,"terminatedClientCode":1006,"goodStillOpen":true}
+slow-consumer {"callbackApplicationMessages":0,"writes":56,"bufferedAmount":983190,"budget":1048576,"nextSendRejected":true}
+shutdown {"afterHttpCloseAll":"still-open","explicitWebSocketClose":1001}
+shutdown-deadline {"closeHandshakePending":true,"forced":true}
+socketio {"rawWebSocketFirstPacket":"0{...Engine.IO handshake...}","plainApplicationEcho":false,"socketioAck":"application-echo"}
+result {"passed":true,"cases":9}
